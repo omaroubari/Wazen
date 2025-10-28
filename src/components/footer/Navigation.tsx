@@ -59,6 +59,7 @@ export default async function Menu({ footerMenu, locale, contactInfo }: any) {
 				return (
 					<div
 						key={key}
+						
 						className={links.length > 9 ? 'col-span-2' : 'col-span-1'}
 					>
 						<div className="grid h-10 items-center rounded text-start text-sm text-white">
