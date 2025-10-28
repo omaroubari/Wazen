@@ -473,9 +473,9 @@ export default function JobApplicationTabs({
 										<button className="border-b-2 border-[#2DD4BF] px-4 pb-2 text-lg font-bold text-[#2DD4BF]">
 											البيانات الأساسية
 										</button>
-										<button className="px-4 pb-2 text-lg font-semibold text-gray-400">
+										{/* <button className="px-4 pb-2 text-lg font-semibold text-gray-400">
 											المرفقات
-										</button>
+										</button> */}
 									</div>
 									{/* ✅ المحتوى القابل للتمدد فقط */}
 									<div
