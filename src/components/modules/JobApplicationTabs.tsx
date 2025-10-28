@@ -326,9 +326,8 @@ export default function JobApplicationTabs({
 											>
 												<span className="text-right font-['Rubik'] text-[16px] leading-[40px] font-bold text-[#170F49]">
 													{tab.label}
-													
-												</span>
 
+												</span>
 												{/* 🟢 الزر في التاب الأول فقط */}
 												{isFirst && tab.button?.text && (
 													<a
