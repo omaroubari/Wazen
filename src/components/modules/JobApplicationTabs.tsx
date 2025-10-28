@@ -202,9 +202,13 @@ export default function JobApplicationTabs({
 						fieldErrors.Email = data.message
 					if (data.message.includes('الجنسية'))
 						fieldErrors.Nation_No = data.message
-					if (data.message.includes('السيرة الذاتية'))
-						fieldErrors.file = data.message
 
+					if (
+						data.message.includes('حجم الملف يجب أن لا يتجاوز 5 ميجابايت') ||
+						data.message.includes('السيرة الذاتية')
+					) {
+						fieldErrors.file = data.message
+					}
 					if (data.message.includes('الجنس')) fieldErrors.Gender = data.message
 					if (data.message.includes('تاريخ الميلاد'))
 						fieldErrors.Birth_Dt = data.message
@@ -381,7 +385,7 @@ export default function JobApplicationTabs({
 						<div className="rounded-xl border border-gray-100 bg-white p-4 text-right shadow-inner transition-all sm:p-6">
 							{/* === نموذج التقديم === */}
 							{tabs[activeTab].type === 'form' ? (
-							<section className="mx-auto max-w-5xl transition-all duration-500">
+								<section className="mx-auto max-w-5xl transition-all duration-500">
 									<div className="mb-8 flex items-start justify-between">
 										{/* ✅ القسم الأيسر: شعار وازن + العنوان والنص */}
 										<div className="flex flex-col items-start gap-4">
@@ -473,352 +477,352 @@ export default function JobApplicationTabs({
 											المرفقات
 										</button>
 									</div>
-								{/* ✅ المحتوى القابل للتمدد فقط */}
-								<div
-									className={`transition-all duration-700 ease-in-out ${
-										expanded
-											? 'max-h-[4000px] opacity-100'
-											: 'max-h-[600px] overflow-hidden opacity-100'
-									}`}
-								>
-									{successMessage && (
-										<div className="fixed top-0 right-0 left-0 z-50 mx-auto max-w-2xl rounded-b-lg border border-green-300 bg-green-100 px-4 py-3 text-center font-bold text-green-800 shadow-lg">
-											{successMessage}
-										</div>
-									)}
-									<form
-										id="jobApplyForm"
-										onSubmit={handleSubmit}
-										className="grid grid-cols-1 gap-6 p-4 text-right sm:grid-cols-2 sm:p-6 md:p-8 lg:grid-cols-3"
+									{/* ✅ المحتوى القابل للتمدد فقط */}
+									<div
+										className={`transition-all duration-700 ease-in-out ${
+											expanded
+												? 'max-h-[4000px] opacity-100'
+												: 'max-h-[600px] overflow-hidden opacity-100'
+										}`}
 									>
-										{/* الاسم بالكامل */}
-										<div>
-											<label className="mb-1 block font-semibold text-gray-700">
-												الاسم بالكامل
-											</label>
-											<input
-												type="text"
-												name="Seeker_NmAr"
-												value={formData.Seeker_NmAr}
-												onChange={handleChange}
-												placeholder="حسام محمد"
-												className={`w-full rounded-lg border bg-white p-3 outline-none focus:ring-2 focus:ring-[#2DD4BF] ${apiErrors?.Seeker_NmAr ? 'border-red-400' : 'border-gray-200'}`}
-												aria-invalid={!!apiErrors?.Seeker_NmAr}
-											/>
-											{apiErrors?.Seeker_NmAr && (
-												<div className="mt-1 text-sm text-red-600">
-													{apiErrors.Seeker_NmAr}
-												</div>
-											)}
-										</div>
-
-										{/* تاريخ الميلاد */}
-										<div>
-											<label className="mb-1 block font-semibold text-gray-700">
-												تاريخ الميلاد
-											</label>
-											<input
-												type="date"
-												name="Birth_Dt"
-												value={formData.Birth_Dt}
-												onChange={handleChange}
-												placeholder="5-8-1996"
-												className={`w-full rounded-lg border bg-white p-3 outline-none focus:ring-2 focus:ring-[#2DD4BF] ${apiErrors?.Birth_Dt ? 'border-red-400' : 'border-gray-200'}`}
-												aria-invalid={!!apiErrors?.Birth_Dt}
-											/>
-											{apiErrors?.Birth_Dt && (
-												<div className="mt-1 text-sm text-red-600">
-													{apiErrors.Birth_Dt}
-												</div>
-											)}
-										</div>
-
-										{/* النوع */}
-										<div>
-											<label className="mb-1 block font-semibold text-gray-700">
-												النوع
-											</label>
-											<select
-												name="Gender"
-												value={formData.Gender}
-												onChange={handleChange}
-												className={`w-full rounded-lg border bg-white p-3 outline-none focus:ring-2 focus:ring-[#2DD4BF] ${apiErrors?.Gender ? 'border-red-400' : 'border-gray-200'}`}
-												aria-invalid={!!apiErrors?.Gender}
-											>
-												<option value="">اختر النوع</option>
-												{gender.map((item) => (
-													<option key={item.id} value={item.id}>
-														{item.name}
-													</option>
-												))}
-											</select>
-
-											{apiErrors?.Gender && (
-												<div className="mt-1 text-sm text-red-600">
-													{apiErrors.Gender}
-												</div>
-											)}
-										</div>
-										{/* بلد الاقامة */}
-										<div>
-											<label className="mb-1 block font-semibold text-gray-700">
-												بلد الاقامة{' '}
-											</label>
-											<select
-												name="country_of_residence"
-												value={formData.country_of_residence}
-												onChange={handleChange}
-												className="w-full rounded-lg border border-gray-200 bg-white p-3 outline-none focus:ring-2 focus:ring-[#2DD4BF]"
-											>
-												<option value="">اختر الدولة</option>
-												{astCountry.map((country) => (
-													<option
-														key={country.Cntry_No}
-														value={country.Cntry_No}
-													>
-														{country.Cntry_NmAr}
-													</option>
-												))}
-											</select>
-										</div>
-
-										{/* المدينة */}
-										<div>
-											<label className="mb-1 block font-semibold text-gray-700">
-												المدينة
-											</label>
-											<select
-												name="City_No"
-												value={formData.City_No}
-												onChange={handleChange}
-												className="w-full rounded-lg border border-gray-200 bg-white p-3 outline-none focus:ring-2 focus:ring-[#2DD4BF]"
-											>
-												<option value="">اختر المدينة</option>
-												{astCity.map((city) => (
-													<option key={city.id} value={city.id}>
-														{city.City_NmAr}
-													</option>
-												))}
-											</select>
-										</div>
-
-										{/* العمر */}
-										<div>
-											<label className="mb-1 block font-semibold text-gray-700">
-												العمر
-											</label>
-											<input
-												name="Age"
-												value={formData.Age}
-												onChange={handleChange}
-												type="text"
-												placeholder="30 عاماً"
-												className={`w-full rounded-lg border bg-white p-3 outline-none focus:ring-2 focus:ring-[#2DD4BF] ${apiErrors?.Age ? 'border-red-400' : 'border-gray-200'}`}
-												aria-invalid={!!apiErrors?.Age}
-											/>
-											{apiErrors?.Age && (
-												<div className="mt-1 text-sm text-red-600">
-													{apiErrors.Age}
-												</div>
-											)}
-										</div>
-
-										{/* رقم الهاتف */}
-										<div>
-											<label className="mb-1 block font-semibold text-gray-700">
-												رقم الهاتف
-											</label>
-											<input
-												type="text"
-												name="Phone1"
-												value={formData.Phone1}
-												onChange={handleChange}
-												placeholder="51236789"
-												className={`w-full rounded-lg border bg-white p-3 outline-none focus:ring-2 focus:ring-[#2DD4BF] ${apiErrors?.Phone1 ? 'border-red-400' : 'border-gray-200'}`}
-												aria-invalid={!!apiErrors?.Phone1}
-											/>
-											{apiErrors?.Phone1 && (
-												<div className="mt-1 text-sm text-red-600">
-													{apiErrors.Phone1}
-												</div>
-											)}
-										</div>
-
-										{/* 6التخصص */}
-										<div>
-											<label className="mb-1 block font-semibold text-gray-700">
-												التخصص
-											</label>
-											<input
-												name="Specialization_Name"
-												value={formData.Specialization_Name}
-												onChange={handleChange}
-												type="text"
-												placeholder="محلل بيانات"
-												className={`w-full rounded-lg border bg-white p-3 outline-none focus:ring-2 focus:ring-[#2DD4BF] ${apiErrors?.Specialization_Name ? 'border-red-400' : 'border-gray-200'}`}
-												aria-invalid={!!apiErrors?.Specialization_Name}
-											/>
-											{apiErrors?.Specialization_Name && (
-												<div className="mt-1 text-sm text-red-600">
-													{apiErrors.Specialization_Name}
-												</div>
-											)}
-										</div>
-
-										{/* الجنسية */}
-										<div>
-											<label className="mb-1 block font-semibold text-gray-700">
-												الجنسية
-											</label>
-											<select
-												name="Nation_No"
-												onChange={handleChange}
-												value={formData.Nation_No}
-												className="w-full rounded-lg border border-gray-200 bg-white p-3 outline-none focus:ring-2 focus:ring-[#2DD4BF]"
-											>
-												<option value="">اختر الدولة</option>
-												{astCountry.map((country) => (
-													<option
-														key={country.Cntry_No}
-														value={country.Cntry_No}
-													>
-														{country.Cntry_NmAr}
-													</option>
-												))}
-											</select>
-										</div>
-
-										{/* نوع الهوية */}
-										<div>
-											<label className="mb-1 block font-semibold text-gray-700">
-												نوع الهوية (اختياري)
-											</label>
-											<select
-												name="id_type"
-												onChange={handleChange}
-												value={formData.id_type}
-												className="w-full rounded-lg border border-gray-200 bg-white p-3 outline-none focus:ring-2 focus:ring-[#2DD4BF]"
-											>
-												<option value="">اختر نوع الهوية</option>
-
-												{/* ✅ عرض البيانات القادمة من السيرفر */}
-												{idType.map((type) => (
-													<option key={type.id} value={type.id}>
-														{type.name}
-													</option>
-												))}
-											</select>
-										</div>
-
-										{/* رقم الهوية */}
-										<div>
-											<label className="mb-1 block font-semibold text-gray-700">
-												رقم الهوية (اختياري)
-											</label>
-											<input
-												type="text"
-												name="National_ID"
-												value={formData.National_ID}
-												onChange={handleChange}
-												placeholder="1234567890"
-												className={`w-full rounded-lg border bg-white p-3 outline-none focus:ring-2 focus:ring-[#2DD4BF] ${apiErrors?.National_ID ? 'border-red-400' : 'border-gray-200'}`}
-												aria-invalid={!!apiErrors?.National_ID}
-											/>
-											{apiErrors?.National_ID && (
-												<div className="mt-1 text-sm text-red-600">
-													{apiErrors.National_ID}
-												</div>
-											)}
-										</div>
-
-										{/* البريد الإلكتروني */}
-										<div>
-											<label className="mb-1 block font-semibold text-gray-700">
-												البريد الإلكتروني
-											</label>
-											<input
-												type="email"
-												name="Email"
-												value={formData.Email}
-												onChange={handleChange}
-												placeholder="Hossam@example.com"
-												className={`w-full rounded-lg border bg-white p-3 outline-none focus:ring-2 focus:ring-[#2DD4BF] ${apiErrors?.Email ? 'border-red-400' : 'border-gray-200'}`}
-												aria-invalid={!!apiErrors?.Email}
-											/>
-											{apiErrors?.Email && (
-												<div className="mt-1 text-sm text-red-600">
-													{apiErrors.Email}
-												</div>
-											)}
-										</div>
-
-										{/* ✅ قسم رفع الملفات */}
-										<div className="col-span-1 mt-12 w-full sm:col-span-2 lg:col-span-3">
-											<h3 className="mb-4 text-right text-2xl font-bold text-[#170F49]">
-												إرفاق المستندات
-											</h3>
-											<p className="mb-6 text-right leading-relaxed text-gray-500">
-												يرجى إرفاق سيرتك الذاتية المحدثة بدقة، إلى جانب صورة
-												شخصية واضحة،
-												<br className="hidden sm:block" />
-												وشهادات الخبرة أو شهادات الدورات التدريبية ذات الصلة.
-											</p>
-
-											{/* منطقة رفع الملفات */}
-											<label
-												htmlFor="file"
-												className={`flex cursor-pointer flex-col items-center justify-center rounded-xl border-2 border-dashed ${
-													apiErrors?.file
-														? 'border-red-400'
-														: 'border-[#2DD4BF]'
-												} bg-[#F9FAFB] p-8 text-center transition hover:bg-[#F0FDFA] sm:p-10`}
-											>
-												<FileUpload
-													formData={formData}
-													onFileChange={handleFileChange}
+										{successMessage && (
+											<div className="fixed top-0 right-0 left-0 z-50 mx-auto max-w-2xl rounded-b-lg border border-green-300 bg-green-100 px-4 py-3 text-center font-bold text-green-800 shadow-lg">
+												{successMessage}
+											</div>
+										)}
+										<form
+											id="jobApplyForm"
+											onSubmit={handleSubmit}
+											className="grid grid-cols-1 gap-6 p-4 text-right sm:grid-cols-2 sm:p-6 md:p-8 lg:grid-cols-3"
+										>
+											{/* الاسم بالكامل */}
+											<div>
+												<label className="mb-1 block font-semibold text-gray-700">
+													الاسم بالكامل
+												</label>
+												<input
+													type="text"
+													name="Seeker_NmAr"
+													value={formData.Seeker_NmAr}
+													onChange={handleChange}
+													placeholder="حسام محمد"
+													className={`w-full rounded-lg border bg-white p-3 outline-none focus:ring-2 focus:ring-[#2DD4BF] ${apiErrors?.Seeker_NmAr ? 'border-red-400' : 'border-gray-200'}`}
+													aria-invalid={!!apiErrors?.Seeker_NmAr}
 												/>
-											</label>
-											{apiErrors?.file && (
-												<div className="mt-3 text-center text-sm text-red-600">
-													{apiErrors.file}
-												</div>
-											)}
+												{apiErrors?.Seeker_NmAr && (
+													<div className="mt-1 text-sm text-red-600">
+														{apiErrors.Seeker_NmAr}
+													</div>
+												)}
+											</div>
 
-											{/* الرسالة الإضافية */}
-											<textarea
-												name="notes"
-												value={formData.notes}
-												onChange={handleChange}
-												placeholder="رسالة أو ملاحظات إضافية"
-												className={`mt-6 w-full rounded-md border border-cyan-300 bg-[#14B8A617] px-4 py-3 text-gray-800 outline-none placeholder:text-gray-400 focus:border-[#2DD4BF] focus:ring-2 focus:ring-[#2DD4BF] ${apiErrors?.notes ? 'border-red-400' : ''}`}
-												rows={10}
-											></textarea>
-											{apiErrors?.notes && (
-												<div className="mt-1 text-sm text-red-600">
-													{apiErrors.notes}
-												</div>
-											)}
-										</div>
-									</form>
-								</div>
-								{/* ✅ أزرار عرض المزيد/أقل خارج الحاوية المقتصّة */}
-								<div className="mt-4 flex justify-center">
-									{!expanded ? (
-										<button
-											onClick={() => setExpanded(true)}
-											className="rounded-full bg-gradient-to-l from-[#02B6BE] to-[#5FC19C] px-6 py-2 text-sm font-bold text-white shadow-md transition hover:opacity-90"
-										>
-											👁 عرض المزيد
-										</button>
-									) : (
-										<button
-											onClick={() => setExpanded(false)}
-											className="rounded-full bg-gray-100 px-6 py-2 text-sm font-bold text-gray-700 shadow-md transition hover:bg-gray-200"
-										>
-											إخفاء
-										</button>
-									)}
-								</div>
+											{/* تاريخ الميلاد */}
+											<div>
+												<label className="mb-1 block font-semibold text-gray-700">
+													تاريخ الميلاد
+												</label>
+												<input
+													type="date"
+													name="Birth_Dt"
+													value={formData.Birth_Dt}
+													onChange={handleChange}
+													placeholder="5-8-1996"
+													className={`w-full rounded-lg border bg-white p-3 outline-none focus:ring-2 focus:ring-[#2DD4BF] ${apiErrors?.Birth_Dt ? 'border-red-400' : 'border-gray-200'}`}
+													aria-invalid={!!apiErrors?.Birth_Dt}
+												/>
+												{apiErrors?.Birth_Dt && (
+													<div className="mt-1 text-sm text-red-600">
+														{apiErrors.Birth_Dt}
+													</div>
+												)}
+											</div>
+
+											{/* النوع */}
+											<div>
+												<label className="mb-1 block font-semibold text-gray-700">
+													النوع
+												</label>
+												<select
+													name="Gender"
+													value={formData.Gender}
+													onChange={handleChange}
+													className={`w-full rounded-lg border bg-white p-3 outline-none focus:ring-2 focus:ring-[#2DD4BF] ${apiErrors?.Gender ? 'border-red-400' : 'border-gray-200'}`}
+													aria-invalid={!!apiErrors?.Gender}
+												>
+													<option value="">اختر النوع</option>
+													{gender.map((item) => (
+														<option key={item.id} value={item.id}>
+															{item.name}
+														</option>
+													))}
+												</select>
+
+												{apiErrors?.Gender && (
+													<div className="mt-1 text-sm text-red-600">
+														{apiErrors.Gender}
+													</div>
+												)}
+											</div>
+											{/* بلد الاقامة */}
+											<div>
+												<label className="mb-1 block font-semibold text-gray-700">
+													بلد الاقامة{' '}
+												</label>
+												<select
+													name="country_of_residence"
+													value={formData.country_of_residence}
+													onChange={handleChange}
+													className="w-full rounded-lg border border-gray-200 bg-white p-3 outline-none focus:ring-2 focus:ring-[#2DD4BF]"
+												>
+													<option value="">اختر الدولة</option>
+													{astCountry.map((country) => (
+														<option
+															key={country.Cntry_No}
+															value={country.Cntry_No}
+														>
+															{country.Cntry_NmAr}
+														</option>
+													))}
+												</select>
+											</div>
+
+											{/* المدينة */}
+											<div>
+												<label className="mb-1 block font-semibold text-gray-700">
+													المدينة
+												</label>
+												<select
+													name="City_No"
+													value={formData.City_No}
+													onChange={handleChange}
+													className="w-full rounded-lg border border-gray-200 bg-white p-3 outline-none focus:ring-2 focus:ring-[#2DD4BF]"
+												>
+													<option value="">اختر المدينة</option>
+													{astCity.map((city) => (
+														<option key={city.id} value={city.id}>
+															{city.City_NmAr}
+														</option>
+													))}
+												</select>
+											</div>
+
+											{/* العمر */}
+											<div>
+												<label className="mb-1 block font-semibold text-gray-700">
+													العمر
+												</label>
+												<input
+													name="Age"
+													value={formData.Age}
+													onChange={handleChange}
+													type="number"
+													placeholder="30 عاماً"
+													className={`w-full rounded-lg border bg-white p-3 outline-none focus:ring-2 focus:ring-[#2DD4BF] ${apiErrors?.Age ? 'border-red-400' : 'border-gray-200'}`}
+													aria-invalid={!!apiErrors?.Age}
+												/>
+												{apiErrors?.Age && (
+													<div className="mt-1 text-sm text-red-600">
+														{apiErrors.Age}
+													</div>
+												)}
+											</div>
+
+											{/* رقم الهاتف */}
+											<div>
+												<label className="mb-1 block font-semibold text-gray-700">
+													رقم الهاتف
+												</label>
+												<input
+													type="text"
+													name="Phone1"
+													value={formData.Phone1}
+													onChange={handleChange}
+													placeholder="51236789"
+													className={`w-full rounded-lg border bg-white p-3 outline-none focus:ring-2 focus:ring-[#2DD4BF] ${apiErrors?.Phone1 ? 'border-red-400' : 'border-gray-200'}`}
+													aria-invalid={!!apiErrors?.Phone1}
+												/>
+												{apiErrors?.Phone1 && (
+													<div className="mt-1 text-sm text-red-600">
+														{apiErrors.Phone1}
+													</div>
+												)}
+											</div>
+
+											{/* 6التخصص */}
+											<div>
+												<label className="mb-1 block font-semibold text-gray-700">
+													التخصص
+												</label>
+												<input
+													name="Specialization_Name"
+													value={formData.Specialization_Name}
+													onChange={handleChange}
+													type="text"
+													placeholder="محلل بيانات"
+													className={`w-full rounded-lg border bg-white p-3 outline-none focus:ring-2 focus:ring-[#2DD4BF] ${apiErrors?.Specialization_Name ? 'border-red-400' : 'border-gray-200'}`}
+													aria-invalid={!!apiErrors?.Specialization_Name}
+												/>
+												{apiErrors?.Specialization_Name && (
+													<div className="mt-1 text-sm text-red-600">
+														{apiErrors.Specialization_Name}
+													</div>
+												)}
+											</div>
+
+											{/* الجنسية */}
+											<div>
+												<label className="mb-1 block font-semibold text-gray-700">
+													الجنسية
+												</label>
+												<select
+													name="Nation_No"
+													onChange={handleChange}
+													value={formData.Nation_No}
+													className="w-full rounded-lg border border-gray-200 bg-white p-3 outline-none focus:ring-2 focus:ring-[#2DD4BF]"
+												>
+													<option value="">اختر الدولة</option>
+													{astCountry.map((country) => (
+														<option
+															key={country.Cntry_No}
+															value={country.Cntry_No}
+														>
+															{country.Cntry_NmAr}
+														</option>
+													))}
+												</select>
+											</div>
+
+											{/* نوع الهوية */}
+											<div>
+												<label className="mb-1 block font-semibold text-gray-700">
+													نوع الهوية (اختياري)
+												</label>
+												<select
+													name="id_type"
+													onChange={handleChange}
+													value={formData.id_type}
+													className="w-full rounded-lg border border-gray-200 bg-white p-3 outline-none focus:ring-2 focus:ring-[#2DD4BF]"
+												>
+													<option value="">اختر نوع الهوية</option>
+
+													{/* ✅ عرض البيانات القادمة من السيرفر */}
+													{idType.map((type) => (
+														<option key={type.id} value={type.id}>
+															{type.name}
+														</option>
+													))}
+												</select>
+											</div>
+
+											{/* رقم الهوية */}
+											<div>
+												<label className="mb-1 block font-semibold text-gray-700">
+													رقم الهوية (اختياري)
+												</label>
+												<input
+													type="text"
+													name="National_ID"
+													value={formData.National_ID}
+													onChange={handleChange}
+													placeholder="1234567890"
+													className={`w-full rounded-lg border bg-white p-3 outline-none focus:ring-2 focus:ring-[#2DD4BF] ${apiErrors?.National_ID ? 'border-red-400' : 'border-gray-200'}`}
+													aria-invalid={!!apiErrors?.National_ID}
+												/>
+												{apiErrors?.National_ID && (
+													<div className="mt-1 text-sm text-red-600">
+														{apiErrors.National_ID}
+													</div>
+												)}
+											</div>
+
+											{/* البريد الإلكتروني */}
+											<div>
+												<label className="mb-1 block font-semibold text-gray-700">
+													البريد الإلكتروني
+												</label>
+												<input
+													type="email"
+													name="Email"
+													value={formData.Email}
+													onChange={handleChange}
+													placeholder="Hossam@example.com"
+													className={`w-full rounded-lg border bg-white p-3 outline-none focus:ring-2 focus:ring-[#2DD4BF] ${apiErrors?.Email ? 'border-red-400' : 'border-gray-200'}`}
+													aria-invalid={!!apiErrors?.Email}
+												/>
+												{apiErrors?.Email && (
+													<div className="mt-1 text-sm text-red-600">
+														{apiErrors.Email}
+													</div>
+												)}
+											</div>
+
+											{/* ✅ قسم رفع الملفات */}
+											<div className="col-span-1 mt-12 w-full sm:col-span-2 lg:col-span-3">
+												<h3 className="mb-4 text-right text-2xl font-bold text-[#170F49]">
+													إرفاق المستندات
+												</h3>
+												<p className="mb-6 text-right leading-relaxed text-gray-500">
+													يرجى إرفاق سيرتك الذاتية المحدثة بدقة، إلى جانب صورة
+													شخصية واضحة،
+													<br className="hidden sm:block" />
+													وشهادات الخبرة أو شهادات الدورات التدريبية ذات الصلة.
+												</p>
+
+												{/* منطقة رفع الملفات */}
+												<label
+													htmlFor="file"
+													className={`flex cursor-pointer flex-col items-center justify-center rounded-xl border-2 border-dashed ${
+														apiErrors?.file
+															? 'border-red-400'
+															: 'border-[#2DD4BF]'
+													} bg-[#F9FAFB] p-8 text-center transition hover:bg-[#F0FDFA] sm:p-10`}
+												>
+													<FileUpload
+														formData={formData}
+														onFileChange={handleFileChange}
+													/>
+												</label>
+												{apiErrors?.file && (
+													<div className="mt-3 text-center text-sm text-red-600">
+														{apiErrors.file}
+													</div>
+												)}
+
+												{/* الرسالة الإضافية */}
+												<textarea
+													name="notes"
+													value={formData.notes}
+													onChange={handleChange}
+													placeholder="رسالة أو ملاحظات إضافية"
+													className={`mt-6 w-full rounded-md border border-cyan-300 bg-[#14B8A617] px-4 py-3 text-gray-800 outline-none placeholder:text-gray-400 focus:border-[#2DD4BF] focus:ring-2 focus:ring-[#2DD4BF] ${apiErrors?.notes ? 'border-red-400' : ''}`}
+													rows={10}
+												></textarea>
+												{apiErrors?.notes && (
+													<div className="mt-1 text-sm text-red-600">
+														{apiErrors.notes}
+													</div>
+												)}
+											</div>
+										</form>
+									</div>
+									{/* ✅ أزرار عرض المزيد/أقل خارج الحاوية المقتصّة */}
+									<div className="mt-4 flex justify-center">
+										{!expanded ? (
+											<button
+												onClick={() => setExpanded(true)}
+												className="rounded-full bg-gradient-to-l from-[#02B6BE] to-[#5FC19C] px-6 py-2 text-sm font-bold text-white shadow-md transition hover:opacity-90"
+											>
+												👁 عرض المزيد
+											</button>
+										) : (
+											<button
+												onClick={() => setExpanded(false)}
+												className="rounded-full bg-gray-100 px-6 py-2 text-sm font-bold text-gray-700 shadow-md transition hover:bg-gray-200"
+											>
+												إخفاء
+											</button>
+										)}
+									</div>
 								</section>
 							) : (
 								// === قسم النصوص ===
