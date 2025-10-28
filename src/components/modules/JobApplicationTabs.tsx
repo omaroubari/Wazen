@@ -226,7 +226,7 @@ export default function JobApplicationTabs({
 		}
 	}
 	return (
-		<main id="main-content" className="font-[Cairo]">
+		<main id="main-content" className="font-['Rubik']">
 			<section
 				className="pt-12 md:pt-16 lg:pt-28"
 				style={{
@@ -324,7 +324,7 @@ export default function JobApplicationTabs({
 													!isFirst ? 'mb-2' : ''
 												}`}
 											>
-												<span className="text-right font-[Cairo] text-[24px] leading-[46px] font-bold text-[#170F49]">
+												<span className="text-right font-['Rubik'] text-[16px] leading-[40px] font-bold text-[#170F49]">
 													{tab.label}
 												</span>
 
@@ -332,7 +332,7 @@ export default function JobApplicationTabs({
 												{isFirst && tab.button?.text && (
 													<a
 														href="#"
-														className="inline-flex items-center justify-center gap-1 rounded-full border border-white px-4 py-1.5 font-[Cairo] text-[10px] font-bold text-white transition hover:bg-white hover:text-[#155E75]"
+														className="inline-flex items-center justify-center gap-1 rounded-full border border-white px-4 py-1.5 font-['Rubik'] text-[10px] font-bold text-white transition hover:bg-white hover:text-[#155E75]"
 													>
 														{tab.button.text}
 													</a>
@@ -473,9 +473,9 @@ export default function JobApplicationTabs({
 										<button className="border-b-2 border-[#2DD4BF] px-4 pb-2 text-lg font-bold text-[#2DD4BF]">
 											البيانات الأساسية
 										</button>
-										<button className="px-4 pb-2 text-lg font-semibold text-gray-400">
+										{/* <button className="px-4 pb-2 text-lg font-semibold text-gray-400">
 											المرفقات
-										</button>
+										</button> */}
 									</div>
 									{/* ✅ المحتوى القابل للتمدد فقط */}
 									<div
