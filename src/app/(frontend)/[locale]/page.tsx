@@ -52,6 +52,7 @@ async function getPage(locale: 'en' | 'ar') {
             }
           }
         },
+        callToActionDoc[0]->,
 				categories[]->{title, slug},
 				logos[]->,
 				plans[]->,

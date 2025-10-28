@@ -101,7 +101,6 @@ export default async function middleware(request: NextRequest) {
 			// 	if (
 			// 		normalizePath(pathWithoutLocale) === normalizePath(normalizedSource)
 			// 	) {
-			// 		console.log('hello')
 
 			// 		// Preserve locale in destination if destination doesn't already include it
 			// 		let finalDestination = destination
@@ -143,5 +142,4 @@ export default async function middleware(request: NextRequest) {
 
 export const config = {
 	matcher: ['/((?!api|admin|_next|_vercel|.*\\..*).*)'],
-	runtime: 'experimental-edge',
 }

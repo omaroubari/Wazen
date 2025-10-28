@@ -57,8 +57,10 @@ export const Img = ({
 					height={height ?? getImageDimensions(image).height}
 					placeholder="blur"
 					blurDataURL={urlFor(image).width(24).height(24).blur(10).url()}
-					sizes={sizes}
-					// "(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 40vw"
+					sizes={
+						sizes
+						// ?? '(max-width: 768px) 90vw, (max-width: 1200px) 50vw, 33vw'
+					}
 					className={className}
 					loading={loading}
 					priority={priority}

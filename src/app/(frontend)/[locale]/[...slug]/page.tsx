@@ -84,7 +84,7 @@ async function getPage(params: { slug: string[]; locale: 'en' | 'ar' }) {
 				partnerslogos[]->,
 				plans[]->,
 				testimonials[]->,
-				callToActionDoc[]->,
+				callToActionDoc[0]->,
 				'headings': select(
 					tableOfContents => content[style in ['h2', 'h3']]{
 						style,

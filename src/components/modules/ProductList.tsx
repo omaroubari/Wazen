@@ -88,7 +88,7 @@ export default function ProductList({
 												alt={product.productTitle}
 												className="h-auto w-full rounded-lg"
 												loading="lazy"
-												width={300}
+												sizes="(max-width: 768px) 80vw, (max-width: 1024px) 60vw, 20vw"
 											/>
 										</div>
 										<div className="space-y-1 p-4 text-start transition-all duration-600">

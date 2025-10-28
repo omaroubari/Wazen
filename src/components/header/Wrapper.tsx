@@ -5,7 +5,7 @@ import { useMediaQuery } from '@/hooks/use-media-query'
 
 import { cn } from '@/lib/utils'
 import dynamic from 'next/dynamic'
-import { useScroll } from 'motion/react'
+import { useMotionValueEvent, useScroll } from 'motion/react'
 
 const ContactBar = dynamic(() => import('./Desktop/ContactBar'), { ssr: true })
 export default function Wrapper({
@@ -21,18 +21,19 @@ export default function Wrapper({
 	const [scrollPosition, setScrollPosition] = useState(0)
 	const isDesktop = useMediaQuery('(min-width: 1280px)')
 
-	useEffect(() => {
-		const headerHeight = 0
-		const contactBarHeight = isDesktop ? 36 : 0
-		const adjustedHeight =
-			scrollPosition > 1 ? headerHeight - contactBarHeight : headerHeight
-		document.documentElement.style.setProperty(
-			'--header-height',
-			adjustedHeight + 'px',
-		)
-	}, [isDesktop, scrollPosition])
+	const headerHeight = isDesktop ? 72 : 64
+	// 	const contactBarHeight = isDesktop ? 36 : 0
 
-	scrollY.on('change', (latest) => {
+	// useEffect(() => {
+	// 	const adjustedHeight =
+	// 		scrollPosition > 1 ? headerHeight - contactBarHeight : headerHeight
+	// 	document.documentElement.style.setProperty(
+	// 		'--header-height',
+	// 		adjustedHeight + 'px',
+	// 	)
+	// }, [isDesktop, scrollPosition])
+
+	useMotionValueEvent(scrollY, 'change', (latest) => {
 		setScrollPosition(latest)
 	})
 

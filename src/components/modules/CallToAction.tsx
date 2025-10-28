@@ -10,17 +10,21 @@ import { Icon } from '@iconify-icon/react'
 import { Img } from '@/components/Img'
 import { CallToActionDoc } from 'sanity'
 
-// Component is now simpler, receives all data via props
 export default function CallToAction({
 	content,
 	ctas,
 	image,
 	checkedList,
+	callToActionDoc,
 	className,
-}: Sanity.CallToActionDoc & { className?: string }) {
+}: Sanity.Module & { className?: string }) {
 	// Return null or placeholder if essential content is missing
+
 	if (!content && !ctas) {
-		return null
+		content = callToActionDoc.content
+		ctas = callToActionDoc.ctas
+		image = callToActionDoc.image
+		checkedList = callToActionDoc.checkedList
 	}
 
 	const components: PortableTextComponents = {
@@ -89,7 +93,7 @@ export default function CallToAction({
 							<Img
 								image={image}
 								alt={image?.alt || ''} // Provide default alt text
-								className="mx-auto h-auto w-full rounded-lg object-cover object-top-left shadow-lg"
+								className="mx-auto h-full w-full rounded-lg object-cover shadow-lg ltr:object-top-left rtl:object-top-right"
 								draggable={false}
 								loading="lazy"
 							/>

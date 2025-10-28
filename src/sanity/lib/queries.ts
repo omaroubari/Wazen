@@ -10,7 +10,7 @@ const navigationProjection = /* groq */ `
 			...,
 			internal->{ _type, title, metadata },
 			links[]{
-			..., 
+			...,
 			internal->{ _type, title, metadata }
 			}
 		}
@@ -38,7 +38,13 @@ export async function getSite(locale: any) {
 		query: groq`
 			*[_type == 'site' && language == $locale  ][0]{
 				...,
-				callToActionDoc[]->,
+				callToActionDoc[]->{
+				...,
+				link{
+					...,
+					internal->{ _type, title, metadata }
+				}
+				},
 				ctas[]{
 					...,
 					link{
