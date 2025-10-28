@@ -57,7 +57,7 @@ export default function JobApplicationTabs({
 	const [astCountry, setAstCountry] = useState<CountryOption[]>([])
 	const [astCity, setAstCity] = useState<CityOption[]>([])
 	const [formData, setFormData] = useState({
-		Cmp_No: '801',
+		Cmp_No: '5556',
 		Seeker_NmAr: '',
 		Birth_Dt: '',
 		id_type: '',
@@ -103,13 +103,13 @@ export default function JobApplicationTabs({
 		const fetchData = async () => {
 			try {
 				const response = await fetch(
-					'https://erp.wazen.sa/api/v1/emp/init-data',
+					'http://erp.wazen.test/api/v1/emp/init-data',
 					{
 						method: 'POST',
 						headers: {
 							'Content-Type': 'application/json',
 						},
-						body: JSON.stringify({ Cmp_No: 801 }),
+						body: JSON.stringify({ Cmp_No: 5556 }),
 					},
 				)
 
@@ -143,7 +143,7 @@ export default function JobApplicationTabs({
 			if (file) form.append('file', file)
 
 			const response = await fetch(
-				'https://erp.wazen.sa/api/v1/emp/set-new-seeker',
+				'http://erp.wazen.test/api/v1/emp/set-new-seeker',
 				{
 					method: 'POST',
 					body: form,
@@ -161,7 +161,7 @@ export default function JobApplicationTabs({
 					setMainError('')
 					// Reset form data
 					setFormData({
-						Cmp_No: '801',
+						Cmp_No: '5556',
 						Seeker_NmAr: '',
 						Birth_Dt: '',
 						id_type: '',
@@ -236,16 +236,16 @@ export default function JobApplicationTabs({
       `,
 				}}
 			>
-				<div className="container mx-auto max-w-6xl px-3 sm:px-4 md:px-6">
+				<div className="2xl:max-w-8xl container mx-auto max-w-7xl px-3 sm:px-4 md:px-6 xl:px-8">
 					{(title || subtitle) && (
 						<div className="mb-8 text-center md:mb-10">
 							{title && (
-								<h1 className="h1 mx-auto max-w-3xl text-2xl text-balance text-white sm:text-3xl md:text-4xl lg:text-5xl ltr:leading-tight rtl:leading-snug">
+								<h1 className="h1 mx-auto max-w-4xl text-2xl text-balance text-white sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl ltr:leading-tight rtl:leading-snug">
 									{title}
 								</h1>
 							)}
 							{subtitle && (
-								<p className="mx-auto mt-3 max-w-2xl text-sm leading-relaxed text-gray-800 sm:text-base md:text-lg">
+								<p className="mx-auto mt-3 max-w-3xl text-sm leading-relaxed text-gray-800 sm:text-base md:text-lg xl:text-xl">
 									{subtitle}
 								</p>
 							)}
@@ -253,9 +253,9 @@ export default function JobApplicationTabs({
 					)}
 
 					{/* الشبكة الرئيسية */}
-					<div className="grid grid-cols-1 gap-6 rounded-2xl bg-white p-4 shadow-lg sm:p-6 md:grid-cols-[1fr_2.5fr]">
+					<div className="grid grid-cols-1 gap-6 rounded-2xl bg-white p-4 shadow-lg sm:p-6 md:grid-cols-[1fr_2.5fr] xl:grid-cols-[1fr_3fr]">
 						{/* التابات الجانبية */}
-						<aside className="flex flex-col gap-3">
+						<aside className="flex flex-col gap-3 lg:sticky lg:top-6 lg:max-h-[calc(100vh-4rem)] lg:self-start lg:overflow-y-auto">
 							{tabs.map((tab, idx) => {
 								const isFirst = idx === 0
 								const isActive = activeTab === idx
@@ -482,7 +482,7 @@ export default function JobApplicationTabs({
 										className={`transition-all duration-700 ease-in-out ${
 											expanded
 												? 'max-h-[4000px] opacity-100'
-												: 'max-h-[600px] overflow-hidden opacity-100'
+												: 'max-h-[700px] overflow-hidden opacity-100'
 										}`}
 									>
 										{successMessage && (
@@ -493,7 +493,7 @@ export default function JobApplicationTabs({
 										<form
 											id="jobApplyForm"
 											onSubmit={handleSubmit}
-											className="grid grid-cols-1 gap-6 p-4 text-right sm:grid-cols-2 sm:p-6 md:p-8 lg:grid-cols-3"
+											className="grid grid-cols-1 gap-6 p-4 text-right sm:grid-cols-2 sm:p-6 md:p-8 lg:grid-cols-3 xl:gap-8"
 										>
 											{/* الاسم بالكامل */}
 											<div>
