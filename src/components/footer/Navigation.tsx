@@ -59,7 +59,7 @@ export default async function Menu({ footerMenu, locale, contactInfo }: any) {
 				return (
 					<div
 						key={key}
-						className={links.length > 8 ? 'col-span-2' : 'col-span-1'}
+						className={links.length > 9 ? 'col-span-2' : 'col-span-1'}
 					>
 						<div className="grid h-10 items-center rounded text-start text-sm text-white">
 							{label}
@@ -67,7 +67,7 @@ export default async function Menu({ footerMenu, locale, contactInfo }: any) {
 						<ul
 							className={cn(
 								'grid grid-cols-1 text-start',
-								links.length > 8 ? 'grid-cols-2 gap-x-4 lg:gap-x-12' : '',
+								links.length > 9 ? 'grid-cols-2 gap-x-4 lg:gap-x-12' : '',
 							)}
 						>
 							{links?.map((link: any, key: any) => (
