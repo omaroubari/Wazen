@@ -57,7 +57,7 @@ export default function JobApplicationTabs({
 	const [astCountry, setAstCountry] = useState<CountryOption[]>([])
 	const [astCity, setAstCity] = useState<CityOption[]>([])
 	const [formData, setFormData] = useState({
-		Cmp_No: '5556',
+		Cmp_No: '801',
 		Seeker_NmAr: '',
 		Birth_Dt: '',
 		id_type: '',
@@ -103,13 +103,13 @@ export default function JobApplicationTabs({
 		const fetchData = async () => {
 			try {
 				const response = await fetch(
-					'http://erp.wazen.test/api/v1/emp/init-data',
+					'https://erp.wazen.sa/api/v1/emp/init-data',
 					{
 						method: 'POST',
 						headers: {
 							'Content-Type': 'application/json',
 						},
-						body: JSON.stringify({ Cmp_No: 5556 }),
+						body: JSON.stringify({ Cmp_No: 801 }),
 					},
 				)
 
@@ -143,7 +143,7 @@ export default function JobApplicationTabs({
 			if (file) form.append('file', file)
 
 			const response = await fetch(
-				'http://erp.wazen.test/api/v1/emp/set-new-seeker',
+				'https://erp.wazen.sa/api/v1/emp/set-new-seeker',
 				{
 					method: 'POST',
 					body: form,
@@ -161,7 +161,7 @@ export default function JobApplicationTabs({
 					setMainError('')
 					// Reset form data
 					setFormData({
-						Cmp_No: '5556',
+						Cmp_No: '801',
 						Seeker_NmAr: '',
 						Birth_Dt: '',
 						id_type: '',
