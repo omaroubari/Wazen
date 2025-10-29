@@ -23,6 +23,7 @@ export default function FileUpload({
 		}
 	}
 
+	
 	return (
 		<div className="flex flex-col items-center justify-center space-y-5 rounded-lg border-2 border-dashed border-cyan-300 bg-[#F9FDFD] p-8 text-center">
 			{/* 🟢 الأيقونة في المنتصف */}
