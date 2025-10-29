@@ -5,11 +5,13 @@ import { useState } from 'react'
 interface FileUploadProps {
 	formData: any // Replace 'any' with your actual FormData type
 	onFileChange: (e: React.ChangeEvent<HTMLInputElement>) => void
+	locale?: 'en' | 'ar'
 }
 
 export default function FileUpload({
 	formData,
 	onFileChange,
+	locale = 'ar',
 }: FileUploadProps) {
 	const [fileName, setFileName] = useState<string | null>(null)
 
@@ -53,17 +55,21 @@ export default function FileUpload({
 
 			{/* 🟢 النص الرئيسي */}
 			<p className="text-center font-[Cairo] text-[22px] leading-[100%] font-medium text-[#292D32]">
-				اختر ملفًا أو اسحبه وأفلِته هنا
+				{locale === 'en'
+					? 'Choose a file or drag and drop it here'
+					: 'اختر ملفًا أو اسحبه وأفلِته هنا'}
 			</p>
 
 			{/* 🟣 النص الفرعي */}
 			<p className="text-center font-[Cairo] text-[18px] leading-[100%] font-medium text-[#A9ACB4]">
-				تسميات .Doc ,Sheet ,XML حتى 50 ميجا بايت
+				{locale === 'en'
+					? 'Supported: .doc, .docx, .pdf, .xls, .xlsx, .png, .jpg, .jpeg — up to 50 MB'
+					: 'تسميات .Doc ,Sheet ,XML حتى 50 ميجا بايت'}
 			</p>
 
 			{/* 🟢 زر اختيار الملف */}
 			<label className="inline-block cursor-pointer rounded bg-cyan-500 px-6 py-2.5 font-[Cairo] font-semibold text-white transition hover:bg-cyan-600">
-				اختر ملفاً
+				{locale === 'en' ? 'Choose File' : 'اختر ملفاً'}
 				<input
 					type="file"
 					className="hidden"
@@ -75,7 +81,7 @@ export default function FileUpload({
 			{/* 🟢 عرض اسم الملف عند الاختيار */}
 			{fileName && (
 				<p className="font-[Cairo] text-sm text-cyan-700">
-					تم اختيار: {fileName}
+					{locale === 'en' ? `Selected: ${fileName}` : `تم اختيار: ${fileName}`}
 				</p>
 			)}
 		</div>

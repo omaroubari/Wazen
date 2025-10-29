@@ -27,10 +27,12 @@ export default function JobApplicationTabs({
 	title,
 	subtitle,
 	tabs,
+	locale = 'ar',
 }: {
 	title: string
 	subtitle?: string
 	tabs: JobTab[]
+	locale?: 'en' | 'ar'
 }) {
 	const [activeTab, setActiveTab] = useState(0)
 	const [expanded, setExpanded] = useState(false)
@@ -114,7 +116,11 @@ export default function JobApplicationTabs({
 				)
 
 				if (!response.ok) {
-					throw new Error('حدث خطأ أثناء جلب البيانات من السيرفر')
+					throw new Error(
+						locale === 'en'
+							? 'Error fetching data from server'
+							: 'حدث خطأ أثناء جلب البيانات من السيرفر',
+					)
 				}
 
 				const data = await response.json()
@@ -301,18 +307,24 @@ export default function JobApplicationTabs({
 													<div className="flex items-center gap-2">
 														<div className="h-5 w-5 rounded-full bg-[#2DD4BF] sm:h-6 sm:w-6"></div>
 														<span className="font-['Rubik'] text-xs text-[#8C8F8E] sm:text-sm">
-															وازن المالية
+															{locale === 'en'
+																? 'Wazen Finance'
+																: 'وازن المالية'}
 														</span>
 													</div>
 
 													{tab.seats && (
 														<span className="font-[Rubik] text-xs text-[#363938]">
 															{tab.seats}{' '}
-															{tab.seats === 1
-																? 'وظيفة'
-																: tab.seats <= 10
-																	? 'وظائف'
-																	: 'وظيفة'}
+															{locale === 'en'
+																? tab.seats === 1
+																	? 'position'
+																	: 'positions'
+																: tab.seats === 1
+																	? 'وظيفة'
+																	: tab.seats <= 10
+																		? 'وظائف'
+																		: 'وظيفة'}
 														</span>
 													)}
 												</div>
@@ -326,7 +338,6 @@ export default function JobApplicationTabs({
 											>
 												<span className="text-right font-['Rubik'] text-[16px] leading-[40px] font-bold text-[#170F49]">
 													{tab.label}
-
 												</span>
 												{/* 🟢 الزر في التاب الأول فقط */}
 												{isFirst && tab.button?.text && (
@@ -393,18 +404,23 @@ export default function JobApplicationTabs({
 												<div className="h-8 w-8 rounded-full bg-[#2DD4BF]"></div>
 
 												<span className="font-['Rubik'] text-[20px] font-[14px] text-[#2DD4BF]">
-													وازن المالية
+													{locale === 'en' ? 'Wazen Finance' : 'وازن المالية'}
 												</span>
 											</div>
 
 											{/* 👇 النصوص أسفل وازن المالية */}
-											<div className="text-right">
+											<div
+												className={locale === 'en' ? 'text-left' : 'text-right'}
+											>
 												<h2 className="mb-1 text-3xl font-bold text-[#170F49]">
-													فرص جديدة بانتظارك
+													{locale === 'en'
+														? 'New Opportunities Await You'
+														: 'فرص جديدة بانتظارك'}
 												</h2>
 												<p className="text-gray-600">
-													نسعى دوماً في وازن باستقطاب الطاقات التي تؤمن بالتطوير
-													المستمر وتمتلك شغف التغيير.
+													{locale === 'en'
+														? 'At Wazen, we continuously seek talents who believe in continuous development and possess a passion for change.'
+														: 'نسعى دوماً في وازن باستقطاب الطاقات التي تؤمن بالتطوير المستمر وتمتلك شغف التغيير.'}
 												</p>
 											</div>
 										</div>
@@ -449,7 +465,7 @@ export default function JobApplicationTabs({
 												form="jobApplyForm"
 												className="flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-[#02B6BE] to-[#5FC19C] px-8 py-3 font-['Rubik'] text-[16px] leading-[120%] font-[600] tracking-[0%] text-[#000C06] shadow-sm transition hover:opacity-90"
 											>
-												إرسال الطلب
+												{locale === 'en' ? 'Submit Application' : 'إرسال الطلب'}
 												<svg
 													xmlns="http://www.w3.org/2000/svg"
 													fill="none"
@@ -471,7 +487,9 @@ export default function JobApplicationTabs({
 
 									<div className="mb-6 flex border-b border-gray-200">
 										<button className="border-b-2 border-[#2DD4BF] px-4 pb-2 text-lg font-bold text-[#2DD4BF]">
-											البيانات الأساسية
+											{locale === 'en'
+												? 'Basic Information'
+												: 'البيانات الأساسية'}
 										</button>
 										{/* <button className="px-4 pb-2 text-lg font-semibold text-gray-400">
 											المرفقات
@@ -498,14 +516,16 @@ export default function JobApplicationTabs({
 											{/* الاسم بالكامل */}
 											<div>
 												<label className="mb-1 block font-semibold text-gray-700">
-													الاسم بالكامل
+													{locale === 'en' ? 'Full Name' : 'الاسم بالكامل'}
 												</label>
 												<input
 													type="text"
 													name="Seeker_NmAr"
 													value={formData.Seeker_NmAr}
 													onChange={handleChange}
-													placeholder="حسام محمد"
+													placeholder={
+														locale === 'en' ? 'John Doe' : 'حسام محمد'
+													}
 													className={`w-full rounded-lg border bg-white p-3 outline-none focus:ring-2 focus:ring-[#2DD4BF] ${apiErrors?.Seeker_NmAr ? 'border-red-400' : 'border-gray-200'}`}
 													aria-invalid={!!apiErrors?.Seeker_NmAr}
 												/>
@@ -519,7 +539,7 @@ export default function JobApplicationTabs({
 											{/* تاريخ الميلاد */}
 											<div>
 												<label className="mb-1 block font-semibold text-gray-700">
-													تاريخ الميلاد
+													{locale === 'en' ? 'Date of Birth' : 'تاريخ الميلاد'}
 												</label>
 												<input
 													type="date"
@@ -540,7 +560,7 @@ export default function JobApplicationTabs({
 											{/* النوع */}
 											<div>
 												<label className="mb-1 block font-semibold text-gray-700">
-													النوع
+													{locale === 'en' ? 'Gender' : 'النوع'}
 												</label>
 												<select
 													name="Gender"
@@ -549,10 +569,16 @@ export default function JobApplicationTabs({
 													className={`w-full rounded-lg border bg-white p-3 outline-none focus:ring-2 focus:ring-[#2DD4BF] ${apiErrors?.Gender ? 'border-red-400' : 'border-gray-200'}`}
 													aria-invalid={!!apiErrors?.Gender}
 												>
-													<option value="">اختر النوع</option>
+													<option value="">
+														{locale === 'en' ? 'Select Gender' : 'اختر النوع'}
+													</option>
 													{gender.map((item) => (
 														<option key={item.id} value={item.id}>
-															{item.name}
+															{locale === 'en'
+																? item.name === 'ذكر'
+																	? 'Male'
+																	: 'Female'
+																: item.name}
 														</option>
 													))}
 												</select>
@@ -566,7 +592,9 @@ export default function JobApplicationTabs({
 											{/* بلد الاقامة */}
 											<div>
 												<label className="mb-1 block font-semibold text-gray-700">
-													بلد الاقامة{' '}
+													{locale === 'en'
+														? 'Country of Residence'
+														: 'بلد الاقامة'}
 												</label>
 												<select
 													name="country_of_residence"
@@ -574,7 +602,9 @@ export default function JobApplicationTabs({
 													onChange={handleChange}
 													className="w-full rounded-lg border border-gray-200 bg-white p-3 outline-none focus:ring-2 focus:ring-[#2DD4BF]"
 												>
-													<option value="">اختر الدولة</option>
+													<option value="">
+														{locale === 'en' ? 'Select Country' : 'اختر الدولة'}
+													</option>
 													{astCountry.map((country) => (
 														<option
 															key={country.Cntry_No}
@@ -589,7 +619,7 @@ export default function JobApplicationTabs({
 											{/* المدينة */}
 											<div>
 												<label className="mb-1 block font-semibold text-gray-700">
-													المدينة
+													{locale === 'en' ? 'City' : 'المدينة'}
 												</label>
 												<select
 													name="City_No"
@@ -597,10 +627,14 @@ export default function JobApplicationTabs({
 													onChange={handleChange}
 													className="w-full rounded-lg border border-gray-200 bg-white p-3 outline-none focus:ring-2 focus:ring-[#2DD4BF]"
 												>
-													<option value="">اختر المدينة</option>
+													<option value="">
+														{locale === 'en' ? 'Select City' : 'اختر المدينة'}
+													</option>
 													{astCity.map((city) => (
 														<option key={city.id} value={city.id}>
-															{city.City_NmAr}
+															{locale === 'en'
+																? city.City_NmAr // You might want to add an English field in your API
+																: city.City_NmAr}
 														</option>
 													))}
 												</select>
@@ -609,14 +643,16 @@ export default function JobApplicationTabs({
 											{/* العمر */}
 											<div>
 												<label className="mb-1 block font-semibold text-gray-700">
-													العمر
+													{locale === 'en' ? 'Age' : 'العمر'}
 												</label>
 												<input
 													name="Age"
 													value={formData.Age}
 													onChange={handleChange}
 													type="number"
-													placeholder="30 عاماً"
+													placeholder={
+														locale === 'en' ? '30 years' : '30 عاماً'
+													}
 													className={`w-full rounded-lg border bg-white p-3 outline-none focus:ring-2 focus:ring-[#2DD4BF] ${apiErrors?.Age ? 'border-red-400' : 'border-gray-200'}`}
 													aria-invalid={!!apiErrors?.Age}
 												/>
@@ -630,14 +666,16 @@ export default function JobApplicationTabs({
 											{/* رقم الهاتف */}
 											<div>
 												<label className="mb-1 block font-semibold text-gray-700">
-													رقم الهاتف
+													{locale === 'en' ? 'Phone Number' : 'رقم الهاتف'}
 												</label>
 												<input
 													type="text"
 													name="Phone1"
 													value={formData.Phone1}
 													onChange={handleChange}
-													placeholder="51236789"
+													placeholder={
+														locale === 'en' ? '+966 512 345 678' : '51236789'
+													}
 													className={`w-full rounded-lg border bg-white p-3 outline-none focus:ring-2 focus:ring-[#2DD4BF] ${apiErrors?.Phone1 ? 'border-red-400' : 'border-gray-200'}`}
 													aria-invalid={!!apiErrors?.Phone1}
 												/>
@@ -651,14 +689,16 @@ export default function JobApplicationTabs({
 											{/* 6التخصص */}
 											<div>
 												<label className="mb-1 block font-semibold text-gray-700">
-													التخصص
+													{locale === 'en' ? 'Specialization' : 'التخصص'}
 												</label>
 												<input
 													name="Specialization_Name"
 													value={formData.Specialization_Name}
 													onChange={handleChange}
 													type="text"
-													placeholder="محلل بيانات"
+													placeholder={
+														locale === 'en' ? 'Data Analyst' : 'محلل بيانات'
+													}
 													className={`w-full rounded-lg border bg-white p-3 outline-none focus:ring-2 focus:ring-[#2DD4BF] ${apiErrors?.Specialization_Name ? 'border-red-400' : 'border-gray-200'}`}
 													aria-invalid={!!apiErrors?.Specialization_Name}
 												/>
@@ -672,7 +712,7 @@ export default function JobApplicationTabs({
 											{/* الجنسية */}
 											<div>
 												<label className="mb-1 block font-semibold text-gray-700">
-													الجنسية
+													{locale === 'en' ? 'Nationality' : 'الجنسية'}
 												</label>
 												<select
 													name="Nation_No"
@@ -680,7 +720,11 @@ export default function JobApplicationTabs({
 													value={formData.Nation_No}
 													className="w-full rounded-lg border border-gray-200 bg-white p-3 outline-none focus:ring-2 focus:ring-[#2DD4BF]"
 												>
-													<option value="">اختر الدولة</option>
+													<option value="">
+														{locale === 'en'
+															? 'Select Nationality'
+															: 'اختر الدولة'}
+													</option>
 													{astCountry.map((country) => (
 														<option
 															key={country.Cntry_No}
@@ -695,7 +739,9 @@ export default function JobApplicationTabs({
 											{/* نوع الهوية */}
 											<div>
 												<label className="mb-1 block font-semibold text-gray-700">
-													نوع الهوية (اختياري)
+													{locale === 'en'
+														? 'ID Type (optional)'
+														: 'نوع الهوية (اختياري)'}
 												</label>
 												<select
 													name="id_type"
@@ -703,7 +749,11 @@ export default function JobApplicationTabs({
 													value={formData.id_type}
 													className="w-full rounded-lg border border-gray-200 bg-white p-3 outline-none focus:ring-2 focus:ring-[#2DD4BF]"
 												>
-													<option value="">اختر نوع الهوية</option>
+													<option value="">
+														{locale === 'en'
+															? 'Select ID Type'
+															: 'اختر نوع الهوية'}
+													</option>
 
 													{/* ✅ عرض البيانات القادمة من السيرفر */}
 													{idType.map((type) => (
@@ -717,7 +767,9 @@ export default function JobApplicationTabs({
 											{/* رقم الهوية */}
 											<div>
 												<label className="mb-1 block font-semibold text-gray-700">
-													رقم الهوية (اختياري)
+													{locale === 'en'
+														? 'ID Number (optional)'
+														: 'رقم الهوية (اختياري)'}
 												</label>
 												<input
 													type="text"
@@ -738,14 +790,20 @@ export default function JobApplicationTabs({
 											{/* البريد الإلكتروني */}
 											<div>
 												<label className="mb-1 block font-semibold text-gray-700">
-													البريد الإلكتروني
+													{locale === 'en'
+														? 'Email Address'
+														: 'البريد الإلكتروني'}
 												</label>
 												<input
 													type="email"
 													name="Email"
 													value={formData.Email}
 													onChange={handleChange}
-													placeholder="Hossam@example.com"
+													placeholder={
+														locale === 'en'
+															? 'you@example.com'
+															: 'Hossam@example.com'
+													}
 													className={`w-full rounded-lg border bg-white p-3 outline-none focus:ring-2 focus:ring-[#2DD4BF] ${apiErrors?.Email ? 'border-red-400' : 'border-gray-200'}`}
 													aria-invalid={!!apiErrors?.Email}
 												/>
@@ -759,13 +817,14 @@ export default function JobApplicationTabs({
 											{/* ✅ قسم رفع الملفات */}
 											<div className="col-span-1 mt-12 w-full sm:col-span-2 lg:col-span-3">
 												<h3 className="mb-4 text-right text-2xl font-bold text-[#170F49]">
-													إرفاق المستندات
+													{locale === 'en'
+														? 'Attach Documents'
+														: 'إرفاق المستندات'}
 												</h3>
 												<p className="mb-6 text-right leading-relaxed text-gray-500">
-													يرجى إرفاق سيرتك الذاتية المحدثة بدقة، إلى جانب صورة
-													شخصية واضحة،
-													<br className="hidden sm:block" />
-													وشهادات الخبرة أو شهادات الدورات التدريبية ذات الصلة.
+													{locale === 'en'
+														? 'Please attach your updated CV, along with a clear photo, experience certificates, or relevant training certifications.'
+														: 'يرجى إرفاق سيرتك الذاتية المحدثة بدقة، إلى جانب صورة شخصية واضحة، وشهادات الخبرة أو شهادات الدورات التدريبية ذات الصلة.'}
 												</p>
 
 												{/* منطقة رفع الملفات */}
@@ -780,6 +839,7 @@ export default function JobApplicationTabs({
 													<FileUpload
 														formData={formData}
 														onFileChange={handleFileChange}
+														locale={locale}
 													/>
 												</label>
 												{apiErrors?.file && (
@@ -793,7 +853,11 @@ export default function JobApplicationTabs({
 													name="notes"
 													value={formData.notes}
 													onChange={handleChange}
-													placeholder="رسالة أو ملاحظات إضافية"
+													placeholder={
+														locale === 'en'
+															? 'Additional message or notes'
+															: 'رسالة أو ملاحظات إضافية'
+													}
 													className={`mt-6 w-full rounded-md border border-cyan-300 bg-[#14B8A617] px-4 py-3 text-gray-800 outline-none placeholder:text-gray-400 focus:border-[#2DD4BF] focus:ring-2 focus:ring-[#2DD4BF] ${apiErrors?.notes ? 'border-red-400' : ''}`}
 													rows={10}
 												></textarea>
@@ -812,14 +876,14 @@ export default function JobApplicationTabs({
 												onClick={() => setExpanded(true)}
 												className="rounded-full bg-gradient-to-l from-[#02B6BE] to-[#5FC19C] px-6 py-2 text-sm font-bold text-white shadow-md transition hover:opacity-90"
 											>
-												👁 عرض المزيد
+												{locale === 'en' ? '👁 Show More' : '👁 عرض المزيد'}
 											</button>
 										) : (
 											<button
 												onClick={() => setExpanded(false)}
 												className="rounded-full bg-gray-100 px-6 py-2 text-sm font-bold text-gray-700 shadow-md transition hover:bg-gray-200"
 											>
-												إخفاء
+												{locale === 'en' ? 'Hide' : 'إخفاء'}
 											</button>
 										)}
 									</div>
@@ -903,7 +967,7 @@ export default function JobApplicationTabs({
 										{tabs[activeTab].introText && (
 											<div>
 												<h4 className="mb-2 text-lg font-semibold text-cyan-800">
-													مقدمة
+													{locale === 'en' ? 'Introduction' : 'مقدمة'}
 												</h4>
 												<PortableText value={tabs[activeTab].introText} />
 											</div>
@@ -911,7 +975,7 @@ export default function JobApplicationTabs({
 										{tabs[activeTab].description && (
 											<div>
 												<h4 className="mb-2 text-lg font-semibold text-cyan-800">
-													الوصف
+													{locale === 'en' ? 'Description' : 'الوصف'}
 												</h4>
 												<PortableText value={tabs[activeTab].description} />
 											</div>
@@ -953,33 +1017,43 @@ export default function JobApplicationTabs({
 			{/* قسم الخطوات السفلية */}
 			<section className="w-full bg-white px-3 py-12 text-center sm:px-6 sm:py-16">
 				<p className="mb-2 text-xs font-medium text-gray-400 sm:text-sm">
-					مراحل دورة التوظيف الكاملة
+					{locale === 'en'
+						? 'Stages of the complete recruitment cycle'
+						: 'مراحل دورة التوظيف الكاملة'}
 				</p>
 				<h2 className="mb-10 text-xl font-bold text-cyan-950 sm:mb-12 sm:text-2xl md:text-3xl">
-					تعرف على الخطوات الأساسية <br className="hidden sm:block" /> في دورة
-					التوظيف
+					{locale === 'en'
+						? 'Learn about the key steps in the recruitment cycle'
+						: 'تعرف على الخطوات الأساسية'}{' '}
+					<br className="hidden sm:block" />{' '}
+					{locale === 'en' ? '' : 'في دورة التوظيف'}
 				</h2>
 
 				<div className="mx-auto grid max-w-5xl grid-cols-2 gap-6 sm:grid-cols-3 sm:gap-8 md:grid-cols-5">
 					{[
 						{
-							title: 'التحضير',
+							titleAr: 'التحضير',
+							titleEn: 'Preparation',
 							img: 'https://cdn.sanity.io/images/m7bjawr3/production/b584f13dac2886c80f1bd6ebe3df096206e4e9c8-110x110.png',
 						},
 						{
-							title: 'الاستقطاب',
+							titleAr: 'الاستقطاب',
+							titleEn: 'Recruitment',
 							img: 'https://cdn.sanity.io/images/m7bjawr3/production/9fc9d5b971392da393e019787a7e2560ecc24a69-102x117.png',
 						},
 						{
-							title: 'الفرز',
+							titleAr: 'الفرز',
+							titleEn: 'Screening',
 							img: 'https://cdn.sanity.io/images/m7bjawr3/production/d9065bd03d399134f8e977117aa5ad672c4a2faa-122x118.png',
 						},
 						{
-							title: 'الإختيار',
+							titleAr: 'الإختيار',
+							titleEn: 'Selection',
 							img: 'https://cdn.sanity.io/images/m7bjawr3/production/0797b12c8699908d73465feb8433b8e2a7ceaea2-122x116.png',
 						},
 						{
-							title: 'التعيين',
+							titleAr: 'التعيين',
+							titleEn: 'Hiring',
 							img: 'https://cdn.sanity.io/images/m7bjawr3/production/15f12d6557ae665987c44d9efd836a7060faf42e-121x117.png',
 						},
 					].map((step, i) => (
@@ -989,11 +1063,11 @@ export default function JobApplicationTabs({
 						>
 							<img
 								src={step.img}
-								alt={step.title}
+								alt={locale === 'en' ? step.titleEn : step.titleAr}
 								className="h-20 w-20 object-contain sm:h-24 sm:w-24 md:h-32 md:w-32"
 							/>
 							<p className="text-lg font-semibold text-[#14B8A6] sm:text-xl md:text-2xl">
-								{step.title}
+								{locale === 'en' ? step.titleEn : step.titleAr}
 							</p>
 						</div>
 					))}
@@ -1012,13 +1086,22 @@ export default function JobApplicationTabs({
 
 						{/* ✅ شريط الخطوات */}
 						<div className="mb-4 flex flex-wrap items-center justify-center gap-2 text-xs font-semibold text-[#170F49] sm:gap-3 sm:text-sm">
-							{[
-								'البيانات الأساسية',
-								'بيانات التواصل',
-								'المؤهلات والتخصص',
-								'رفع المرفقات',
-								'إرسال الطلب',
-							].map((label, i) => (
+							{(locale === 'en'
+								? [
+										'Basic Information',
+										'Contact Information',
+										'Qualifications',
+										'Upload Documents',
+										'Submit Application',
+									]
+								: [
+										'البيانات الأساسية',
+										'بيانات التواصل',
+										'المؤهلات والتخصص',
+										'رفع المرفقات',
+										'إرسال الطلب',
+									]
+							).map((label, i) => (
 								<button
 									key={i}
 									onClick={() => setStep(i + 1)}
@@ -1050,18 +1133,24 @@ export default function JobApplicationTabs({
 								{step === 1 && (
 									<>
 										<h2 className="mb-3 text-center text-3xl font-bold text-[#170F49]">
-											المعلومات الأساسية
+											{locale === 'en'
+												? 'Basic Information'
+												: 'المعلومات الأساسية'}
 										</h2>
 										<p className="mx-auto mb-8 max-w-2xl text-center leading-relaxed text-gray-500">
-											المعلومات الأساسية التي تساعدنا نتعرف عليك بشكل أفضل.
+											{locale === 'en'
+												? 'Basic information that helps us get to know you better.'
+												: 'المعلومات الأساسية التي تساعدنا نتعرف عليك بشكل أفضل.'}
 											<br />
-											هذه البيانات تعتبر الخطوة الأولى لبناء ملفك الشخصي لدينا.
+											{locale === 'en'
+												? 'This data is the first step in building your profile with us.'
+												: 'هذه البيانات تعتبر الخطوة الأولى لبناء ملفك الشخصي لدينا.'}
 										</p>
 
 										<div className="grid grid-cols-1 divide-y divide-gray-200 overflow-hidden rounded-xl md:grid-cols-3 md:divide-x md:divide-y-0">
 											<div className="p-4">
 												<label className="mb-1 block text-sm font-semibold text-gray-700">
-													الاسم بالكامل
+													{locale === 'en' ? 'Full Name' : 'الاسم بالكامل'}
 												</label>
 												<input
 													type="text"
@@ -1081,7 +1170,7 @@ export default function JobApplicationTabs({
 
 											<div className="p-4">
 												<label className="mb-1 block text-sm font-semibold text-gray-700">
-													النوع
+													{locale === 'en' ? 'Gender' : 'النوع'}
 												</label>
 
 												<select
@@ -1091,7 +1180,9 @@ export default function JobApplicationTabs({
 													className={`w-full rounded-xl border bg-[#F1FAF9] p-3 text-gray-800 outline-none focus:ring-2 focus:ring-[#14B8A6] ${apiErrors?.Gender ? 'border-red-400' : 'border-gray-200'}`}
 													aria-invalid={!!apiErrors?.Gender}
 												>
-													<option value="">اختر النوع</option>
+													<option value="">
+														{locale === 'en' ? 'Select Gender' : 'اختر النوع'}
+													</option>
 													{gender.map((item) => (
 														<option key={item.id} value={item.id}>
 															{item.name}
@@ -1102,7 +1193,9 @@ export default function JobApplicationTabs({
 
 											<div className="p-4">
 												<label className="mb-1 block text-sm font-semibold text-gray-700">
-													بلد الإقامة
+													{locale === 'en'
+														? 'Country of Residence'
+														: 'بلد الإقامة'}
 												</label>
 
 												<select
@@ -1111,7 +1204,9 @@ export default function JobApplicationTabs({
 													onChange={handleChange}
 													className="focus:ring-[#14B8A6 w-full rounded-xl border border-gray-200 bg-[#F1FAF9] p-3 text-gray-800 outline-none focus:ring-2"
 												>
-													<option value="">اختر الدولة</option>
+													<option value="">
+														{locale === 'en' ? 'Select Country' : 'اختر الدولة'}
+													</option>
 													{astCountry.map((country) => (
 														<option
 															key={country.Cntry_No}
@@ -1125,7 +1220,7 @@ export default function JobApplicationTabs({
 
 											<div className="p-4">
 												<label className="mb-1 block text-sm font-semibold text-gray-700">
-													تاريخ الميلاد
+													{locale === 'en' ? 'Date of Birth' : 'تاريخ الميلاد'}
 												</label>
 												<input
 													type="date"
@@ -1144,7 +1239,7 @@ export default function JobApplicationTabs({
 
 											<div className="p-4">
 												<label className="mb-1 block text-sm font-semibold text-gray-700">
-													المدينة
+													{locale === 'en' ? 'City' : 'المدينة'}
 												</label>
 
 												<select
@@ -1153,7 +1248,9 @@ export default function JobApplicationTabs({
 													onChange={handleChange}
 													className="w-full rounded-xl border border-gray-200 bg-[#F1FAF9] p-3 text-gray-800 outline-none focus:ring-2 focus:ring-[#14B8A6]"
 												>
-													<option value="">اختر المدينة</option>
+													<option value="">
+														{locale === 'en' ? 'Select City' : 'اختر المدينة'}
+													</option>
 													{astCity.map((city) => (
 														<option key={city.id} value={city.id}>
 															{city.City_NmAr}
@@ -1164,7 +1261,7 @@ export default function JobApplicationTabs({
 
 											<div className="p-4">
 												<label className="mb-1 block text-sm font-semibold text-gray-700">
-													الجنسية
+													{locale === 'en' ? 'Nationality' : 'الجنسية'}
 												</label>
 
 												<select
@@ -1173,7 +1270,11 @@ export default function JobApplicationTabs({
 													value={formData.Nation_No}
 													className="w-full rounded-xl border border-gray-200 bg-[#F1FAF9] p-3 text-gray-800 outline-none focus:ring-2 focus:ring-[#14B8A6]"
 												>
-													<option value="">اختر الدولة</option>
+													<option value="">
+														{locale === 'en'
+															? 'Select Nationality'
+															: 'اختر الدولة'}
+													</option>
 													{astCountry.map((country) => (
 														<option
 															key={country.Cntry_No}
@@ -1192,17 +1293,20 @@ export default function JobApplicationTabs({
 								{step === 2 && (
 									<>
 										<h2 className="mb-3 text-center text-3xl font-bold text-[#170F49]">
-											بيانات التواصل
+											{locale === 'en'
+												? 'Contact Information'
+												: 'بيانات التواصل'}
 										</h2>
 										<p className="mx-auto mb-8 max-w-2xl text-center leading-relaxed text-gray-500">
-											هنا نجمع بيانات الاتصال الخاصة بك حتى نقدر نتواصل معك
-											بسهولة.
+											{locale === 'en'
+												? 'Here we collect your contact information so we can easily reach you.'
+												: 'هنا نجمع بيانات الاتصال الخاصة بك حتى نقدر نتواصل معك بسهولة.'}
 										</p>
 
 										<div className="grid grid-cols-1 divide-y divide-gray-200 overflow-hidden rounded-xl md:grid-cols-2 md:divide-x md:divide-y-0">
 											<div className="p-4">
 												<label className="mb-1 block text-sm font-semibold text-gray-700">
-													رقم الهاتف
+													{locale === 'en' ? 'Phone Number' : 'رقم الهاتف'}
 												</label>
 												<input
 													type="text"
@@ -1222,7 +1326,9 @@ export default function JobApplicationTabs({
 
 											<div className="p-4">
 												<label className="mb-1 block text-sm font-semibold text-gray-700">
-													البريد الإلكتروني
+													{locale === 'en'
+														? 'Email Address'
+														: 'البريد الإلكتروني'}
 												</label>
 												<input
 													type="email"
@@ -1242,9 +1348,9 @@ export default function JobApplicationTabs({
 
 											<div className="p-4">
 												<label className="mb-1 block text-sm font-semibold text-gray-700">
-													نوع الهوية{' '}
+													{locale === 'en' ? 'ID Type' : 'نوع الهوية'}{' '}
 													<span className="text-xs text-gray-400">
-														(اختياري)
+														{locale === 'en' ? '(optional)' : '(اختياري)'}
 													</span>
 												</label>
 
@@ -1254,7 +1360,11 @@ export default function JobApplicationTabs({
 													value={formData.id_type}
 													className="w-full rounded-xl border border-gray-200 bg-[#F1FAF9] p-3 outline-none focus:ring-2 focus:ring-[#14B8A6]"
 												>
-													<option value="">اختر نوع الهوية</option>
+													<option value="">
+														{locale === 'en'
+															? 'Select ID Type'
+															: 'اختر نوع الهوية'}
+													</option>
 													{idType.map((type) => (
 														<option key={type.id} value={type.id}>
 															{type.name}
@@ -1265,9 +1375,9 @@ export default function JobApplicationTabs({
 
 											<div className="p-4">
 												<label className="mb-1 block text-sm font-semibold text-gray-700">
-													رقم الهوية{' '}
+													{locale === 'en' ? 'ID Number' : 'رقم الهوية'}{' '}
 													<span className="text-xs text-gray-400">
-														(اختياري)
+														{locale === 'en' ? '(optional)' : '(اختياري)'}
 													</span>
 												</label>
 												<input
@@ -1287,36 +1397,48 @@ export default function JobApplicationTabs({
 								{step === 3 && (
 									<>
 										<h2 className="mb-3 text-center text-3xl font-bold text-[#170F49]">
-											المؤهلات والتخصص
+											{locale === 'en'
+												? 'Qualifications and Specialization'
+												: 'المؤهلات والتخصص'}
 										</h2>
 										<p className="mx-auto mb-8 max-w-2xl text-center leading-relaxed text-gray-500">
-											أخبرنا عن مؤهلاتك الدراسية وخبراتك السابقة.
+											{locale === 'en'
+												? 'Tell us about your educational qualifications and previous experience.'
+												: 'أخبرنا عن مؤهلاتك الدراسية وخبراتك السابقة.'}
 										</p>
 
 										<div className="grid grid-cols-1 gap-6 md:grid-cols-2">
 											<div>
 												<label className="mb-1 block text-sm font-semibold text-gray-700">
-													المؤهل الدراسي
+													{locale === 'en'
+														? 'Educational Qualification'
+														: 'المؤهل الدراسي'}
 												</label>
 												<input
 													type="text"
 													name="educational_qualification"
 													value={formData.educational_qualification}
 													onChange={handleChange}
-													placeholder="بكالوريوس علوم الحاسب"
+													placeholder={
+														locale === 'en'
+															? 'Bachelor in Computer Science'
+															: 'بكالوريوس علوم الحاسب'
+													}
 													className="w-full rounded-xl border border-gray-200 bg-[#F1FAF9] p-3 outline-none focus:ring-2 focus:ring-[#14B8A6]"
 												/>
 											</div>
 											<div>
 												<label className="mb-1 block text-sm font-semibold text-gray-700">
-													التخصص
+													{locale === 'en' ? 'Specialization' : 'التخصص'}
 												</label>
 												<input
 													type="text"
 													name="Specialization_Name"
 													value={formData.Specialization_Name}
 													onChange={handleChange}
-													placeholder="تحليل بيانات"
+													placeholder={
+														locale === 'en' ? 'Data Analysis' : 'تحليل بيانات'
+													}
 													className={`w-full rounded-xl border bg-[#F1FAF9] p-3 outline-none focus:ring-2 focus:ring-[#14B8A6] ${apiErrors?.Specialization_Name ? 'border-red-400' : 'border-gray-200'}`}
 													aria-invalid={!!apiErrors?.Specialization_Name}
 												/>
@@ -1334,10 +1456,12 @@ export default function JobApplicationTabs({
 								{step === 4 && (
 									<>
 										<h2 className="mb-3 text-center text-3xl font-bold text-[#170F49]">
-											رفع المرفقات
+											{locale === 'en' ? 'Upload Documents' : 'رفع المرفقات'}
 										</h2>
 										<p className="mx-auto mb-8 max-w-2xl text-center leading-relaxed text-gray-500">
-											قم برفع سيرتك الذاتية (CV) والملفات المساندة إن وجدت.
+											{locale === 'en'
+												? 'Please upload your CV and any supporting documents if available.'
+												: 'قم برفع سيرتك الذاتية (CV) والملفات المساندة إن وجدت.'}
 										</p>
 
 										<div
@@ -1362,7 +1486,7 @@ export default function JobApplicationTabs({
 												htmlFor="cvUpload"
 												className={`cursor-pointer rounded-full ${apiErrors?.file ? 'bg-red-500' : 'bg-[#14B8A6]'} px-8 py-3 font-bold text-white shadow-md transition hover:opacity-90`}
 											>
-												رفع CV
+												{locale === 'en' ? 'Upload CV' : 'رفع CV'}
 											</label>
 
 											<input
@@ -1376,7 +1500,9 @@ export default function JobApplicationTabs({
 											/>
 
 											<p className="mt-3 text-sm text-gray-500">
-												الصيغ المدعومة: PDF, DOC, DOCX — الحجم الأقصى 5MB
+												{locale === 'en'
+													? 'Supported formats: PDF, DOC, DOCX — Maximum size: 5MB'
+													: 'الصيغ المدعومة: PDF, DOC, DOCX — الحجم الأقصى 5MB'}
 											</p>
 											{apiErrors?.file && (
 												<div className="mt-2 text-sm text-red-600">
@@ -1419,7 +1545,7 @@ export default function JobApplicationTabs({
 											onClick={() => setStep(step + 1)}
 											className="order-1 w-full rounded-full bg-[#14B8A6] px-10 py-3 font-bold text-white shadow-md transition hover:bg-[#0d9488] sm:order-2 sm:w-auto"
 										>
-											التالي
+											{locale === 'en' ? 'Next' : 'التالي'}
 										</button>
 									) : (
 										<button
@@ -1427,7 +1553,7 @@ export default function JobApplicationTabs({
 											form="jobApplyFormpopup"
 											className="order-1 w-full rounded-full bg-[#14B8A6] px-10 py-3 font-bold text-white shadow-md transition hover:bg-[#0d9488] sm:order-2 sm:w-auto"
 										>
-											إرسال الطلب
+											{locale === 'en' ? 'Submit Application' : 'إرسال الطلب'}
 										</button>
 									)}
 
