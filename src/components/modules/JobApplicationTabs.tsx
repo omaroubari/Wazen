@@ -674,7 +674,7 @@ export default function JobApplicationTabs({
 													value={formData.Phone1}
 													onChange={handleChange}
 													placeholder={
-														locale === 'en' ? '+966 512 345 678' : '51236789'
+														locale === 'en' ? '51236789' : '51236789'
 													}
 													className={`w-full rounded-lg border bg-white p-3 outline-none focus:ring-2 focus:ring-[#2DD4BF] ${apiErrors?.Phone1 ? 'border-red-400' : 'border-gray-200'}`}
 													aria-invalid={!!apiErrors?.Phone1}
@@ -1313,7 +1313,7 @@ export default function JobApplicationTabs({
 													name="Phone1"
 													value={formData.Phone1}
 													onChange={handleChange}
-													placeholder="+966 876 4322 234"
+													placeholder="51236789"
 													className={`w-full rounded-xl border bg-[#F1FAF9] p-3 outline-none focus:ring-2 focus:ring-[#14B8A6] ${apiErrors?.Phone1 ? 'border-red-400' : 'border-gray-200'}`}
 													aria-invalid={!!apiErrors?.Phone1}
 												/>
