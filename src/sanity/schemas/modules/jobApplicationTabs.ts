@@ -4,6 +4,7 @@ export default {
 	type: 'object',
 	fields: [
 		{
+			
 			name: 'title',
 			title: 'عنوان الصفحة الرئيسي',
 			type: 'string',
