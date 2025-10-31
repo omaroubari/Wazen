@@ -66,12 +66,12 @@ jobs:
       - name: Setup SSH
         uses: webfactory/ssh-agent@v0.9.0
         with:
-          ssh-private-key: ${{ secrets.SSH_KEY }}
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY_OCI }}
 
       # Connects to the server and runs the deployment commands.
       - name: Deploy to main
         run: |
-          ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.HOST }} "\
+          ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.REMOTE_HOST_OCI }} "\
             # Create the .env file on the server.
             printf '%s' '${{ env.DOT_ENV }}' > .env && \
             
