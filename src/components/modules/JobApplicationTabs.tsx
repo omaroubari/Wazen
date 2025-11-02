@@ -314,7 +314,7 @@ export default function JobApplicationTabs({
 					{(title || subtitle) && (
 						<div className="mb-8 text-center md:mb-10">
 							{title && (
-								<h1 className="h1 mx-auto max-w-4xl text-2xl text-balance text-white sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl ltr:leading-tight rtl:leading-snug">
+								<h1 className="h1 mt-5 mx-auto max-w-4xl text-2xl text-balance text-white sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl ltr:leading-tight rtl:leading-snug">
 									{title}
 								</h1>
 							)}
