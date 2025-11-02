@@ -329,7 +329,7 @@ export default function JobApplicationTabs({
 					{/* الشبكة الرئيسية */}
 					<div className="grid grid-cols-1 gap-6 rounded-2xl bg-white p-4 shadow-lg sm:p-6 md:grid-cols-[1fr_2.5fr] xl:grid-cols-[1fr_3fr]">
 						{/* التابات الجانبية */}
-						<aside className="flex flex-col gap-3 lg:sticky lg:top-6 lg:max-h-[calc(100vh-4rem)] lg:self-start lg:overflow-y-auto">
+						<aside className="flex flex-col gap-3 lg:sticky  lg:max-h-[calc(100vh-4rem)] lg:self-start lg:overflow-y-auto">
 							{tabs.map((tab, idx) => {
 								const isFirst = idx === 0
 								const isActive = activeTab === idx
