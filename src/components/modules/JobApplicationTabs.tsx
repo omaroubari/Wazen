@@ -1143,7 +1143,7 @@ export default function JobApplicationTabs({
 									<div className="absolute top-1/2 left-1/2 h-8 w-8 -translate-x-1/2 transform rounded-full border-4 border-white bg-gradient-to-r from-[#02B6BE] to-[#5FC19C] shadow-lg md:top-20" />
 
 									{/* Content Container with Hover Effect */}
-									<div className="relative z-10 flex flex-col items-center gap-4 rounded-xl bg-white p-6 shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-xl">
+									<div className="relative z-5 flex flex-col items-center gap-4 rounded-xl bg-white p-6 shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-xl">
 										<div className="relative h-24 w-24 overflow-hidden rounded-full bg-[#F1FAF9] p-4 sm:h-28 sm:w-28 md:h-32 md:w-32">
 											<img
 												src={step.img}
