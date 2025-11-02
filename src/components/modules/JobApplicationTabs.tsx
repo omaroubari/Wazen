@@ -58,6 +58,7 @@ export default function JobApplicationTabs({
 	const [idType, setIdType] = useState<SelectOption[]>([])
 	const [astCountry, setAstCountry] = useState<CountryOption[]>([])
 	const [astCity, setAstCity] = useState<CityOption[]>([])
+	const [citiesLoading, setCitiesLoading] = useState(false)
 	const [formData, setFormData] = useState({
 		Cmp_No: '801',
 		Seeker_NmAr: '',
@@ -156,6 +157,42 @@ export default function JobApplicationTabs({
 
 		fetchData()
 	}, [])
+
+	// Fetch cities for a selected country.
+	// Assumption: the API endpoint `/api/v1/emp/get-cities` accepts POST { Cntry_No }
+	// and returns an array of cities. If your backend uses a different route or
+	// payload, update the URL/body accordingly.
+	const fetchCities = async (cntryNo: string | number) => {
+		if (!cntryNo) {
+			setAstCity([])
+			return
+		}
+		setCitiesLoading(true)
+		try {
+			const res = await fetch('https://erp.wazen.sa/api/v1/emp/get-cities', {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify({ Cntry_No: cntryNo , Cmp_No: 801 }),
+			})
+			if (!res.ok) throw new Error('Failed to load cities')
+			const data = await res.json()
+			// Expecting data.cities or data.astCity; fall back to data
+			const cities = data.cities || data.astCity || data || []
+			setAstCity(Array.isArray(cities) ? cities : [])
+		} catch (err) {
+			console.error('Error fetching cities for country', cntryNo, err)
+			setAstCity([])
+		} finally {
+			setCitiesLoading(false)
+		}
+	}
+
+	// When the selected country changes, fetch its cities.
+	useEffect(() => {
+		if (formData.country_of_residence)
+			fetchCities(formData.country_of_residence)
+		else setAstCity([])
+	}, [formData.country_of_residence])
 	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault()
 
