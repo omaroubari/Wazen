@@ -951,7 +951,7 @@ export default function JobApplicationTabs({
 												onClick={() => setExpanded(true)}
 												className="rounded-full bg-gradient-to-l from-[#02B6BE] to-[#5FC19C] px-6 py-2 text-sm font-bold text-white shadow-md transition hover:opacity-90"
 											>
-												{locale === 'en' ? '👁 Show More' : '👁 عرض المزيد'}
+												{locale === 'en' ? 'Show More' : 'عرض المزيد'}
 											</button>
 										) : (
 											<button
@@ -1078,7 +1078,7 @@ export default function JobApplicationTabs({
 												onClick={() => setExpanded(true)}
 												className="rounded-full bg-gradient-to-l from-[#02B6BE] to-[#5FC19C] px-6 py-2 text-sm font-bold text-white shadow-md transition hover:opacity-90"
 											>
-												👁 عرض المزيد
+												 عرض المزيد
 											</button>
 										</div>
 									)}
