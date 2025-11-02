@@ -241,8 +241,8 @@ export default function JobApplicationTabs({
 
 					if (
 						data.message.includes('حجم الملف يجب أن لا يتجاوز 5 ميجابايت') ||
-						data.message.includes('السيرة الذاتية') || 
-						data.message.includes('PDF أو Word')  
+						data.message.includes('السيرة الذاتية') ||
+						data.message.includes('PDF أو Word')
 					) {
 						fieldErrors.file = data.message
 					}
@@ -456,8 +456,8 @@ export default function JobApplicationTabs({
 											</div>
 										</div>
 
-										{/* ✅ الأزرار في الجهة اليمنى */}
-										<div className="flex flex-col items-end gap-3">
+										{/* ✅ الأزرار في الهيدر: سنوسّط الأزرار */}
+										<div className="flex flex-col items-center gap-3">
 											{/* 🔘 زر التكبير */}
 											<button
 												onClick={() => setExpanded(!expanded)}
@@ -491,36 +491,14 @@ export default function JobApplicationTabs({
 													)}
 												</svg>
 											</button>
-											<button
-												type="submit"
-												form="jobApplyForm"
-												className="flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-[#02B6BE] to-[#5FC19C] px-8 py-3 font-['Rubik'] text-[16px] leading-[120%] font-[600] tracking-[0%] text-[#000C06] shadow-sm transition hover:opacity-90"
-											>
-												{locale === 'en' ? 'Submit Application' : 'إرسال الطلب'}
-												<svg
-													xmlns="http://www.w3.org/2000/svg"
-													fill="none"
-													viewBox="0 0 24 24"
-													strokeWidth={2}
-													stroke="currentColor"
-													className="h-5 w-5 text-[#000C06]"
-												>
-													<path
-														strokeLinecap="round"
-														strokeLinejoin="round"
-														d="M13 10V3L4 14h7v7l9-11h-7z"
-													/>
-												</svg>
-											</button>
-											{/* ⚡ زر إرسال الطلب */}
 										</div>
 									</div>
 
 									<div className="mb-6 flex border-b border-gray-200">
 										<button className="border-b-2 border-[#2DD4BF] px-4 pb-2 text-lg font-bold text-[#2DD4BF]">
 											{locale === 'en'
-												? 'Basic Information'
-												: 'البيانات الأساسية'}
+												? 'Register your details'
+												: 'سجل بياناتك'}
 										</button>
 										{/* <button className="px-4 pb-2 text-lg font-semibold text-gray-400">
 											المرفقات
@@ -902,6 +880,31 @@ export default function JobApplicationTabs({
 													</div>
 												)}
 											</div>
+											<div className="col-span-1 mt-6 flex w-full justify-center sm:col-span-2 lg:col-span-3">
+												<button
+													type="submit"
+													className="flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-[#02B6BE] to-[#5FC19C] px-8 py-3 font-['Rubik'] text-[16px] leading-[120%] font-[600] tracking-[0%] text-[#000C06] shadow-sm transition hover:opacity-90"
+												>
+													{locale === 'en'
+														? 'Submit Application'
+														: 'إرسال الطلب'}
+													<svg
+														xmlns="http://www.w3.org/2000/svg"
+														fill="none"
+														viewBox="0 0 24 24"
+														strokeWidth={2}
+														stroke="currentColor"
+														className="h-5 w-5 text-[#000C06]"
+													>
+														<path
+															strokeLinecap="round"
+															strokeLinejoin="round"
+															d="M13 10V3L4 14h7v7l9-11h-7z"
+														/>
+													</svg>
+												</button>
+											</div>
+											{/* ⚡ زر إرسال الطلب */}
 										</form>
 									</div>
 									{/* ✅ أزرار عرض المزيد/أقل خارج الحاوية المقتصّة */}
@@ -1130,7 +1133,7 @@ export default function JobApplicationTabs({
 										'Submit Application',
 									]
 								: [
-										'البيانات الأساسية',
+										'سجل بياناتك',
 										'بيانات التواصل',
 										'المؤهلات والتخصص',
 										'رفع المرفقات',
