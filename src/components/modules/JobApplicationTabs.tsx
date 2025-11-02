@@ -1405,7 +1405,7 @@ export default function JobApplicationTabs({
 										</div>
 									</>
 								)}
-
+		
 								{/* 🟢 الخطوة 2 */}
 								{step === 2 && (
 									<>
