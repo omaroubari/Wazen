@@ -172,7 +172,7 @@ export default function JobApplicationTabs({
 			const res = await fetch('https://erp.wazen.sa/api/v1/emp/get-cities', {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
-				body: JSON.stringify({ Cntry_No: cntryNo , Cmp_No: 801 }),
+				body: JSON.stringify({ Cntry_No: cntryNo, Cmp_No: 801 }),
 			})
 			if (!res.ok) throw new Error('Failed to load cities')
 			const data = await res.json()
@@ -314,7 +314,7 @@ export default function JobApplicationTabs({
 					{(title || subtitle) && (
 						<div className="mb-8 text-center md:mb-10">
 							{title && (
-								<h1 className="h1 mt-5 mx-auto max-w-4xl text-2xl text-balance text-white sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl ltr:leading-tight rtl:leading-snug">
+								<h1 className="h1 mx-auto mt-5 max-w-4xl text-2xl text-balance text-white sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl ltr:leading-tight rtl:leading-snug">
 									{title}
 								</h1>
 							)}
@@ -1078,7 +1078,7 @@ export default function JobApplicationTabs({
 												onClick={() => setExpanded(true)}
 												className="rounded-full bg-gradient-to-l from-[#02B6BE] to-[#5FC19C] px-6 py-2 text-sm font-bold text-white shadow-md transition hover:opacity-90"
 											>
-												 عرض المزيد
+												عرض المزيد
 											</button>
 										</div>
 									)}
@@ -1104,48 +1104,66 @@ export default function JobApplicationTabs({
 					{locale === 'en' ? '' : 'في دورة التوظيف'}
 				</h2>
 
-				<div className="mx-auto grid max-w-5xl grid-cols-2 gap-6 sm:grid-cols-3 sm:gap-8 md:grid-cols-5">
-					{[
-						{
-							titleAr: 'التحضير',
-							titleEn: 'Preparation',
-							img: 'https://cdn.sanity.io/images/m7bjawr3/production/b584f13dac2886c80f1bd6ebe3df096206e4e9c8-110x110.png',
-						},
-						{
-							titleAr: 'الاستقطاب',
-							titleEn: 'Recruitment',
-							img: 'https://cdn.sanity.io/images/m7bjawr3/production/9fc9d5b971392da393e019787a7e2560ecc24a69-102x117.png',
-						},
-						{
-							titleAr: 'الفرز',
-							titleEn: 'Screening',
-							img: 'https://cdn.sanity.io/images/m7bjawr3/production/d9065bd03d399134f8e977117aa5ad672c4a2faa-122x118.png',
-						},
-						{
-							titleAr: 'الإختيار',
-							titleEn: 'Selection',
-							img: 'https://cdn.sanity.io/images/m7bjawr3/production/0797b12c8699908d73465feb8433b8e2a7ceaea2-122x116.png',
-						},
-						{
-							titleAr: 'التعيين',
-							titleEn: 'Hiring',
-							img: 'https://cdn.sanity.io/images/m7bjawr3/production/15f12d6557ae665987c44d9efd836a7060faf42e-121x117.png',
-						},
-					].map((step, i) => (
-						<div
-							key={i}
-							className="flex flex-col items-center gap-3 text-center transition-transform hover:scale-105"
-						>
-							<img
-								src={step.img}
-								alt={locale === 'en' ? step.titleEn : step.titleAr}
-								className="h-20 w-20 object-contain sm:h-24 sm:w-24 md:h-32 md:w-32"
-							/>
-							<p className="text-lg font-semibold text-[#14B8A6] sm:text-xl md:text-2xl">
-								{locale === 'en' ? step.titleEn : step.titleAr}
-							</p>
+				<div className="mx-auto max-w-6xl">
+					<div className="relative">
+						{/* Connecting Line */}
+						<div className="absolute top-0 left-1/2 h-full w-1 -translate-x-1/2 transform bg-gradient-to-b from-[#02B6BE] to-[#5FC19C] md:h-1 md:w-full md:translate-y-20" />
+
+						{/* Steps Container */}
+						<div className="relative grid grid-cols-1 gap-12 md:grid-cols-5 md:gap-8">
+							{[
+								{
+									titleAr: 'التحضير',
+									titleEn: 'Preparation',
+									img: 'https://cdn.sanity.io/images/m7bjawr3/production/b584f13dac2886c80f1bd6ebe3df096206e4e9c8-110x110.png',
+								},
+								{
+									titleAr: 'الاستقطاب',
+									titleEn: 'Recruitment',
+									img: 'https://cdn.sanity.io/images/m7bjawr3/production/9fc9d5b971392da393e019787a7e2560ecc24a69-102x117.png',
+								},
+								{
+									titleAr: 'الفرز',
+									titleEn: 'Screening',
+									img: 'https://cdn.sanity.io/images/m7bjawr3/production/d9065bd03d399134f8e977117aa5ad672c4a2faa-122x118.png',
+								},
+								{
+									titleAr: 'الإختيار',
+									titleEn: 'Selection',
+									img: 'https://cdn.sanity.io/images/m7bjawr3/production/0797b12c8699908d73465feb8433b8e2a7ceaea2-122x116.png',
+								},
+								{
+									titleAr: 'التعيين',
+									titleEn: 'Hiring',
+									img: 'https://cdn.sanity.io/images/m7bjawr3/production/15f12d6557ae665987c44d9efd836a7060faf42e-121x117.png',
+								},
+							].map((step, i) => (
+								<div key={i} className="relative flex flex-col items-center">
+									{/* Circle Connector */}
+									<div className="absolute top-1/2 left-1/2 h-8 w-8 -translate-x-1/2 transform rounded-full border-4 border-white bg-gradient-to-r from-[#02B6BE] to-[#5FC19C] shadow-lg md:top-20" />
+
+									{/* Content Container with Hover Effect */}
+									<div className="relative z-10 flex flex-col items-center gap-4 rounded-xl bg-white p-6 shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-xl">
+										<div className="relative h-24 w-24 overflow-hidden rounded-full bg-[#F1FAF9] p-4 sm:h-28 sm:w-28 md:h-32 md:w-32">
+											<img
+												src={step.img}
+												alt={locale === 'en' ? step.titleEn : step.titleAr}
+												className="h-full w-full object-contain transition-transform duration-300 hover:scale-110"
+											/>
+										</div>
+										<div className="flex flex-col items-center gap-2">
+											<p className="text-lg font-bold text-[#14B8A6] sm:text-xl">
+												{locale === 'en' ? step.titleEn : step.titleAr}
+											</p>
+											<span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#14B8A6] text-sm font-bold text-white">
+												{i + 1}
+											</span>
+										</div>
+									</div>
+								</div>
+							))}
 						</div>
-					))}
+					</div>
 				</div>
 			</section>
 			{showModal && (
