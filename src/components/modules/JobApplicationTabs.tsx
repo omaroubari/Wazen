@@ -101,6 +101,24 @@ export default function JobApplicationTabs({
 			setApiErrors((prev) => ({ ...prev, file: '' }))
 		}
 	}
+
+	// Special handler to limit Age to maximum two digits
+	const handleAgeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+		const raw = e.target.value.replace(/\D+/g, '')
+		const truncated = raw.slice(0, 2)
+		setFormData((prev) => ({ ...prev, Age: truncated }))
+		setApiErrors((prev) => ({ ...prev, Age: '' }))
+		setMainError('')
+	}
+
+	// Special handler to limit Phone1 to maximum nine digits
+	const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+		const raw = e.target.value.replace(/\D+/g, '')
+		const truncated = raw.slice(0, 9)
+		setFormData((prev) => ({ ...prev, Phone1: truncated }))
+		setApiErrors((prev) => ({ ...prev, Phone1: '' }))
+		setMainError('')
+	}
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
@@ -140,6 +158,18 @@ export default function JobApplicationTabs({
 	}, [])
 	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault()
+
+		// Client-side validation: ensure Phone1 has exactly 9 digits
+		const phoneDigits = String(formData.Phone1 || '').replace(/\D+/g, '')
+		if (phoneDigits.length !== 9) {
+			setApiErrors((prev) => ({
+				...prev,
+				Phone1: 'رقم الجوال يجب أن يكون 9 أرقام',
+			}))
+			setMainError('')
+			setSuccessMessage('')
+			return
+		}
 
 		try {
 			const form = new FormData()
@@ -211,7 +241,8 @@ export default function JobApplicationTabs({
 
 					if (
 						data.message.includes('حجم الملف يجب أن لا يتجاوز 5 ميجابايت') ||
-						data.message.includes('السيرة الذاتية')
+						data.message.includes('السيرة الذاتية') || 
+						data.message.includes('PDF أو Word')  
 					) {
 						fieldErrors.file = data.message
 					}
@@ -648,11 +679,13 @@ export default function JobApplicationTabs({
 												<input
 													name="Age"
 													value={formData.Age}
-													onChange={handleChange}
-													type="number"
+													onChange={handleAgeChange}
+													type="text"
+													inputMode="numeric"
 													placeholder={
 														locale === 'en' ? '30 years' : '30 عاماً'
 													}
+													maxLength={2}
 													className={`w-full rounded-lg border bg-white p-3 outline-none focus:ring-2 focus:ring-[#2DD4BF] ${apiErrors?.Age ? 'border-red-400' : 'border-gray-200'}`}
 													aria-invalid={!!apiErrors?.Age}
 												/>
@@ -672,10 +705,12 @@ export default function JobApplicationTabs({
 													type="text"
 													name="Phone1"
 													value={formData.Phone1}
-													onChange={handleChange}
+													onChange={handlePhoneChange}
+													inputMode="numeric"
 													placeholder={
 														locale === 'en' ? '51236789' : '51236789'
 													}
+													maxLength={9}
 													className={`w-full rounded-lg border bg-white p-3 outline-none focus:ring-2 focus:ring-[#2DD4BF] ${apiErrors?.Phone1 ? 'border-red-400' : 'border-gray-200'}`}
 													aria-invalid={!!apiErrors?.Phone1}
 												/>
@@ -1312,8 +1347,10 @@ export default function JobApplicationTabs({
 													type="text"
 													name="Phone1"
 													value={formData.Phone1}
-													onChange={handleChange}
+													onChange={handlePhoneChange}
+													inputMode="numeric"
 													placeholder="51236789"
+													maxLength={9}
 													className={`w-full rounded-xl border bg-[#F1FAF9] p-3 outline-none focus:ring-2 focus:ring-[#14B8A6] ${apiErrors?.Phone1 ? 'border-red-400' : 'border-gray-200'}`}
 													aria-invalid={!!apiErrors?.Phone1}
 												/>

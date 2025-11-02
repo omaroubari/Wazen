@@ -64,8 +64,8 @@ export default function FileUpload({
 			{/* 🟣 النص الفرعي */}
 			<p className="text-center font-[Cairo] text-[18px] leading-[100%] font-medium text-[#A9ACB4]">
 				{locale === 'en'
-					? 'Supported: .doc, .docx, .pdf, .xls, .xlsx, .png, .jpg, .jpeg — up to 50 MB'
-					: 'تسميات .Doc ,Sheet ,XML حتى 50 ميجا بايت'}
+					? 'Supported: .doc, .pdf— up to 50 MB'
+					: 'تسميات .Doc ,PDF  حتى 50 ميجا بايت'}
 			</p>
 
 			{/* 🟢 زر اختيار الملف */}
