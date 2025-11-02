@@ -736,6 +736,31 @@ export default function JobApplicationTabs({
 												)}
 											</div>
 
+											{/* المؤهل */}
+											<div>
+												<label className="mb-1 block font-semibold text-gray-700">
+													{locale === 'en' ? 'Qualification' : 'المؤهل'}
+												</label>
+												<input
+													name="educational_qualification"
+													value={formData.educational_qualification}
+													onChange={handleChange}
+													type="text"
+													placeholder={
+														locale === 'en'
+															? 'Bachelor in Computer Science'
+															: 'بكالوريوس علوم الحاسب'
+													}
+													className={`w-full rounded-lg border bg-white p-3 outline-none focus:ring-2 focus:ring-[#2DD4BF] ${apiErrors?.Specialization_Name ? 'border-red-400' : 'border-gray-200'}`}
+													aria-invalid={!!apiErrors?.educational_qualification}
+												/>
+												{apiErrors?.educational_qualification && (
+													<div className="mt-1 text-sm text-red-600">
+														{apiErrors.educational_qualification}
+													</div>
+												)}
+											</div>
+												
 											{/* 6التخصص */}
 											<div>
 												<label className="mb-1 block font-semibold text-gray-700">
@@ -758,7 +783,6 @@ export default function JobApplicationTabs({
 													</div>
 												)}
 											</div>
-
 											{/* الجنسية */}
 											<div>
 												<label className="mb-1 block font-semibold text-gray-700">
