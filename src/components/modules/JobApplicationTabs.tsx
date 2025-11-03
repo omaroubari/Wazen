@@ -58,6 +58,7 @@ export default function JobApplicationTabs({
 	const [idType, setIdType] = useState<SelectOption[]>([])
 	const [astCountry, setAstCountry] = useState<CountryOption[]>([])
 	const [astCity, setAstCity] = useState<CityOption[]>([])
+	const [citiesLoading, setCitiesLoading] = useState(false)
 	const [formData, setFormData] = useState({
 		Cmp_No: '801',
 		Seeker_NmAr: '',
@@ -101,6 +102,24 @@ export default function JobApplicationTabs({
 			setApiErrors((prev) => ({ ...prev, file: '' }))
 		}
 	}
+
+	// Special handler to limit Age to maximum two digits
+	const handleAgeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+		const raw = e.target.value.replace(/\D+/g, '')
+		const truncated = raw.slice(0, 2)
+		setFormData((prev) => ({ ...prev, Age: truncated }))
+		setApiErrors((prev) => ({ ...prev, Age: '' }))
+		setMainError('')
+	}
+
+	// Special handler to limit Phone1 to maximum nine digits
+	const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+		const raw = e.target.value.replace(/\D+/g, '')
+		const truncated = raw.slice(0, 9)
+		setFormData((prev) => ({ ...prev, Phone1: truncated }))
+		setApiErrors((prev) => ({ ...prev, Phone1: '' }))
+		setMainError('')
+	}
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
@@ -138,8 +157,56 @@ export default function JobApplicationTabs({
 
 		fetchData()
 	}, [])
+
+	// Fetch cities for a selected country.
+	// Assumption: the API endpoint `/api/v1/emp/get-cities` accepts POST { Cntry_No }
+	// and returns an array of cities. If your backend uses a different route or
+	// payload, update the URL/body accordingly.
+	const fetchCities = async (cntryNo: string | number) => {
+		if (!cntryNo) {
+			setAstCity([])
+			return
+		}
+		setCitiesLoading(true)
+		try {
+			const res = await fetch('https://erp.wazen.sa/api/v1/emp/get-cities', {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify({ Cntry_No: cntryNo, Cmp_No: 801 }),
+			})
+			if (!res.ok) throw new Error('Failed to load cities')
+			const data = await res.json()
+			// Expecting data.cities or data.astCity; fall back to data
+			const cities = data.cities || data.astCity || data || []
+			setAstCity(Array.isArray(cities) ? cities : [])
+		} catch (err) {
+			console.error('Error fetching cities for country', cntryNo, err)
+			setAstCity([])
+		} finally {
+			setCitiesLoading(false)
+		}
+	}
+
+	// When the selected country changes, fetch its cities.
+	useEffect(() => {
+		if (formData.country_of_residence)
+			fetchCities(formData.country_of_residence)
+		else setAstCity([])
+	}, [formData.country_of_residence])
 	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault()
+
+		// Client-side validation: ensure Phone1 has exactly 9 digits
+		const phoneDigits = String(formData.Phone1 || '').replace(/\D+/g, '')
+		if (phoneDigits.length !== 9) {
+			setApiErrors((prev) => ({
+				...prev,
+				Phone1: 'رقم الجوال يجب أن يكون 9 أرقام',
+			}))
+			setMainError('')
+			setSuccessMessage('')
+			return
+		}
 
 		try {
 			const form = new FormData()
@@ -211,7 +278,8 @@ export default function JobApplicationTabs({
 
 					if (
 						data.message.includes('حجم الملف يجب أن لا يتجاوز 5 ميجابايت') ||
-						data.message.includes('السيرة الذاتية')
+						data.message.includes('السيرة الذاتية') ||
+						data.message.includes('PDF أو Word')
 					) {
 						fieldErrors.file = data.message
 					}
@@ -246,7 +314,7 @@ export default function JobApplicationTabs({
 					{(title || subtitle) && (
 						<div className="mb-8 text-center md:mb-10">
 							{title && (
-								<h1 className="h1 mx-auto max-w-4xl text-2xl text-balance text-white sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl ltr:leading-tight rtl:leading-snug">
+								<h1 className="h1 mx-auto mt-5 max-w-4xl text-2xl text-balance text-white sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl ltr:leading-tight rtl:leading-snug">
 									{title}
 								</h1>
 							)}
@@ -261,7 +329,7 @@ export default function JobApplicationTabs({
 					{/* الشبكة الرئيسية */}
 					<div className="grid grid-cols-1 gap-6 rounded-2xl bg-white p-4 shadow-lg sm:p-6 md:grid-cols-[1fr_2.5fr] xl:grid-cols-[1fr_3fr]">
 						{/* التابات الجانبية */}
-						<aside className="flex flex-col gap-3 lg:sticky lg:top-6 lg:max-h-[calc(100vh-4rem)] lg:self-start lg:overflow-y-auto">
+						<aside className="flex flex-col gap-3 lg:sticky  lg:max-h-[calc(100vh-4rem)] lg:self-start lg:overflow-y-auto">
 							{tabs.map((tab, idx) => {
 								const isFirst = idx === 0
 								const isActive = activeTab === idx
@@ -425,8 +493,8 @@ export default function JobApplicationTabs({
 											</div>
 										</div>
 
-										{/* ✅ الأزرار في الجهة اليمنى */}
-										<div className="flex flex-col items-end gap-3">
+										{/* ✅ الأزرار في الهيدر: سنوسّط الأزرار */}
+										<div className="flex flex-col items-center gap-3">
 											{/* 🔘 زر التكبير */}
 											<button
 												onClick={() => setExpanded(!expanded)}
@@ -460,36 +528,14 @@ export default function JobApplicationTabs({
 													)}
 												</svg>
 											</button>
-											<button
-												type="submit"
-												form="jobApplyForm"
-												className="flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-[#02B6BE] to-[#5FC19C] px-8 py-3 font-['Rubik'] text-[16px] leading-[120%] font-[600] tracking-[0%] text-[#000C06] shadow-sm transition hover:opacity-90"
-											>
-												{locale === 'en' ? 'Submit Application' : 'إرسال الطلب'}
-												<svg
-													xmlns="http://www.w3.org/2000/svg"
-													fill="none"
-													viewBox="0 0 24 24"
-													strokeWidth={2}
-													stroke="currentColor"
-													className="h-5 w-5 text-[#000C06]"
-												>
-													<path
-														strokeLinecap="round"
-														strokeLinejoin="round"
-														d="M13 10V3L4 14h7v7l9-11h-7z"
-													/>
-												</svg>
-											</button>
-											{/* ⚡ زر إرسال الطلب */}
 										</div>
 									</div>
 
 									<div className="mb-6 flex border-b border-gray-200">
 										<button className="border-b-2 border-[#2DD4BF] px-4 pb-2 text-lg font-bold text-[#2DD4BF]">
 											{locale === 'en'
-												? 'Basic Information'
-												: 'البيانات الأساسية'}
+												? 'Register your details'
+												: 'سجل بياناتك'}
 										</button>
 										{/* <button className="px-4 pb-2 text-lg font-semibold text-gray-400">
 											المرفقات
@@ -648,11 +694,13 @@ export default function JobApplicationTabs({
 												<input
 													name="Age"
 													value={formData.Age}
-													onChange={handleChange}
-													type="number"
+													onChange={handleAgeChange}
+													type="text"
+													inputMode="numeric"
 													placeholder={
 														locale === 'en' ? '30 years' : '30 عاماً'
 													}
+													maxLength={2}
 													className={`w-full rounded-lg border bg-white p-3 outline-none focus:ring-2 focus:ring-[#2DD4BF] ${apiErrors?.Age ? 'border-red-400' : 'border-gray-200'}`}
 													aria-invalid={!!apiErrors?.Age}
 												/>
@@ -672,10 +720,12 @@ export default function JobApplicationTabs({
 													type="text"
 													name="Phone1"
 													value={formData.Phone1}
-													onChange={handleChange}
+													onChange={handlePhoneChange}
+													inputMode="numeric"
 													placeholder={
 														locale === 'en' ? '51236789' : '51236789'
 													}
+													maxLength={9}
 													className={`w-full rounded-lg border bg-white p-3 outline-none focus:ring-2 focus:ring-[#2DD4BF] ${apiErrors?.Phone1 ? 'border-red-400' : 'border-gray-200'}`}
 													aria-invalid={!!apiErrors?.Phone1}
 												/>
@@ -686,6 +736,31 @@ export default function JobApplicationTabs({
 												)}
 											</div>
 
+											{/* المؤهل */}
+											<div>
+												<label className="mb-1 block font-semibold text-gray-700">
+													{locale === 'en' ? 'Qualification' : 'المؤهل'}
+												</label>
+												<input
+													name="educational_qualification"
+													value={formData.educational_qualification}
+													onChange={handleChange}
+													type="text"
+													placeholder={
+														locale === 'en'
+															? 'Bachelor in Computer Science'
+															: 'بكالوريوس علوم الحاسب'
+													}
+													className={`w-full rounded-lg border bg-white p-3 outline-none focus:ring-2 focus:ring-[#2DD4BF] ${apiErrors?.Specialization_Name ? 'border-red-400' : 'border-gray-200'}`}
+													aria-invalid={!!apiErrors?.educational_qualification}
+												/>
+												{apiErrors?.educational_qualification && (
+													<div className="mt-1 text-sm text-red-600">
+														{apiErrors.educational_qualification}
+													</div>
+												)}
+											</div>
+												
 											{/* 6التخصص */}
 											<div>
 												<label className="mb-1 block font-semibold text-gray-700">
@@ -708,7 +783,6 @@ export default function JobApplicationTabs({
 													</div>
 												)}
 											</div>
-
 											{/* الجنسية */}
 											<div>
 												<label className="mb-1 block font-semibold text-gray-700">
@@ -867,6 +941,31 @@ export default function JobApplicationTabs({
 													</div>
 												)}
 											</div>
+											<div className="col-span-1 mt-6 flex w-full justify-center sm:col-span-2 lg:col-span-3">
+												<button
+													type="submit"
+													className="flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-[#02B6BE] to-[#5FC19C] px-8 py-3 font-['Rubik'] text-[16px] leading-[120%] font-[600] tracking-[0%] text-[#000C06] shadow-sm transition hover:opacity-90"
+												>
+													{locale === 'en'
+														? 'Submit Application'
+														: 'إرسال الطلب'}
+													<svg
+														xmlns="http://www.w3.org/2000/svg"
+														fill="none"
+														viewBox="0 0 24 24"
+														strokeWidth={2}
+														stroke="currentColor"
+														className="h-5 w-5 text-[#000C06]"
+													>
+														<path
+															strokeLinecap="round"
+															strokeLinejoin="round"
+															d="M13 10V3L4 14h7v7l9-11h-7z"
+														/>
+													</svg>
+												</button>
+											</div>
+											{/* ⚡ زر إرسال الطلب */}
 										</form>
 									</div>
 									{/* ✅ أزرار عرض المزيد/أقل خارج الحاوية المقتصّة */}
@@ -876,7 +975,7 @@ export default function JobApplicationTabs({
 												onClick={() => setExpanded(true)}
 												className="rounded-full bg-gradient-to-l from-[#02B6BE] to-[#5FC19C] px-6 py-2 text-sm font-bold text-white shadow-md transition hover:opacity-90"
 											>
-												{locale === 'en' ? '👁 Show More' : '👁 عرض المزيد'}
+												{locale === 'en' ? 'Show More' : 'عرض المزيد'}
 											</button>
 										) : (
 											<button
@@ -1003,7 +1102,7 @@ export default function JobApplicationTabs({
 												onClick={() => setExpanded(true)}
 												className="rounded-full bg-gradient-to-l from-[#02B6BE] to-[#5FC19C] px-6 py-2 text-sm font-bold text-white shadow-md transition hover:opacity-90"
 											>
-												👁 عرض المزيد
+												عرض المزيد
 											</button>
 										</div>
 									)}
@@ -1029,48 +1128,66 @@ export default function JobApplicationTabs({
 					{locale === 'en' ? '' : 'في دورة التوظيف'}
 				</h2>
 
-				<div className="mx-auto grid max-w-5xl grid-cols-2 gap-6 sm:grid-cols-3 sm:gap-8 md:grid-cols-5">
-					{[
-						{
-							titleAr: 'التحضير',
-							titleEn: 'Preparation',
-							img: 'https://cdn.sanity.io/images/m7bjawr3/production/b584f13dac2886c80f1bd6ebe3df096206e4e9c8-110x110.png',
-						},
-						{
-							titleAr: 'الاستقطاب',
-							titleEn: 'Recruitment',
-							img: 'https://cdn.sanity.io/images/m7bjawr3/production/9fc9d5b971392da393e019787a7e2560ecc24a69-102x117.png',
-						},
-						{
-							titleAr: 'الفرز',
-							titleEn: 'Screening',
-							img: 'https://cdn.sanity.io/images/m7bjawr3/production/d9065bd03d399134f8e977117aa5ad672c4a2faa-122x118.png',
-						},
-						{
-							titleAr: 'الإختيار',
-							titleEn: 'Selection',
-							img: 'https://cdn.sanity.io/images/m7bjawr3/production/0797b12c8699908d73465feb8433b8e2a7ceaea2-122x116.png',
-						},
-						{
-							titleAr: 'التعيين',
-							titleEn: 'Hiring',
-							img: 'https://cdn.sanity.io/images/m7bjawr3/production/15f12d6557ae665987c44d9efd836a7060faf42e-121x117.png',
-						},
-					].map((step, i) => (
-						<div
-							key={i}
-							className="flex flex-col items-center gap-3 text-center transition-transform hover:scale-105"
-						>
-							<img
-								src={step.img}
-								alt={locale === 'en' ? step.titleEn : step.titleAr}
-								className="h-20 w-20 object-contain sm:h-24 sm:w-24 md:h-32 md:w-32"
-							/>
-							<p className="text-lg font-semibold text-[#14B8A6] sm:text-xl md:text-2xl">
-								{locale === 'en' ? step.titleEn : step.titleAr}
-							</p>
+				<div className="mx-auto max-w-6xl">
+					<div className="relative">
+						{/* Connecting Line */}
+						<div className="absolute top-0 left-1/2 h-full w-1 -translate-x-1/2 transform bg-gradient-to-b from-[#02B6BE] to-[#5FC19C] md:h-1 md:w-full md:translate-y-20" />
+
+						{/* Steps Container */}
+						<div className="relative grid grid-cols-1 gap-12 md:grid-cols-5 md:gap-8">
+							{[
+								{
+									titleAr: 'التحضير',
+									titleEn: 'Preparation',
+									img: 'https://cdn.sanity.io/images/m7bjawr3/production/b584f13dac2886c80f1bd6ebe3df096206e4e9c8-110x110.png',
+								},
+								{
+									titleAr: 'الاستقطاب',
+									titleEn: 'Recruitment',
+									img: 'https://cdn.sanity.io/images/m7bjawr3/production/9fc9d5b971392da393e019787a7e2560ecc24a69-102x117.png',
+								},
+								{
+									titleAr: 'الفرز',
+									titleEn: 'Screening',
+									img: 'https://cdn.sanity.io/images/m7bjawr3/production/d9065bd03d399134f8e977117aa5ad672c4a2faa-122x118.png',
+								},
+								{
+									titleAr: 'الإختيار',
+									titleEn: 'Selection',
+									img: 'https://cdn.sanity.io/images/m7bjawr3/production/0797b12c8699908d73465feb8433b8e2a7ceaea2-122x116.png',
+								},
+								{
+									titleAr: 'التعيين',
+									titleEn: 'Hiring',
+									img: 'https://cdn.sanity.io/images/m7bjawr3/production/15f12d6557ae665987c44d9efd836a7060faf42e-121x117.png',
+								},
+							].map((step, i) => (
+								<div key={i} className="relative flex flex-col items-center">
+									{/* Circle Connector */}
+									<div className="absolute top-1/2 left-1/2 h-8 w-8 -translate-x-1/2 transform rounded-full border-4 border-white bg-gradient-to-r from-[#02B6BE] to-[#5FC19C] shadow-lg md:top-20" />
+
+									{/* Content Container with Hover Effect */}
+									<div className="relative z-5 flex flex-col items-center gap-4 rounded-xl bg-white p-6 shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-xl">
+										<div className="relative h-24 w-24 overflow-hidden rounded-full bg-[#F1FAF9] p-4 sm:h-28 sm:w-28 md:h-32 md:w-32">
+											<img
+												src={step.img}
+												alt={locale === 'en' ? step.titleEn : step.titleAr}
+												className="h-full w-full object-contain transition-transform duration-300 hover:scale-110"
+											/>
+										</div>
+										<div className="flex flex-col items-center gap-2">
+											<p className="text-lg font-bold text-[#14B8A6] sm:text-xl">
+												{locale === 'en' ? step.titleEn : step.titleAr}
+											</p>
+											<span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#14B8A6] text-sm font-bold text-white">
+												{i + 1}
+											</span>
+										</div>
+									</div>
+								</div>
+							))}
 						</div>
-					))}
+					</div>
 				</div>
 			</section>
 			{showModal && (
@@ -1095,7 +1212,7 @@ export default function JobApplicationTabs({
 										'Submit Application',
 									]
 								: [
-										'البيانات الأساسية',
+										'سجل بياناتك',
 										'بيانات التواصل',
 										'المؤهلات والتخصص',
 										'رفع المرفقات',
@@ -1288,7 +1405,7 @@ export default function JobApplicationTabs({
 										</div>
 									</>
 								)}
-
+		
 								{/* 🟢 الخطوة 2 */}
 								{step === 2 && (
 									<>
@@ -1312,8 +1429,10 @@ export default function JobApplicationTabs({
 													type="text"
 													name="Phone1"
 													value={formData.Phone1}
-													onChange={handleChange}
+													onChange={handlePhoneChange}
+													inputMode="numeric"
 													placeholder="51236789"
+													maxLength={9}
 													className={`w-full rounded-xl border bg-[#F1FAF9] p-3 outline-none focus:ring-2 focus:ring-[#14B8A6] ${apiErrors?.Phone1 ? 'border-red-400' : 'border-gray-200'}`}
 													aria-invalid={!!apiErrors?.Phone1}
 												/>
