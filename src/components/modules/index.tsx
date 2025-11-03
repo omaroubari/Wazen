@@ -78,7 +78,7 @@ const MODULE_MAP = {
 	jobApplicationTabs: JobApplicationTabs,
 } as const
 
-export default async function Modules({
+export default function Modules({
 	modules,
 	locale,
 	page,
@@ -89,36 +89,32 @@ export default async function Modules({
 	slug?: string
 	page?: Sanity.Page
 }) {
-	if (!modules?.length) return null
 	return (
 		<>
-			{await Promise.all(
-				modules.map(async (module) => {
-					if (!module) return null
+			{modules?.map((module) => {
+				if (!module) return null
 
-					const Component = MODULE_MAP[module._type as keyof typeof MODULE_MAP]
+				const Component = MODULE_MAP[module._type as keyof typeof MODULE_MAP]
 
-					if (!Component) return null
+				if (!Component) return null
 
-					const dataAttr =
-						!!page?._id &&
-						createDataAttribute({
-							id: page._id,
-							type: page?._type,
-							path: `page[_key == "${module._key}"]`,
-						}).toString()
-
-					return (
-						<Component
-							key={module._key}
-							{...module}
-							locale={locale}
-							slug={slug}
-							data-sanity={dataAttr}
-						/>
-					)
-				}),
-			)}
+				return (
+					<Component
+						{...module}
+						locale={locale}
+						slug={slug}
+						data-sanity={
+							!!page?._id &&
+							createDataAttribute({
+								id: page._id,
+								type: page?._type,
+								path: `page[_key == "${module._key}"]`,
+							}).toString()
+						}
+						key={module._key}
+					/>
+				)
+			})}
 		</>
 	)
 }
