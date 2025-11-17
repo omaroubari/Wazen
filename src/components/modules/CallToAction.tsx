@@ -20,12 +20,12 @@ export default function CallToAction({
 }: Sanity.Module & { className?: string }) {
 	// Return null or placeholder if essential content is missing
 
-	// if (!content && !ctas) {
-	// 	content = callToActionDoc.content
-	// 	ctas = callToActionDoc.ctas
-	// 	image = callToActionDoc.image
-	// 	checkedList = callToActionDoc.checkedList
-	// }
+	if (!content && !ctas) {
+		content = callToActionDoc.content
+		ctas = callToActionDoc.ctas
+		image = callToActionDoc.image
+		checkedList = callToActionDoc.checkedList
+	}
 
 	const components: PortableTextComponents = {
 		types: {
@@ -100,7 +100,7 @@ export default function CallToAction({
 						</div>
 					</div>
 				)}
-				{/* <div className="flex max-w-2xl flex-col items-start gap-8">
+				<div className="flex max-w-2xl flex-col items-start gap-8">
 					{content && <PortableText value={content} components={components} />}
 
 					{ctas && (
@@ -114,7 +114,7 @@ export default function CallToAction({
 							/>
 						</div>
 					)}
-				</div> */}
+				</div>
 			</div>
 		</section>
 	)

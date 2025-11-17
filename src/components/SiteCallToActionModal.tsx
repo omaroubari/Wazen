@@ -210,18 +210,6 @@ export default function SiteCallToActionModal() {
 		<Dialog open={open} onOpenChange={setOpen}>
 			<DialogContent className="h-fit max-h-[calc(100svh-32px)] w-[calc(100vw-24px)] max-w-xl gap-6 overflow-scroll rounded-2xl bg-white p-4">
 				{image?.asset && (
-					<div className="mt-8 flex max-h-[80vh] justify-center overflow-y-auto rounded-lg bg-teal-50">
-						<Img
-							image={image}
-							alt={image?.alt || ''}
-							className="h-auto max-w-full object-contain"
-							draggable={false}
-							loading="lazy"
-						/>
-					</div>
-				)}
-
-				{/* {image?.asset && (
 					<div className="mt-8 overflow-hidden rounded-lg bg-teal-50">
 						<Img
 							image={image}
@@ -231,9 +219,9 @@ export default function SiteCallToActionModal() {
 							loading="lazy"
 						/>
 					</div>
-				)} */}
+				)}
 
-				{/* <div className="flex flex-col gap-4">
+				<div className="flex flex-col gap-4">
 					{content && (
 						<PortableText value={content} components={contentComponents} />
 					)}
@@ -252,7 +240,7 @@ export default function SiteCallToActionModal() {
 						locale={locale}
 						className="w-full *:h-11 *:rounded-lg *:px-6 *:text-sm"
 					/>
-				)} */}
+				)}
 			</DialogContent>
 		</Dialog>
 	)
