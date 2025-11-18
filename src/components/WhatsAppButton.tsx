@@ -10,6 +10,7 @@ export default function WhatsAppButton() {
 		<Link
 			href={WHATSAPP_URL}
 			target="_blank"
+			rel="noopener noreferrer"
 			aria-label="Contact us on WhatsApp"
 			className="fixed bottom-6 z-50 inline-flex h-14 w-14 items-center justify-center rounded-full bg-green-500 text-white shadow-lg transition-colors hover:bg-green-600 ltr:right-6 rtl:left-6"
 		>

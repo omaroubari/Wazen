@@ -63,6 +63,7 @@ export default function PostPreview({
 			<Link
 				href={`/${pageType}/${post.metadata?.slug?.current}`}
 				target="_blank"
+				rel="noopener noreferrer"
 				className="group mt-2 font-medium text-cyan-950/80 transition-all group-hover:text-teal-600"
 			>
 				{locale == 'en' ? 'Read' : 'قراءة'}
