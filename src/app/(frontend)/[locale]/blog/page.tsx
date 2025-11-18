@@ -7,6 +7,7 @@ import processMetadata from '@/lib/processMetadata'
 import { setRequestLocale } from 'next-intl/server'
 import BlogList from '@/components/modules/blog/BlogList'
 import BlogPagination from '@/components/modules/blog/BlogPagination'
+import JsonLd from '@/components/JsonLd'
 
 const POSTS_PER_PAGE = 18
 
@@ -26,6 +27,11 @@ export default async function Page({ params }: Props) {
 
 	return (
 		<>
+			<JsonLd
+				data={page?.metadata?.jsonLd}
+				source={page}
+				locale={resolvedParams.locale}
+			/>
 			<Modules modules={page?.modules} locale={resolvedParams.locale} />
 			<div>
 				<BlogList locale={resolvedParams.locale} posts={blogData.posts} />

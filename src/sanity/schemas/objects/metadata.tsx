@@ -52,6 +52,22 @@ export default {
 			type: 'boolean',
 			initialValue: false,
 		},
+		{
+			name: 'jsonLd',
+			title: 'JSON-LD',
+			description:
+				'Optional structured data objects that will be output as JSON-LD <script> tags. Do not wrap them in script tags.',
+			type: 'array',
+			of: [
+				{
+					type: 'json',
+				}
+			],
+			options: {
+				collapsible: true,
+				collapsed: true,
+			},
+		},
 	],
 	preview: {
 		select: {

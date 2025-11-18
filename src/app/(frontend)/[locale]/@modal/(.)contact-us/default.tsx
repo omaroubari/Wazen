@@ -1,6 +1,7 @@
 import Modules from '@/components/modules'
 import { fetchSanityLive } from '@/sanity/lib/fetch'
 import groq from 'groq'
+import JsonLd from '@/components/JsonLd'
 
 type Props = {
 	params: Promise<{ locale: 'en' | 'ar' }>
@@ -10,7 +11,16 @@ export default async function Default({ params }: Props) {
 	const resolvedParams = await params
 
 	const page = await getPage(resolvedParams.locale)
-	return <Modules modules={page?.modules} locale={resolvedParams.locale} />
+	return (
+		<>
+			<JsonLd
+				data={page?.metadata?.jsonLd}
+				source={page}
+				locale={resolvedParams.locale}
+			/>
+			<Modules modules={page?.modules} locale={resolvedParams.locale} />
+		</>
+	)
 }
 
 async function getPage(locale: 'en' | 'ar') {

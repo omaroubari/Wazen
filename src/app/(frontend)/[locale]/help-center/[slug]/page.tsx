@@ -5,6 +5,7 @@ import Post from '@/components/modules/blog/Post'
 import processMetadata from '@/lib/processMetadata'
 import { setRequestLocale } from 'next-intl/server'
 import { client } from '@/sanity/lib/client'
+import JsonLd from '@/components/JsonLd'
 
 type Props = {
 	params: Promise<{ slug?: string; locale: 'en' | 'ar' }>
@@ -15,7 +16,16 @@ export default async function Page({ params }: Props) {
 	setRequestLocale(resolvedParams.locale)
 	const post = await getPost(resolvedParams)
 	if (!post) notFound()
-	return <Post post={post} locale={resolvedParams.locale} />
+	return (
+		<>
+			<JsonLd
+				data={post.metadata?.jsonLd}
+				source={post}
+				locale={resolvedParams.locale}
+			/>
+			<Post post={post} locale={resolvedParams.locale} />
+		</>
+	)
 }
 
 export async function generateMetadata({ params }: Props) {
