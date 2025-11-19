@@ -10,13 +10,13 @@ type JsonLdSource =
 	| (Sanity.PageBase & {
 			publishDate?: string
 			language?: string
-		})
+	  })
 	| (Sanity.BlogPost & {
 			publishDate?: string
-		})
+	  })
 	| (Sanity.HelpCenterPost & {
 			publishDate?: string
-		})
+	  })
 	| (Sanity.Metadata & { _type?: string })
 	| null
 	| undefined
@@ -51,8 +51,10 @@ export function buildJsonLdFallback(
 	const fallback: Record<string, unknown> = removeEmpty({
 		'@context': 'https://schema.org',
 		'@type': schemaType,
+		author: 'Wazen',
 		name: metadata?.title,
 		description: metadata?.description,
+		headline: metadata?.title,
 		url,
 		inLanguage: options.locale || (source as any)?.language,
 		image: metadata?.ogimage,
@@ -94,7 +96,10 @@ function getDateModified(source?: JsonLdSource) {
 	return undefined
 }
 
-function buildCanonicalUrl(source: JsonLdSource, options: JsonLdFallbackOptions) {
+function buildCanonicalUrl(
+	source: JsonLdSource,
+	options: JsonLdFallbackOptions,
+) {
 	if (options.url) {
 		return options.url
 	}
@@ -158,8 +163,8 @@ function getDirectoryFromType(type?: string) {
 
 function removeEmpty(record: Record<string, unknown>) {
 	return Object.fromEntries(
-		Object.entries(record).filter(([, value]) =>
-			value !== undefined && value !== null && value !== '',
+		Object.entries(record).filter(
+			([, value]) => value !== undefined && value !== null && value !== '',
 		),
 	)
 }

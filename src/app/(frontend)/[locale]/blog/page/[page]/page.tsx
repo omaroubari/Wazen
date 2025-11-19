@@ -40,7 +40,7 @@ export default async function BlogPaginationPage({ params }: Props) {
 	return (
 		<>
 			<JsonLd
-				data={page?.metadata?.jsonLd}
+				json={page.metadata?.jsonLd?.code}
 				source={page}
 				locale={resolvedParams.locale}
 				path={`/blog/page/${pageNumber}`}

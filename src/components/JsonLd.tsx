@@ -3,7 +3,7 @@ import { buildJsonLdFallback } from '@/lib/buildJsonLdFallback'
 type JsonLdSource = Parameters<typeof buildJsonLdFallback>[0]
 
 type JsonLdProps = {
-	data?: Array<Sanity.JsonLdValue | string | null | undefined>
+	json?: string
 	source?: JsonLdSource
 	locale?: string
 	path?: string
@@ -15,13 +15,27 @@ type NormalizedJsonLd = {
 	json: string
 }
 
-export default function JsonLd({ data, source, locale, path, url }: JsonLdProps) {
-	const hasCustomData = Boolean(data?.length)
-	const fallback = hasCustomData
-		? undefined
-		: buildJsonLdFallback(source, { locale, path, url })
+export default function JsonLd({
+	json,
+	source,
+	locale,
+	path,
+	url,
+}: JsonLdProps) {
+	let parsedJson
 
-	const entries = (hasCustomData ? data : fallback)
+	try {
+		const parsed = JSON.parse(json || '')
+		parsedJson = Array.isArray(parsed) ? parsed : [parsed]
+	} catch {
+		console.info(
+			'JsonLd: using fallback for invalid or missing JSON-LD: ',
+			path,
+		)
+		parsedJson = buildJsonLdFallback(source, { locale, path, url })
+	}
+
+	const entries = parsedJson
 		?.map((value, index) => normalizeJsonLd(value, index))
 		.filter((value): value is NormalizedJsonLd => Boolean(value))
 
@@ -38,7 +52,10 @@ export default function JsonLd({ data, source, locale, path, url }: JsonLdProps)
 	))
 }
 
-function normalizeJsonLd(value: unknown, index: number): NormalizedJsonLd | null {
+function normalizeJsonLd(
+	value: unknown,
+	index: number,
+): NormalizedJsonLd | null {
 	if (!value) {
 		return null
 	}
@@ -61,7 +78,6 @@ function normalizeJsonLd(value: unknown, index: number): NormalizedJsonLd | null
 
 	return { key, json }
 }
-
 
 function tryParseJson(value: string) {
 	try {

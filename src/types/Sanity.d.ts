@@ -184,8 +184,6 @@ declare global {
 			locale?: string
 		}
 
-		type JsonLdValue = Record<string, unknown> | Array<unknown>
-
 		type Metadata = {
 			title: string
 			description: string
@@ -193,7 +191,7 @@ declare global {
 			image?: Image
 			ogimage?: string
 			noIndex: boolean
-			jsonLd?: JsonLdValue[]
+			jsonLd?: { code?: string }
 		}
 
 		type Module<T = any> = {

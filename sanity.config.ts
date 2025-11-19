@@ -11,6 +11,7 @@ import {
 	projectUsersWidget,
 } from '@sanity/dashboard'
 import { visionTool } from '@sanity/vision'
+import { codeInput } from '@sanity/code-input'
 import { documentInternationalization } from '@sanity/document-internationalization'
 import { languageFilter } from '@sanity/language-filter'
 import { iconify } from 'sanity-plugin-iconify'
@@ -71,6 +72,7 @@ export default defineConfig({
 		}),
 		advancedArray(),
 		table(),
+		codeInput(),
 	],
 
 	tasks: { enabled: false },

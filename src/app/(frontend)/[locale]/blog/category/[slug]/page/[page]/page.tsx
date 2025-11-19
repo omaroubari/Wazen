@@ -50,7 +50,7 @@ export default async function CategoryPaginationPage({ params }: Props) {
 	return (
 		<>
 			<JsonLd
-				data={page?.metadata?.jsonLd}
+				json={page.metadata?.jsonLd?.code}
 				source={page}
 				locale={resolvedParams.locale}
 				path={`/blog/category/${resolvedParams.slug}/page/${pageNumber}`}

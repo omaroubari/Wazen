@@ -33,7 +33,7 @@ export default async function CategoryPage({ params }: Props) {
 	return (
 		<>
 			<JsonLd
-				data={page?.metadata?.jsonLd}
+				json={page.metadata?.jsonLd?.code}
 				source={page}
 				locale={resolvedParams.locale}
 				path={`/blog/category/${resolvedParams.slug}`}
