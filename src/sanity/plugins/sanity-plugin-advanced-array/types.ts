@@ -1,4 +1,4 @@
-import { type ArrayOptions } from 'sanity'
+import { ArrayOptions } from '@sanity/types'
 
 /**
  * @public
