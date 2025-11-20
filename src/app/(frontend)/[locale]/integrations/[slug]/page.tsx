@@ -57,7 +57,7 @@ export default async function Page({ params }: Props) {
 
 	return (
 		<>
-			<JsonLd json={app.metadata?.jsonLd.code} source={app} locale={locale} />
+			<JsonLd json={app.metadata?.jsonLd?.code} source={app} locale={locale} />
 			<SingleAppHeader app={app} />
 			<SuggestedApps locale={locale} t={t} />
 			{/* Pass the fetched ctaDocData to CallToAction */}
