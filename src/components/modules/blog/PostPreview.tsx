@@ -49,15 +49,15 @@ export default function PostPreview({
 							className="text-large font-semibold text-cyan-950 group-hover:text-teal-600"
 							href={`/${pageType}/${post.metadata?.slug?.current}`}
 							target="_blank"
+							rel="noopener noreferrer"
 						>
 							{post.title?.slice(0, 140) +
 								(post.title?.length > 140 ? ' ...' : '')}
 						</Link>
 					</h3>
 				)}
-				<p className="text-base text-cyan-950/60 group-hover:text-cyan-950/80">
-					{post.body &&
-						post.body?.[0]?.children?.[0]?.text?.slice(0, 140) + ' ...'}
+				<p className="line-clamp-3 text-base overflow-ellipsis text-cyan-950/60 group-hover:text-cyan-950/80">
+					{post.body && post.body?.[0]?.children?.[0]?.text?.slice(0, 140)}
 				</p>
 			</div>
 			<Link
