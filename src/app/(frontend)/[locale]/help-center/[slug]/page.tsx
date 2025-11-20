@@ -19,7 +19,7 @@ export default async function Page({ params }: Props) {
 	return (
 		<>
 			<JsonLd
-				json={post.metadata?.jsonLd.code}
+				json={post.metadata?.jsonLd?.code}
 				source={post}
 				locale={resolvedParams.locale}
 			/>
