@@ -59,6 +59,7 @@ export default {
 				{ type: 'solutions-benefits' },
 				{ type: 'product-list' },
 				{ type: 'jobApplicationTabs' },
+				{ type: 'crm2' },
 			],
 			options: {
 				advanced: {
