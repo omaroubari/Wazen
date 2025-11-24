@@ -19,6 +19,7 @@ export default {
 				<a
 					href="https://nextjs.org/docs/app/api-reference/next-config-js/redirects"
 					target="_blank"
+					rel="noopener noreferrer"
 				>
 					Next.js Documentation
 				</a>

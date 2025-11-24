@@ -13,7 +13,6 @@ import {
 } from '@sanity/icons'
 import {
 	ArrayOfObjectsInputProps,
-	ArrayOptions,
 	// KeyedObject,
 	insert,
 	unset,

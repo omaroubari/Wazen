@@ -9,6 +9,7 @@ import BlogPagination from '@/components/modules/blog/BlogPagination'
 import { notFound } from 'next/navigation'
 import { slugify } from '@/lib/slugify'
 import { client } from '@/sanity/lib/client'
+import JsonLd from '@/components/JsonLd'
 
 const POSTS_PER_PAGE = 18
 
@@ -48,6 +49,12 @@ export default async function CategoryPaginationPage({ params }: Props) {
 
 	return (
 		<>
+			<JsonLd
+				json={page.metadata?.jsonLd?.code}
+				source={page}
+				locale={resolvedParams.locale}
+				path={`/blog/category/${resolvedParams.slug}/page/${pageNumber}`}
+			/>
 			<Modules
 				modules={page?.modules}
 				locale={resolvedParams.locale}

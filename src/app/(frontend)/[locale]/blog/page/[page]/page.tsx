@@ -8,6 +8,7 @@ import { setRequestLocale } from 'next-intl/server'
 import BlogList from '@/components/modules/blog/BlogList'
 import BlogPagination from '@/components/modules/blog/BlogPagination'
 import { notFound } from 'next/navigation'
+import JsonLd from '@/components/JsonLd'
 
 const POSTS_PER_PAGE = 18
 
@@ -38,6 +39,12 @@ export default async function BlogPaginationPage({ params }: Props) {
 
 	return (
 		<>
+			<JsonLd
+				json={page.metadata?.jsonLd?.code}
+				source={page}
+				locale={resolvedParams.locale}
+				path={`/blog/page/${pageNumber}`}
+			/>
 			<Modules modules={page?.modules} locale={resolvedParams.locale} />
 			<div>
 				<BlogList locale={resolvedParams.locale} posts={blogData.posts} />

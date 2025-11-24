@@ -31,7 +31,7 @@ export default function Post({
 	} = post
 	return (
 		<article className="section mb-[25vh]">
-			<header className="mt-[15vh] md:space-y-12">
+			<header className="mt-20 md:space-y-12 xl:mt-32">
 				<div className="space-y-6 md:space-y-8">
 					<div className="flex items-center justify-center gap-2 text-sm font-medium">
 						{categories && (

@@ -191,6 +191,7 @@ declare global {
 			image?: Image
 			ogimage?: string
 			noIndex: boolean
+			jsonLd?: { code?: string }
 		}
 
 		type Module<T = any> = {

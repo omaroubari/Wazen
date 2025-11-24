@@ -8,6 +8,7 @@ import processMetadata from '@/lib/processMetadata'
 import SuggestedApps from '@/components/modules/app-store/SuggestedApps'
 import { getTranslations } from 'next-intl/server'
 import { client } from '@/sanity/lib/client'
+import JsonLd from '@/components/JsonLd'
 
 type Props = {
 	params: Promise<{ slug?: string; locale: 'en' | 'ar' }>
@@ -56,6 +57,7 @@ export default async function Page({ params }: Props) {
 
 	return (
 		<>
+			<JsonLd json={app.metadata?.jsonLd?.code} source={app} locale={locale} />
 			<SingleAppHeader app={app} />
 			<SuggestedApps locale={locale} t={t} />
 			{/* Pass the fetched ctaDocData to CallToAction */}

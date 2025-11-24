@@ -7,6 +7,7 @@ import { PageCallToActionOverride } from '@/components/SiteCallToActionModal'
 import processMetadata from '@/lib/processMetadata'
 import { setRequestLocale } from 'next-intl/server'
 import { client } from '@/sanity/lib/client'
+import JsonLd from '@/components/JsonLd'
 
 type Props = {
 	params: Promise<{ slug: string[]; locale: 'en' | 'ar' }>
@@ -21,6 +22,11 @@ export default async function Page({ params }: Props) {
 	if (!page) notFound()
 	return (
 		<>
+			<JsonLd
+				json={page.metadata?.jsonLd?.code}
+				source={page}
+				locale={resolvedParams.locale}
+			/>
 			<PageCallToActionOverride documents={page.callToActionDoc} />
 			<Modules modules={page.modules} locale={resolvedParams.locale} />
 		</>

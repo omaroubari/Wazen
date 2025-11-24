@@ -4,6 +4,7 @@ import { creativeModuleQuery } from '@/sanity/lib/queries'
 import Modules from '@/components/modules'
 import processMetadata from '@/lib/processMetadata'
 import { setRequestLocale } from 'next-intl/server'
+import JsonLd from '@/components/JsonLd'
 
 type Props = {
 	params: Promise<{ locale: 'en' | 'ar' }>
@@ -13,7 +14,16 @@ export default async function Page({ params }: Props) {
 	const resolvedParams = await params
 	setRequestLocale(resolvedParams.locale)
 	const page = await getPage(resolvedParams.locale)
-	return <Modules modules={page?.modules} locale={resolvedParams.locale} />
+	return (
+		<>
+			<JsonLd
+				json={page.metadata?.jsonLd?.code}
+				source={page}
+				locale={resolvedParams.locale}
+			/>
+			<Modules modules={page?.modules} locale={resolvedParams.locale} />
+		</>
+	)
 }
 
 export async function generateMetadata({ params }: Props) {

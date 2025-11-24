@@ -7,6 +7,7 @@ import BlogPagination from '@/components/modules/blog/BlogPagination'
 import { notFound } from 'next/navigation'
 import { client } from '@/sanity/lib/client'
 import site from '@/sanity/schemas/documents/site'
+import JsonLd from '@/components/JsonLd'
 
 const POSTS_PER_PAGE = 18
 
@@ -31,6 +32,12 @@ export default async function CategoryPage({ params }: Props) {
 
 	return (
 		<>
+			<JsonLd
+				json={page.metadata?.jsonLd?.code}
+				source={page}
+				locale={resolvedParams.locale}
+				path={`/blog/category/${resolvedParams.slug}`}
+			/>
 			<Modules
 				modules={page?.modules}
 				locale={resolvedParams.locale}
