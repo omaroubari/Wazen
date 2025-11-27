@@ -48,7 +48,7 @@ export default function JsonLd({
 			key={entry.key}
 			type="application/ld+json"
 			dangerouslySetInnerHTML={{
-				__html: JSON.stringify(entry.json).replace(/</g, '\\u003c'),
+				__html: entry.json,
 			}}
 		/>
 	))
