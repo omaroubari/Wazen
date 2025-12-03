@@ -61,6 +61,8 @@ import testimonialListTwo from './modules/testimonial-list-two'
 import appStoreApp from './documents/app.store.app'
 import appStoreRollup from './modules/app-store-rollup'
 import jobApplicationTabs from './modules/jobApplicationTabs'
+import crm2 from './modules/crm2'
+import promoBanner from './modules/promo-banner'
 
 export const schemaTypes = [
 	// documents
@@ -124,5 +126,7 @@ export const schemaTypes = [
 	featuresGrid2,
 	solutionsBenefits,
 	productList,
-	jobApplicationTabs
+	jobApplicationTabs,
+	crm2,
+	promoBanner,
 ]

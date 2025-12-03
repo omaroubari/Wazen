@@ -40,6 +40,8 @@ const SingleTestimony = dynamic(() => import('./SingleTestimony'))
 const TestimonialList = dynamic(() => import('./TestimonialList'))
 const TestimonialListTwo = dynamic(() => import('./TestimonialListTwo'))
 const JobApplicationTabs = dynamic(() => import('./JobApplicationTabs'))
+const Crm2 = dynamic(() => import('./crm2'))
+const PromoBanner = dynamic(() => import('./promoBanner'))
 
 const MODULE_MAP = {
 	hero: Hero,
@@ -76,6 +78,8 @@ const MODULE_MAP = {
 	'testimonial-list': TestimonialList,
 	'testimonial-list-two': TestimonialListTwo,
 	jobApplicationTabs: JobApplicationTabs,
+	crm2: Crm2,
+	'promo-banner': PromoBanner,
 } as const
 
 export default function Modules({
