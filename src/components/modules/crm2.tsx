@@ -4,6 +4,7 @@ import {
 	PortableTextTypeComponentProps,
 } from '@portabletext/react'
 import CTAList from '@/components/CTAList'
+import CTA from '@/components/CTA'
 import Pretitle from '@/components/Pretitle'
 import { cn } from '@/lib/utils'
 import { Img } from '@/components/Img'
@@ -163,13 +164,13 @@ export default function Crm2({
 	}
 
 	return (
-		<section className="section bg-gray-50 pt-32 pb-24">
-			<div className="flex w-full flex-col items-center justify-center gap-8 lg:flex-row lg:items-center lg:justify-start lg:gap-12">
+		<section className="section bg-gray-50 pt-16 pb-12 sm:pt-24 sm:pb-16 md:pt-32 md:pb-24">
+			<div className="flex w-full flex-col items-center justify-center gap-6 sm:gap-8 lg:flex-row lg:items-center lg:justify-start lg:gap-12">
 				{/* Right Section - Main Content (المحتوى على اليمين) */}
-				<div className="flex w-full max-w-2xl flex-1 flex-col items-start gap-6">
+				<div className="flex w-full max-w-2xl flex-1 flex-col items-start gap-4 sm:gap-5 md:gap-6">
 					{/* Tagline Badge */}
 					{pretitle && (
-						<Pretitle className="text-small flex items-center gap-2 rounded-lg bg-teal-100 px-4 py-2 font-medium text-teal-700">
+						<Pretitle className="text-xs sm:text-small flex items-center gap-2 rounded-lg bg-teal-100 px-3 py-1.5 sm:px-4 sm:py-2 font-medium text-teal-700">
 							<span className="size-2 rounded-full bg-teal-500" />
 							{pretitle}
 						</Pretitle>
@@ -177,14 +178,14 @@ export default function Crm2({
 
 					{/* Main Content */}
 					{content && (
-						<div className="space-y-4">
+						<div className="space-y-3 sm:space-y-4">
 							<PortableText value={content} components={components} />
 						</div>
 					)}
 
 					{/* Sub Content */}
 					{subcontent && (
-						<div className="space-y-4">
+						<div className="space-y-3 sm:space-y-4">
 							<PortableText value={subcontent} components={components} />
 						</div>
 					)}
