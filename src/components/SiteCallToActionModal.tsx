@@ -131,12 +131,21 @@ export default function SiteCallToActionModal() {
 		if (typeof window === 'undefined') return
 
 		try {
-			const rawVisits = window.localStorage.getItem(VISIT_COUNT_STORAGE_KEY)
+			const localStorage = window.localStorage
+			if (
+				!localStorage ||
+				typeof localStorage.getItem !== 'function' ||
+				typeof localStorage.setItem !== 'function'
+			) {
+				return
+			}
+
+			const rawVisits = localStorage.getItem(VISIT_COUNT_STORAGE_KEY)
 			const parsedVisits = rawVisits ? parseInt(rawVisits, 10) : 0
 			const safeVisits =
 				Number.isFinite(parsedVisits) && parsedVisits >= 0 ? parsedVisits : 0
 			const nextVisits = safeVisits + 1
-			window.localStorage.setItem(VISIT_COUNT_STORAGE_KEY, String(nextVisits))
+			localStorage.setItem(VISIT_COUNT_STORAGE_KEY, String(nextVisits))
 
 			if (shouldDisplayModal(nextVisits)) {
 				setOpen(true)

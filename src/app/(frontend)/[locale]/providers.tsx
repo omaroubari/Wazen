@@ -1,6 +1,7 @@
-import { SiteCallToActionProvider } from '@/components/SiteCallToActionModal'
+import SiteCallToActionModal, {
+	SiteCallToActionProvider,
+} from '@/components/SiteCallToActionModal'
 import { Toaster } from '@/components/ui/toaster'
-import IntercomProvider from '@/lib/intercomProvivder'
 import Motion from '@/lib/motionProvider'
 import { NextIntlClientProvider } from 'next-intl'
 
@@ -22,6 +23,7 @@ export default function Providers({
 					<Motion>{children}</Motion>
 					{/* </IntercomProvider> */}
 					<Toaster />
+					<SiteCallToActionModal />
 				</SiteCallToActionProvider>
 			</NextIntlClientProvider>
 		</>
