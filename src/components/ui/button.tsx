@@ -9,8 +9,6 @@ const buttonVariants = cva(
 	{
 		variants: {
 			variant: {
-				default:
-					'bg-cyan-950 text-white hover:bg-cyan-900 focus-visible:ring-cyan-950 max-md:w-full',
 				primary:
 					'bg-cyan-950 text-white hover:bg-cyan-900 focus-visible:ring-cyan-950 max-md:w-full',
 				secondary:
@@ -26,15 +24,15 @@ const buttonVariants = cva(
 				link: 'text-cyan-950 underline-offset-4 hover:underline focus-visible:ring-cyan-950',
 			},
 			size: {
-				default: 'h-10 px-4',
 				sm: 'h-8 rounded-md px-3',
+				md: 'h-10 px-4',
 				lg: 'h-12 rounded-lg px-6',
 				icon: 'size-10',
 			},
 		},
 		defaultVariants: {
-			variant: 'default',
-			size: 'default',
+			variant: 'primary',
+			size: 'md',
 		},
 	},
 )
