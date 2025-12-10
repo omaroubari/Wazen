@@ -1,9 +1,8 @@
 import { VscInspect } from 'react-icons/vsc'
-import { getBlockText } from '../../src/utils'
 
 export default {
 	name: 'cta',
-	title: 'Call-to-action',
+	title: 'Call To Action',
 	icon: VscInspect,
 	type: 'object',
 	fields: [

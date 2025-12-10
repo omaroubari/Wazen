@@ -8,7 +8,7 @@ export default {
 	type: 'object',
 	fields: [
 		{
-			name: 'benefits',
+			name: 'features',
 			type: 'array',
 			of: [
 				{
@@ -52,11 +52,11 @@ export default {
 	],
 	preview: {
 		select: {
-			benefits: 'benefits',
+			features: 'features',
 		},
-		prepare: ({ benefits }: any) => ({
-			title: count(benefits, 'benefit'),
-			subtitle: 'Benefits',
+		prepare: ({ features }: any) => ({
+			title: count(features, 'features'),
+			subtitle: 'Features 02',
 		}),
 	},
 }

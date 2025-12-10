@@ -53,7 +53,7 @@ export default {
 		select: { content: 'content', media: 'image.asset' },
 		prepare: ({ content, media }: any) => ({
 			title: getBlockText(content),
-			subtitle: 'Hero four',
+			subtitle: 'Hero 04',
 			media,
 		}),
 	},

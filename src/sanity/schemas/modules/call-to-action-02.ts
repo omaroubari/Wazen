@@ -130,7 +130,7 @@ export default {
 		},
 		prepare: ({ content }: any) => ({
 			title: getBlockText(content),
-			subtitle: 'Call to action',
+			subtitle: 'Call To Action 02',
 		}),
 	},
 }

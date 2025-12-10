@@ -54,7 +54,7 @@ export default {
 		},
 		prepare: ({ content, steps }: any) => ({
 			title: getBlockText(content),
-			subtitle: 'How it works',
+			subtitle: 'How It Works',
 		}),
 	},
 }

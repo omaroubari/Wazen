@@ -31,7 +31,7 @@ export default {
 		},
 		prepare: ({ content, media }: any) => ({
 			title: getBlockText(content),
-			subtitle: 'Hero two',
+			subtitle: 'Hero 02',
 			media,
 		}),
 	},

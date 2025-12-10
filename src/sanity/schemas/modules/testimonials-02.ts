@@ -30,7 +30,7 @@ export default {
 		},
 		prepare: ({ content, testimonials }: any) => ({
 			title: getBlockText(content) || count(testimonials, 'testimonial'),
-			subtitle: 'Testimonial list',
+			subtitle: 'Testimonials 02',
 		}),
 	},
 }

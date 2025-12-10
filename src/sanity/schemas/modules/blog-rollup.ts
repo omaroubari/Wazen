@@ -43,7 +43,7 @@ export default {
 		},
 		prepare: ({ content }: any) => ({
 			title: content,
-			subtitle: 'Blog rollup',
+			subtitle: 'Blog Rollup',
 		}),
 	},
 }

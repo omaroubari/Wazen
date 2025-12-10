@@ -117,7 +117,7 @@ export default {
 		},
 		prepare: ({ content, features }: any) => ({
 			title: getBlockText(content) || count(features, 'feature'),
-			subtitle: 'Features grid two',
+			subtitle: 'Features 01',
 		}),
 	},
 }

@@ -19,7 +19,7 @@ export default {
 		},
 		prepare: ({ title }: any) => ({
 			title: count(title, 'brief'),
-			subtitle: 'Brief group',
+			subtitle: 'Brief Group',
 		}),
 	},
 }

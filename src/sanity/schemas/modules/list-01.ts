@@ -1,13 +1,15 @@
 import { GoNumber } from 'react-icons/go'
 import { count, getBlockText } from '../../src/utils'
+import getBaseBlockFields from '../objects/block-header'
 
 export default {
 	name: 'list-01',
-	title: 'Benefits Banner',
+	title: 'List 01',
 	icon: GoNumber,
 	type: 'object',
 	groups: [{ name: 'content', title: 'Content' }, { name: 'features' }],
 	fields: [
+		...getBaseBlockFields(),
 		{
 			name: 'features',
 			type: 'array',
@@ -54,7 +56,7 @@ export default {
 		},
 		prepare: ({ content, features }: any) => ({
 			title: getBlockText(content) || count(features, 'benefit'),
-			subtitle: 'Benefits banner',
+			subtitle: 'List 01',
 		}),
 	},
 }
