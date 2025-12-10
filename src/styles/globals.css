@@ -64,6 +64,9 @@
 		background-color: var(--color-cyan-950);
 		color: var(--color-teal-200);
 	}
+	::marker {
+		color: var(--color-teal-600);
+	}
 
 	:target {
 		scroll-margin-top: var(--header-height);

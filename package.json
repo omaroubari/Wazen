@@ -68,6 +68,7 @@
 		"react-hook-form": "^7.65.0",
 		"react-icons": "^5.5.0",
 		"react-is": "^19.1.0",
+		"react-lite-youtube-embed": "^3.3.3",
 		"react-live-chat-loader": "^2.11.0",
 		"react-use-measure": "^2.1.7",
 		"resend": "^4.6.0",

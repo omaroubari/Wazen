@@ -37,6 +37,10 @@ export default {
 					type: 'string',
 				},
 				{
+					name: 'youtubeLink',
+					type: 'url',
+				},
+				{
 					name: 'loading',
 					type: 'string',
 					options: {

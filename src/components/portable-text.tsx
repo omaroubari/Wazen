@@ -8,6 +8,8 @@ const FADE_DOWN_ANIMATION_VARIANTS: Variants = {
 	hidden: { opacity: 0, y: -10 },
 	show: { opacity: 1, y: 0, transition: { type: 'spring' } },
 }
+
+// https://github.com/portabletext/react-portabletext?tab=readme-ov-file#customizing-components
 export const hero: PortableTextComponents = {
 	types: {
 		block: ({ value }: PortableTextTypeComponentProps<any>) => {
@@ -53,11 +55,24 @@ export const set2: PortableTextComponents = {
 			return (
 				<m.p
 					variants={FADE_DOWN_ANIMATION_VARIANTS}
-					className="text-large text-cyan-950/80 rtl:leading-snug"
+					className="text-main text-cyan-950/80 rtl:leading-snug"
 				>
 					{value.children.map((child: any) => child.text).join('')}
 				</m.p>
 			)
 		},
+	},
+	list: {
+		// Ex. 1: customizing common list types
+		bullet: ({ children }) => (
+			<ul className="mt-xl text-main list-inside list-disc text-cyan-950/80">
+				{children}
+			</ul>
+		),
+		number: ({ children }) => (
+			<ol className="mt-lg text-main list-inside list-decimal text-cyan-950/80">
+				{children}
+			</ol>
+		),
 	},
 }
