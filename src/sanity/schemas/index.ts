@@ -30,24 +30,27 @@ import briefGroup from './modules/brief-group'
 import creativeModule from './modules/creative'
 import customHtml from './modules/custom-html'
 import faqList from './modules/faq-list'
-import hero from './modules/hero'
-import heroTwo from './modules/hero.two'
-import heroFour from './modules/hero.four'
-import logoList from './modules/logo-list'
+import hero from './modules/hero-01'
+import heroTwo from './modules/hero-02'
+import heroThree from './modules/hero-03'
+import heroFour from './modules/hero-04'
+import logoList from './modules/logos-01'
 import richtextModule from './modules/richtext-module'
 import statList from './modules/stat-list'
-import testimonialList from './modules/testimonial-list'
-import partners from './modules/partners'
+import testimonialList from './modules/testimonials-02'
+import partners from './modules/logos-02'
 import partnerslogos from './documents/partnerslogos'
-import callToAction from './modules/call-to-action'
-import singleTestimony from './modules/single-testimony'
+import callToAction from './modules/call-to-action-01'
+import callToAction02 from './modules/call-to-action-02'
+import testimonials03 from './modules/testimonials-03'
 import categoriesList from './modules/categories-list'
 import helpCenterCategoriesList from './modules/help-center-categories-list'
 import howItWorks from './modules/how-it-works'
-import heroThree from './modules/hero.three'
 import steps from './modules/steps'
-import featuresGrid from './modules/features-grid'
-import solutionsBenefits from './modules/solutions-benefits'
+import list01 from './modules/list-01'
+import list02 from './modules/list-02'
+import featuresGrid2 from './modules/features-01'
+import solutionsBenefits from './modules/features-02'
 import productList from './modules/product-list'
 import contactUs from './modules/contact-us'
 import homeBriefGroup from './modules/home-brief-group'
@@ -55,9 +58,7 @@ import pricingList from './modules/pricing-list'
 import pricingComparison from './modules/pricing-comparison'
 import pricing from './documents/pricing'
 import pricingCalculator from './modules/pricing-calculator'
-import featuresGrid2 from './modules/features-grid-2'
-import benefitsBanner from './modules/benefits-banner'
-import testimonialListTwo from './modules/testimonial-list-two'
+import testimonialListTwo from './modules/testimonials-01'
 import appStoreApp from './documents/app.store.app'
 import appStoreRollup from './modules/app-store-rollup'
 import jobApplicationTabs from './modules/jobApplicationTabs'
@@ -94,7 +95,7 @@ export const schemaTypes = [
 	// modules
 	applications,
 	appStoreRollup,
-	benefitsBanner,
+	list01,
 	blogRollup,
 	brief,
 	briefGroup,
@@ -115,14 +116,15 @@ export const schemaTypes = [
 	pricingCalculator,
 	pricingComparison,
 	richtextModule,
-	singleTestimony,
+	testimonials03,
 	statList,
 	callToAction,
+	callToAction02,
 	steps,
 	testimonialList,
 	testimonialListTwo,
 	howItWorks,
-	featuresGrid,
+	list02,
 	featuresGrid2,
 	solutionsBenefits,
 	productList,

@@ -2,11 +2,10 @@ import { TfiLayoutCtaCenter } from 'react-icons/tfi'
 import { getBlockText } from '../../src/utils'
 
 export default {
-	name: 'hero.three',
-	title: 'Hero 3',
+	name: 'hero-04',
+	title: 'Hero 4',
 	icon: TfiLayoutCtaCenter,
 	type: 'object',
-
 	fields: [
 		{
 			name: 'pretitle',
@@ -16,6 +15,12 @@ export default {
 			name: 'content',
 			type: 'array',
 			of: [{ type: 'block' }],
+		},
+		{
+			name: 'ctas',
+			title: 'Call-to-actions',
+			type: 'array',
+			of: [{ type: 'cta' }],
 		},
 		{
 			name: 'image',
@@ -40,22 +45,16 @@ export default {
 					initialValue: 'lazy',
 				},
 			],
-		},
-		{
-			name: 'ctas',
-			title: 'Call-to-actions',
-			type: 'array',
-			of: [{ type: 'cta' }],
+			validation: (rule: any) => rule.required(),
 		},
 	],
+
 	preview: {
-		select: {
-			content: 'content',
-			subtitle: 'subtitle',
-		},
-		prepare: ({ content, subtitle }: any) => ({
-			title: getBlockText(content) || subtitle,
-			subtitle: 'Hero three',
+		select: { content: 'content', media: 'image.asset' },
+		prepare: ({ content, media }: any) => ({
+			title: getBlockText(content),
+			subtitle: 'Hero four',
+			media,
 		}),
 	},
 }

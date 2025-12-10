@@ -2,8 +2,8 @@ import { TfiLayoutCtaCenter } from 'react-icons/tfi'
 import { getBlockText } from '../../src/utils'
 
 export default {
-	name: 'call.to.action.two',
-	title: 'Call To Action',
+	name: 'testimonials-03',
+	title: 'Testimonials 03',
 	icon: TfiLayoutCtaCenter,
 	type: 'object',
 	groups: [
@@ -17,20 +17,18 @@ export default {
 	],
 	fields: [
 		{
-			name: 'content',
-			type: 'array',
-			of: [{ type: 'block' }],
+			name: 'logoImage',
+			type: 'image',
+			fields: [
+				{
+					name: 'alt',
+					type: 'string',
+				},
+			],
 			group: 'content',
 		},
 		{
-			name: 'ctas',
-			title: 'Call-to-actions',
-			type: 'array',
-			of: [{ type: 'cta' }],
-			group: 'content',
-		},
-		{
-			name: 'checkedList',
+			name: 'testimony',
 			type: 'array',
 			of: [{ type: 'block' }],
 			group: 'content',
@@ -43,21 +41,20 @@ export default {
 					name: 'alt',
 					type: 'string',
 				},
-				{
-					name: 'onRight',
-					type: 'boolean',
-					initialValue: false,
-				},
-				{
-					name: 'loading',
-					type: 'string',
-					options: {
-						layout: 'radio',
-						list: ['lazy', 'eager'],
-					},
-					initialValue: 'lazy',
-				},
 			],
+			group: 'content',
+		},
+		{
+			name: 'client',
+			type: 'array',
+			of: [{ type: 'block' }],
+			group: 'content',
+		},
+		{
+			name: 'position',
+			type: 'array',
+			of: [{ type: 'block' }],
+			group: 'content',
 		},
 		{
 			name: 'textAlign',
@@ -86,50 +83,16 @@ export default {
 			group: 'options',
 			fieldset: 'alignment',
 		},
-		{
-			name: 'bgImage',
-			title: 'Background image',
-			type: 'image',
-			options: {
-				hotspot: true,
-			},
-			fields: [
-				{
-					name: 'alt',
-					type: 'string',
-				},
-				{
-					name: 'loading',
-					type: 'string',
-					options: {
-						layout: 'radio',
-						list: ['lazy', 'eager'],
-					},
-					initialValue: 'lazy',
-				},
-			],
-			fieldset: 'image',
-			group: 'image',
-		},
-		{
-			name: 'bgImageMobile',
-
-			title: 'Background image (mobile)',
-			type: 'image',
-			options: {
-				hotspot: true,
-			},
-			fieldset: 'image',
-			group: 'image',
-		},
 	],
 	preview: {
 		select: {
-			content: 'content',
+			content: 'mainTitle',
+			media: 'image',
 		},
-		prepare: ({ content }: any) => ({
+		prepare: ({ content, media }: any) => ({
 			title: getBlockText(content),
-			subtitle: 'Call to action',
+			subtitle: 'Single Testimony',
+			media,
 		}),
 	},
 }

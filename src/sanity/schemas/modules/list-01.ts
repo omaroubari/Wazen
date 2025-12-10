@@ -1,34 +1,13 @@
 import { GoNumber } from 'react-icons/go'
 import { count, getBlockText } from '../../src/utils'
-import { rule } from 'postcss'
 
 export default {
-	name: 'features-grid',
-	title: 'Features Grid',
+	name: 'list-01',
+	title: 'Benefits Banner',
 	icon: GoNumber,
 	type: 'object',
 	groups: [{ name: 'content', title: 'Content' }, { name: 'features' }],
-
 	fields: [
-		{
-			name: 'pretitle',
-			title: 'Pretitle',
-			type: 'string',
-			group: 'content',
-		},
-		{
-			name: 'content',
-			type: 'array',
-			of: [{ type: 'block' }],
-			group: 'content',
-		},
-		{
-			name: 'ctas',
-			title: 'Call-to-actions',
-			type: 'array',
-			of: [{ type: 'cta' }],
-			group: 'content',
-		},
 		{
 			name: 'features',
 			type: 'array',
@@ -74,8 +53,8 @@ export default {
 			features: 'features',
 		},
 		prepare: ({ content, features }: any) => ({
-			title: getBlockText(content) || count(features, 'feature'),
-			subtitle: 'Features grid',
+			title: getBlockText(content) || count(features, 'benefit'),
+			subtitle: 'Benefits banner',
 		}),
 	},
 }

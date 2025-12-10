@@ -607,8 +607,8 @@ export type ProductList = {
 	}>
 }
 
-export type SolutionsBenefits = {
-	_type: 'solutions-benefits'
+export type Features02 = {
+	_type: 'features-02'
 	benefits?: Array<{
 		pretitle?: string
 		content?: Array<{
@@ -646,8 +646,8 @@ export type SolutionsBenefits = {
 	}>
 }
 
-export type FeaturesGrid2 = {
-	_type: 'features-grid-2'
+export type Features01 = {
+	_type: 'features-01'
 	pretitle?: string
 	content?: Array<{
 		children?: Array<{
@@ -694,8 +694,8 @@ export type FeaturesGrid2 = {
 	}>
 }
 
-export type FeaturesGrid = {
-	_type: 'features-grid'
+export type List02 = {
+	_type: 'list-02'
 	pretitle?: string
 	content?: Array<{
 		children?: Array<{
@@ -767,8 +767,8 @@ export type HowItWorks = {
 	}>
 }
 
-export type TestimonialListTwo = {
-	_type: 'testimonial-list-two'
+export type Testimonials01 = {
+	_type: 'testimonials-01'
 	pretitle?: string
 	content?: Array<{
 		children?: Array<{
@@ -797,8 +797,8 @@ export type TestimonialListTwo = {
 	}>
 }
 
-export type TestimonialList = {
-	_type: 'testimonial-list'
+export type Testimonials02 = {
+	_type: 'testimonials-02'
 	pretitle?: string
 	content?: Array<{
 		children?: Array<{
@@ -939,8 +939,96 @@ export type Steps = {
 	}
 }
 
-export type CallToAction = {
-	_type: 'call.to.action'
+export type CallToAction02 = {
+	_type: 'call-to-action-02'
+	content?: Array<{
+		children?: Array<{
+			marks?: Array<string>
+			text?: string
+			_type: 'span'
+			_key: string
+		}>
+		style?: 'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote'
+		listItem?: 'bullet' | 'number'
+		markDefs?: Array<{
+			href?: string
+			_type: 'link'
+			_key: string
+		}>
+		level?: number
+		_type: 'block'
+		_key: string
+	}>
+	ctas?: Array<
+		{
+			_key: string
+		} & Cta
+	>
+	checkedList?: Array<{
+		children?: Array<{
+			marks?: Array<string>
+			text?: string
+			_type: 'span'
+			_key: string
+		}>
+		style?: 'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote'
+		listItem?: 'bullet' | 'number'
+		markDefs?: Array<{
+			href?: string
+			_type: 'link'
+			_key: string
+		}>
+		level?: number
+		_type: 'block'
+		_key: string
+	}>
+	image?: {
+		asset?: {
+			_ref: string
+			_type: 'reference'
+			_weak?: boolean
+			[internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+		}
+		media?: unknown
+		hotspot?: SanityImageHotspot
+		crop?: SanityImageCrop
+		alt?: string
+		onRight?: boolean
+		loading?: 'lazy' | 'eager'
+		_type: 'image'
+	}
+	textAlign?: 'left' | 'center' | 'right'
+	alignItems?: 'start' | 'center' | 'end'
+	bgImage?: {
+		asset?: {
+			_ref: string
+			_type: 'reference'
+			_weak?: boolean
+			[internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+		}
+		media?: unknown
+		hotspot?: SanityImageHotspot
+		crop?: SanityImageCrop
+		alt?: string
+		loading?: 'lazy' | 'eager'
+		_type: 'image'
+	}
+	bgImageMobile?: {
+		asset?: {
+			_ref: string
+			_type: 'reference'
+			_weak?: boolean
+			[internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+		}
+		media?: unknown
+		hotspot?: SanityImageHotspot
+		crop?: SanityImageCrop
+		_type: 'image'
+	}
+}
+
+export type CallToAction01 = {
+	_type: 'call-to-action-01'
 	callToActionDoc?: Array<{
 		_ref: string
 		_type: 'reference'
@@ -1033,8 +1121,8 @@ export type StatList = {
 	}>
 }
 
-export type SingleTestimony = {
-	_type: 'single-testimony'
+export type Testimonials03 = {
+	_type: 'testimonials-03'
 	logoImage?: {
 		asset?: {
 			_ref: string
@@ -1252,8 +1340,8 @@ export type PricingList = {
 	}>
 }
 
-export type Partners = {
-	_type: 'partners'
+export type Logos02 = {
+	_type: 'logos-02'
 	content?: Array<{
 		children?: Array<{
 			marks?: Array<string>
@@ -1282,8 +1370,8 @@ export type Partners = {
 	}>
 }
 
-export type LogoList = {
-	_type: 'logo-list'
+export type Logos01 = {
+	_type: 'logos-01'
 	pretitle?: string
 	content?: Array<{
 		children?: Array<{
@@ -1312,8 +1400,8 @@ export type LogoList = {
 	}>
 }
 
-export type HeroFour = {
-	_type: 'hero.four'
+export type Hero04 = {
+	_type: 'hero-04'
 	pretitle?: string
 	content?: Array<{
 		children?: Array<{
@@ -1355,8 +1443,8 @@ export type HeroFour = {
 	}
 }
 
-export type HeroTwo = {
-	_type: 'hero.two'
+export type Hero02 = {
+	_type: 'hero-02'
 	pretitle?: string
 	content?: Array<{
 		children?: Array<{
@@ -1383,8 +1471,8 @@ export type HeroTwo = {
 	>
 }
 
-export type Hero = {
-	_type: 'hero'
+export type Hero01 = {
+	_type: 'hero-01'
 	pretitle?: {
 		label?: string
 		href?: string
@@ -1427,8 +1515,8 @@ export type Hero = {
 	>
 }
 
-export type HeroThree = {
-	_type: 'hero.three'
+export type Hero03 = {
+	_type: 'hero-03'
 	pretitle?: string
 	content?: Array<{
 		children?: Array<{
@@ -1769,8 +1857,8 @@ export type BlogRollup = {
 	limit?: number
 }
 
-export type BenefitsBanner = {
-	_type: 'benefits-banner'
+export type List01 = {
+	_type: 'list-01'
 	features?: Array<{
 		icon?: Icon
 		title?: string
@@ -2579,9 +2667,6 @@ export type Page = {
 		  } & AppStoreRollup)
 		| ({
 				_key: string
-		  } & BenefitsBanner)
-		| ({
-				_key: string
 		  } & BlogRollup)
 		| ({
 				_key: string
@@ -2591,19 +2676,16 @@ export type Page = {
 		  } & BriefGroup)
 		| ({
 				_key: string
-		  } & HomeBriefGroup)
+		  } & CallToAction01)
+		| ({
+				_key: string
+		  } & CallToAction02)
 		| ({
 				_key: string
 		  } & CategoriesList)
 		| ({
 				_key: string
-		  } & HelpCenterCategoriesList)
-		| ({
-				_key: string
 		  } & ContactUs)
-		| ({
-				_key: string
-		  } & CreativeModule)
 		| ({
 				_key: string
 		  } & CustomHtml)
@@ -2612,22 +2694,43 @@ export type Page = {
 		  } & FaqList)
 		| ({
 				_key: string
-		  } & Hero)
+		  } & Features01)
 		| ({
 				_key: string
-		  } & HeroTwo)
+		  } & Features02)
 		| ({
 				_key: string
-		  } & HeroThree)
+		  } & HelpCenterCategoriesList)
 		| ({
 				_key: string
-		  } & HeroFour)
+		  } & Hero01)
 		| ({
 				_key: string
-		  } & LogoList)
+		  } & Hero02)
 		| ({
 				_key: string
-		  } & Partners)
+		  } & Hero03)
+		| ({
+				_key: string
+		  } & Hero04)
+		| ({
+				_key: string
+		  } & HomeBriefGroup)
+		| ({
+				_key: string
+		  } & HowItWorks)
+		| ({
+				_key: string
+		  } & List01)
+		| ({
+				_key: string
+		  } & List02)
+		| ({
+				_key: string
+		  } & Logos01)
+		| ({
+				_key: string
+		  } & Logos02)
 		| ({
 				_key: string
 		  } & PricingList)
@@ -2639,40 +2742,22 @@ export type Page = {
 		  } & PricingComparison)
 		| ({
 				_key: string
-		  } & RichtextModule)
+		  } & ProductList)
 		| ({
 				_key: string
-		  } & SingleTestimony)
+		  } & RichtextModule)
 		| ({
 				_key: string
 		  } & StatList)
 		| ({
 				_key: string
-		  } & CallToAction)
-		| ({
-				_key: string
 		  } & Steps)
 		| ({
 				_key: string
-		  } & TestimonialList)
+		  } & Testimonials01)
 		| ({
 				_key: string
-		  } & TestimonialListTwo)
-		| ({
-				_key: string
-		  } & HowItWorks)
-		| ({
-				_key: string
-		  } & FeaturesGrid)
-		| ({
-				_key: string
-		  } & FeaturesGrid2)
-		| ({
-				_key: string
-		  } & SolutionsBenefits)
-		| ({
-				_key: string
-		  } & ProductList)
+		  } & Testimonials02)
 		| ({
 				_key: string
 		  } & JobApplicationTabs)
@@ -2976,26 +3061,27 @@ export type AllSanitySchemaTypes =
 	| Crm2
 	| JobApplicationTabs
 	| ProductList
-	| SolutionsBenefits
-	| FeaturesGrid2
-	| FeaturesGrid
+	| Features02
+	| Features01
+	| List02
 	| HowItWorks
-	| TestimonialListTwo
-	| TestimonialList
+	| Testimonials01
+	| Testimonials02
 	| Steps
-	| CallToAction
+	| CallToAction02
+	| CallToAction01
 	| StatList
-	| SingleTestimony
+	| Testimonials03
 	| RichtextModule
 	| PricingComparison
 	| PricingCalculator
 	| PricingList
-	| Partners
-	| LogoList
-	| HeroFour
-	| HeroTwo
-	| Hero
-	| HeroThree
+	| Logos02
+	| Logos01
+	| Hero04
+	| Hero02
+	| Hero01
+	| Hero03
 	| FaqList
 	| CustomHtml
 	| CreativeModule
@@ -3006,7 +3092,7 @@ export type AllSanitySchemaTypes =
 	| BriefGroup
 	| Brief
 	| BlogRollup
-	| BenefitsBanner
+	| List01
 	| AppStoreRollup
 	| Applications
 	| LinkGroup

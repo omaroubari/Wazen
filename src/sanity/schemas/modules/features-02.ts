@@ -2,8 +2,8 @@ import { TfiLayoutCtaCenter } from 'react-icons/tfi'
 import { getBlockText, count } from '../../src/utils'
 
 export default {
-	name: 'solutions-benefits',
-	title: 'Benefits',
+	name: 'features-02',
+	title: 'Features 02',
 	icon: TfiLayoutCtaCenter,
 	type: 'object',
 	fields: [

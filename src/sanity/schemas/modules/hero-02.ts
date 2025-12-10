@@ -2,38 +2,20 @@ import { TfiLayoutCtaCenter } from 'react-icons/tfi'
 import { getBlockText } from '../../src/utils'
 
 export default {
-	name: 'hero',
-	title: 'Hero 1',
+	name: 'hero-02',
+	title: 'Hero 2',
 	icon: TfiLayoutCtaCenter,
 	type: 'object',
+
 	fields: [
 		{
-			title: 'Pretitle',
 			name: 'pretitle',
-			type: 'object',
-			fields: [
-				{ name: 'label', type: 'string' },
-				{ name: 'href', type: 'url', title: 'Link' },
-			],
-			options: {
-				collapsible: true,
-				collapsed: true,
-			},
+			type: 'string',
 		},
 		{
 			name: 'content',
 			type: 'array',
 			of: [{ type: 'block' }],
-		},
-		{
-			name: 'image',
-			type: 'image',
-			fields: [
-				{
-					name: 'alt',
-					type: 'string',
-				},
-			],
 		},
 		{
 			name: 'ctas',
@@ -49,7 +31,7 @@ export default {
 		},
 		prepare: ({ content, media }: any) => ({
 			title: getBlockText(content),
-			subtitle: 'Hero',
+			subtitle: 'Hero two',
 			media,
 		}),
 	},

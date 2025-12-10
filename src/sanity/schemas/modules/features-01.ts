@@ -8,8 +8,8 @@ interface ExtendedArrayOptions<T> {
 }
 
 export default {
-	name: 'features-grid-2',
-	title: 'Features grid 2',
+	name: 'features-01',
+	title: 'Features 01',
 	icon: TfiLayoutCtaCenter,
 	type: 'object',
 	groups: [{ name: 'content', title: 'Content' }, { name: 'features' }],

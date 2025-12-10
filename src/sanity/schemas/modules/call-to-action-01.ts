@@ -2,8 +2,9 @@ import { TfiLayoutCtaCenter } from 'react-icons/tfi'
 import { getBlockText } from '../../src/utils'
 
 export default {
-	name: 'call.to.action',
-	title: 'Call To Action',
+	name: 'call-to-action-01',
+	title: 'Call To Action 01',
+
 	icon: TfiLayoutCtaCenter,
 	type: 'object',
 

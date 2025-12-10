@@ -2,8 +2,8 @@ import { getBlockText } from '../../src/utils'
 import { VscSymbolMisc } from 'react-icons/vsc'
 
 export default {
-	name: 'logo-list',
-	title: 'Logo list',
+	name: 'logos-01',
+	title: 'Logo 01',
 	icon: VscSymbolMisc,
 	type: 'object',
 	fields: [
