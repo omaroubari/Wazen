@@ -1,6 +1,6 @@
 import { GoNumber } from 'react-icons/go'
 import { count, getBlockText } from '../../src/utils'
-import getBaseBlockFields from '../objects/block-header'
+import getBaseBlockFields from '../objects/getBaseBlockFields'
 
 export default {
 	name: 'list-01',
