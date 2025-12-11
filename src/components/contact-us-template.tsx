@@ -311,7 +311,7 @@ export function ContactUsTemplate() {
 							)}
 						/>
 						<div className="flex w-full items-center justify-end pt-3">
-							<Button className="rounded-lg" size="default">
+							<Button className="rounded-lg" size="md">
 								{isExecuting ? t('Submitting') : t('Submit')}
 							</Button>
 						</div>
