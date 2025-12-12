@@ -1,7 +1,7 @@
 import dynamic from 'next/dynamic'
 import { PortableText } from '@portabletext/react'
 import Pretitle from '@/components/Pretitle'
-import { motionComponents } from '@/components/portable-text'
+import { defaultComponents } from '@/components/portable-text'
 import { useTranslations } from 'next-intl'
 import ComparisonTable from './ComparisonTable'
 import { useMemo } from 'react'
@@ -110,7 +110,7 @@ export default function Applications({
 				<Pretitle className="text-large font-semibold text-gray-400">
 					{pretitle}
 				</Pretitle>
-				<PortableText value={content} components={motionComponents} />
+				<PortableText value={content} components={defaultComponents} />
 			</div>
 			<div className="w-full space-y-2">
 				<InfiniteMovingCards items={features.slice(0, 5)} />

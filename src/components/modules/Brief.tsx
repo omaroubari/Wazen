@@ -2,7 +2,7 @@ import { Img } from '@/components/Img'
 import { PortableText } from '@portabletext/react'
 import Pretitle from '@/components/Pretitle'
 import { cn } from '@/lib/utils'
-import { motionComponents } from '@/components/portable-text'
+import { defaultComponents } from '@/components/portable-text'
 import Media from '../Media'
 import { ReactElement } from 'react'
 
@@ -57,7 +57,7 @@ export default function Brief({
 					<Pretitle className="text-base font-medium text-teal-500">
 						{pretitle}
 					</Pretitle>
-					<PortableText value={content} components={motionComponents} />
+					<PortableText value={content} components={defaultComponents} />
 				</div>
 			</div>
 		</section>

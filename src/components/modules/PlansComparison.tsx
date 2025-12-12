@@ -5,7 +5,7 @@ import { PortableText } from '@portabletext/react'
 import { Switch } from '@/components/ui/switch'
 import { cn } from '@/lib/utils'
 import { Icon } from '@iconify-icon/react'
-import { motionComponents } from '@/components/portable-text'
+import { defaultComponents } from '@/components/portable-text'
 import SaudiRiyal from '../saudi-riyal'
 
 const PlansComparison = ({
@@ -28,7 +28,7 @@ const PlansComparison = ({
 	return (
 		<div className="section py-24">
 			<div className="fluid-gap flex w-full flex-col items-center">
-				<PortableText value={content} components={motionComponents} />
+				<PortableText value={content} components={defaultComponents} />
 
 				<div className="w-full">
 					{/* <!-- table header (prices) --> */}

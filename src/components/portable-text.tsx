@@ -59,19 +59,6 @@ export const motionComponents: PortableTextComponents = {
 			)
 		},
 	},
-	list: {
-		// Ex. 1: customizing common list types
-		bullet: ({ children }) => (
-			<ul className="mt-xl text-main list-inside list-disc text-cyan-950/80">
-				{children}
-			</ul>
-		),
-		number: ({ children }) => (
-			<ol className="mt-lg text-main list-inside list-decimal text-cyan-950/80">
-				{children}
-			</ol>
-		),
-	},
 }
 
 export const defaultComponents: PortableTextComponents = {
@@ -85,7 +72,7 @@ export const defaultComponents: PortableTextComponents = {
 				)
 			}
 			return (
-				<p className="text-main mx-auto max-w-xl text-cyan-950/80 md:max-w-3xl dark:text-gray-200">
+				<p className="text-main mx-auto max-w-xl text-cyan-950/80 md:max-w-3xl dark:text-white/80">
 					{value.children.map((child: any) => child.text).join('')}
 				</p>
 			)
@@ -94,12 +81,12 @@ export const defaultComponents: PortableTextComponents = {
 	list: {
 		// Ex. 1: customizing common list types
 		bullet: ({ children }) => (
-			<ul className="mt-xl text-main list-inside list-disc text-cyan-950/80">
+			<ul className="mt-xl text-main list-inside list-disc text-cyan-950/80 dark:text-white/80">
 				{children}
 			</ul>
 		),
 		number: ({ children }) => (
-			<ol className="mt-lg text-main list-inside list-decimal text-cyan-950/80">
+			<ol className="mt-lg text-main list-inside list-decimal text-cyan-950/80 dark:text-white/80">
 				{children}
 			</ol>
 		),

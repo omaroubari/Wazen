@@ -14,7 +14,7 @@ export default function StatList({
 		text: string
 	}[]
 }>) {
-	const motionComponents: PortableTextComponents = {
+	const defaultComponents: PortableTextComponents = {
 		types: {
 			block: ({ value }: PortableTextTypeComponentProps<any>) => {
 				if (value.style === 'h2') {
@@ -39,7 +39,7 @@ export default function StatList({
 			<div className="fluid-gap flex w-full flex-col items-center rounded-2xl bg-linear-to-tl from-cyan-950 to-cyan-700 p-(--size--6rem)">
 				{content && (
 					<div className="mx-auto max-w-3xl space-y-6 text-center">
-						<PortableText value={content} components={motionComponents} />
+						<PortableText value={content} components={defaultComponents} />
 					</div>
 				)}
 
