@@ -6,7 +6,7 @@ import {
 import Pretitle from '@/components/Pretitle'
 import CTAList from '@/components/CTAList'
 import { Img } from '@/components/Img'
-import { set2 } from '@/components/portable-text'
+import { motionComponents } from '@/components/portable-text'
 import * as m from 'motion/react-m'
 import { Variants } from 'motion/react'
 
@@ -44,7 +44,7 @@ export default function HeroPostcard({
 				<Pretitle className="mb-2 text-base font-medium text-teal-500">
 					{pretitle}
 				</Pretitle>
-				<PortableText value={content} components={set2} />
+				<PortableText value={content} components={motionComponents} />
 				<CTAList
 					ctas={ctas}
 					className="mt-2 *:h-12 *:px-6 *:text-lg max-md:w-full"

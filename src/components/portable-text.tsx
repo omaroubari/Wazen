@@ -29,7 +29,7 @@ export const hero: PortableTextComponents = {
 	},
 }
 
-export const set2: PortableTextComponents = {
+export const motionComponents: PortableTextComponents = {
 	types: {
 		block: ({ value }: PortableTextTypeComponentProps<any>) => {
 			if (value.style === 'h1') {
@@ -74,5 +74,24 @@ export const set2: PortableTextComponents = {
 				{children}
 			</ol>
 		),
+	},
+}
+
+export const defaultComponents: PortableTextComponents = {
+	types: {
+		block: ({ value }: PortableTextTypeComponentProps<any>) => {
+			if (value.style === 'h2') {
+				return (
+					<h2 className="h2 leading-tight font-semibold text-white">
+						{value.children.map((child: any) => child.text).join('')}
+					</h2>
+				)
+			}
+			return (
+				<p className="text-main mx-auto max-w-xl text-gray-200 md:max-w-3xl">
+					{value.children.map((child: any) => child.text).join('')}
+				</p>
+			)
+		},
 	},
 }

@@ -1,4 +1,4 @@
-import { set2 } from '@/components/portable-text'
+import { motionComponents } from '@/components/portable-text'
 import CTAList from '@/components/CTAList'
 import { Img } from '@/components/Img'
 import { PortableText } from 'next-sanity'
@@ -38,7 +38,10 @@ export default async function SingleAppHeader({
 						<h1 className="h2 font-semibold text-cyan-950 group-hover:text-cyan-900">
 							{app.title}
 						</h1>
-						<PortableText value={app.description} components={set2} />
+						<PortableText
+							value={app.description}
+							components={motionComponents}
+						/>
 						<CTAList ctas={app.ctas} className="w-full *:h-12 *:text-base" />
 					</div>
 				</div>

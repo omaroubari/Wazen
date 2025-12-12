@@ -1,5 +1,5 @@
 // import Pricing from '@/components/Pricing'
-import { set2 } from '@/components/portable-text'
+import { motionComponents } from '@/components/portable-text'
 import { PortableText } from '@portabletext/react'
 import { NextIntlClientProvider } from 'next-intl'
 import { getMessages } from 'next-intl/server'
@@ -19,7 +19,7 @@ export default async function Plans({
 		<section className="section py-[20vh]">
 			<div className="fluid-gap flex w-full flex-col items-center">
 				<div className="flex flex-col justify-center gap-6 text-center">
-					<PortableText value={content} components={set2} />
+					<PortableText value={content} components={motionComponents} />
 				</div>
 				<NextIntlClientProvider messages={messages}>
 					<Pricing plans={plans} />

@@ -1,7 +1,7 @@
 import dynamic from 'next/dynamic'
 import { PortableText } from '@portabletext/react'
 import Pretitle from '@/components/Pretitle'
-import { set2 } from '@/components/portable-text'
+import { motionComponents } from '@/components/portable-text'
 const InfiniteMovingCards = dynamic(
 	() =>
 		import('@/components/animated/infinite-moving-cards-apps').then(
@@ -40,7 +40,7 @@ export default function Applications({
 				<Pretitle className="text-base font-medium text-teal-500">
 					{pretitle}
 				</Pretitle>
-				<PortableText value={content} components={set2} />
+				<PortableText value={content} components={motionComponents} />
 			</div>
 			<InfiniteMovingCards items={cards} />
 		</section>

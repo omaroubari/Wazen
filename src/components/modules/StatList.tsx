@@ -14,12 +14,12 @@ export default function StatList({
 		text: string
 	}[]
 }>) {
-	const set2: PortableTextComponents = {
+	const motionComponents: PortableTextComponents = {
 		types: {
 			block: ({ value }: PortableTextTypeComponentProps<any>) => {
 				if (value.style === 'h2') {
 					return (
-						<h2 className="h2 font-semibold leading-tight text-white">
+						<h2 className="h2 leading-tight font-semibold text-white">
 							{value.children.map((child: any) => child.text).join('')}
 						</h2>
 					)
@@ -35,11 +35,11 @@ export default function StatList({
 
 	return (
 		<section className="section relative overflow-clip py-12">
-			<div className="bg-grid pointer-events-none absolute left-0 right-0 z-0 h-full w-full opacity-15"></div>
+			<div className="bg-grid pointer-events-none absolute right-0 left-0 z-0 h-full w-full opacity-15"></div>
 			<div className="fluid-gap flex w-full flex-col items-center rounded-2xl bg-linear-to-tl from-cyan-950 to-cyan-700 p-(--size--6rem)">
 				{content && (
 					<div className="mx-auto max-w-3xl space-y-6 text-center">
-						<PortableText value={content} components={set2} />
+						<PortableText value={content} components={motionComponents} />
 					</div>
 				)}
 
@@ -47,7 +47,7 @@ export default function StatList({
 					{stats?.map((stat, key) => (
 						<div className="w-full max-w-[250px]" key={key}>
 							<dt className="h3 font-semibold text-white">{stat.value}</dt>
-							<dd className="text-large text-balance font-normal text-teal-200">
+							<dd className="text-large font-normal text-balance text-teal-200">
 								{stat.text}
 							</dd>
 						</div>

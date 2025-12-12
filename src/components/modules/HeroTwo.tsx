@@ -6,7 +6,7 @@ import {
 import CTAList from '@/components/CTAList'
 import Pretitle from '@/components/Pretitle'
 import { cn } from '@/lib/utils'
-import { set2 } from '@/components/portable-text'
+import { motionComponents } from '@/components/portable-text'
 import * as m from 'motion/react-m'
 
 export default function HeroTwo({
@@ -60,7 +60,7 @@ export default function HeroTwo({
 					>
 						{pretitle}
 					</Pretitle>
-					<PortableText value={content} components={set2} />
+					<PortableText value={content} components={motionComponents} />
 				</div>
 				<CTAList ctas={ctas} className="*:h-12 *:px-6 *:text-lg" />
 			</m.div>
