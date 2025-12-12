@@ -2,7 +2,7 @@ import { Img } from '@/components/Img'
 import { PortableText } from '@portabletext/react'
 import Pretitle from '@/components/Pretitle'
 import { cn } from '@/lib/utils'
-import { set2 } from '@/components/portable-text'
+import { motionComponents } from '@/components/portable-text'
 import Media from '../Media'
 import { ReactElement } from 'react'
 
@@ -11,37 +11,53 @@ export default function Brief({
 	content,
 	image,
 	animatedComponent,
-	onRight,
-	textAlign = 'center',
+	layout,
+	// onRight,
 	alignItems,
 }: Partial<{
 	pretitle: string
 	content: any
 	image: any
 	animatedComponent?: ReactElement
-	onRight: boolean
-	textAlign: React.CSSProperties['textAlign']
+	layout?: {
+		direction?: 'row' | 'column'
+		reverse?: boolean
+		textAlign: React.CSSProperties['textAlign']
+	}
+	// onRight: boolean
 	alignItems: React.CSSProperties['alignItems']
 }>) {
+	const direction = layout?.direction === 'column' ? 'column' : 'row'
+	const isReverse = layout?.reverse ?? false
+	const textAlign = layout?.textAlign ?? 'start'
 	return (
 		<section className={cn('section py-(--size--2rem)')}>
-			<div className="fluid-gap grid w-full grid-cols-1 items-center lg:grid-cols-2">
-				<Media
-					image={image}
-					animatedComponent={animatedComponent}
-					className="relative w-full rounded-lg p-2 shadow-lg"
-				/>
+			<div
+				className={cn(
+					'fluid-gap grid w-full grid-cols-1 items-center',
+					direction === 'row' ? 'lg:grid-cols-2' : 'lg:grid-cols-1',
+				)}
+			>
+				{animatedComponent ? (
+					animatedComponent
+				) : (
+					<Media
+						image={image}
+						className="relative w-full rounded-lg p-2 shadow-lg"
+					/>
+				)}
 				<div
-					data-onright={onRight}
+					data-onright={isReverse}
 					className="flex flex-col gap-6 pe-6"
 					style={{
-						order: onRight ? -1 : undefined,
+						order: isReverse ? 1 : -1,
+						textAlign,
 					}}
 				>
 					<Pretitle className="text-base font-medium text-teal-500">
 						{pretitle}
 					</Pretitle>
-					<PortableText value={content} components={set2} />
+					<PortableText value={content} components={motionComponents} />
 				</div>
 			</div>
 		</section>

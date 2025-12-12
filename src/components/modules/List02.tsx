@@ -6,11 +6,14 @@ import {
 import Pretitle from '@/components/Pretitle'
 import CTAList from '../CTAList'
 import { Icon } from '@iconify-icon/react'
+import { cn } from '@/lib/utils'
+import { defaultComponents } from '../portable-text'
 
-export default async function FeaturesGridOne({
+export default async function List02({
 	pretitle,
 	content,
 	ctas,
+	gridLayout,
 	features,
 	textAlign = 'center',
 }: Partial<{
@@ -18,28 +21,10 @@ export default async function FeaturesGridOne({
 	content: any
 	Subtitle: any
 	ctas: any
+	gridLayout: '2x2' | '3x3' | '4x4'
 	features: { title: string; description: string; icon: { name: string } }[]
 	textAlign: React.CSSProperties['textAlign']
 }>) {
-	const components: PortableTextComponents = {
-		types: {
-			block: ({ value }: PortableTextTypeComponentProps<any>) => {
-				if (value.style === 'h2') {
-					return (
-						<h2 className="h2 leading-tight font-semibold text-white">
-							{value.children.map((child: any) => child.text).join('')}
-						</h2>
-					)
-				}
-				return (
-					<p className="text-main mx-auto max-w-xl text-gray-200 md:max-w-3xl">
-						{value.children.map((child: any) => child.text).join('')}
-					</p>
-				)
-			},
-		},
-	}
-
 	return (
 		<section className="bg-cyan-950">
 			<div
@@ -50,7 +35,7 @@ export default async function FeaturesGridOne({
 					<Pretitle className="text-large font-semibold text-teal-100">
 						{pretitle}
 					</Pretitle>
-					<PortableText value={content} components={components} />
+					<PortableText value={content} components={defaultComponents} />
 				</div>
 
 				{ctas && (
@@ -59,34 +44,32 @@ export default async function FeaturesGridOne({
 					</div>
 				)}
 
-				<ul className="grid w-full grid-cols-1 place-content-center justify-items-center gap-6 md:grid-cols-2 lg:grid-cols-3 [&>*:nth-child(even)]:bg-[radial-gradient(circle_at_top_right,var(--tw-gradient-stops))]">
+				<ul
+					className={cn(
+						'grid w-full place-content-center justify-items-center gap-6 [&>*:nth-child(even)]:bg-[radial-gradient(circle_at_top_right,var(--tw-gradient-stops))]',
+						gridLayout === '2x2' && 'grid-cols-2',
+						gridLayout === '3x3' && 'grid-cols-1 lg:grid-cols-3',
+						gridLayout === '4x4' && 'grid-cols-2 lg:grid-cols-4',
+					)}
+				>
 					{features &&
 						features.map(
-							(
-								feature: {
-									title: string
-									description: string
-									icon: { name: string }
-								},
-								index: any,
-							) => (
+							({ title, description, icon: { name } }, index: any) => (
 								<li
 									className="flex w-full flex-col justify-start gap-2 rounded-xl p-4 text-start"
 									key={index}
 								>
 									<div className="mb-2 size-9 self-start rounded-md bg-teal-700 p-2">
 										<Icon
-											icon={
-												feature.icon ? feature.icon.name : 'ph:cube-duotone'
-											}
+											icon={name ? name : 'ph:cube-duotone'}
 											className="text-xl leading-none text-white"
 										/>
 									</div>
 									<h3 className="text-main leading-tight font-semibold text-teal-50">
-										{feature.title}
+										{title}
 									</h3>
 									<p className="text-main max-w-xl text-white/80 md:max-w-3xl">
-										{feature.description}
+										{description}
 									</p>
 								</li>
 							),

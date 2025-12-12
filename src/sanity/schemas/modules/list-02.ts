@@ -1,5 +1,6 @@
 import { GoNumber } from 'react-icons/go'
 import { count, getBlockText } from '../../src/utils'
+import getBaseBlockFields from '../objects/getBaseBlockFields'
 
 export default {
 	name: 'list-02',
@@ -9,24 +10,20 @@ export default {
 	groups: [{ name: 'content', title: 'Content' }, { name: 'features' }],
 
 	fields: [
+		...getBaseBlockFields(),
 		{
-			name: 'pretitle',
-			title: 'Pretitle',
+			name: 'gridLayout',
 			type: 'string',
-			group: 'content',
-		},
-		{
-			name: 'content',
-			type: 'array',
-			of: [{ type: 'block' }],
-			group: 'content',
-		},
-		{
-			name: 'ctas',
-			title: 'Call-to-actions',
-			type: 'array',
-			of: [{ type: 'cta' }],
-			group: 'content',
+			options: {
+				list: [
+					{ title: '2x2', value: '2x2' },
+					{ title: '3x3', value: '3x3' },
+					{ title: '4x4', value: '4x4' },
+				],
+				layout: 'radio', // <-- defaults to 'dropdown'
+				direction: 'horizontal',
+			},
+			group: 'features',
 		},
 		{
 			name: 'features',

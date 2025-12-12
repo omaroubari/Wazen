@@ -11,6 +11,19 @@ export default {
 	fields: [
 		...getBaseBlockFields(),
 		{
+			name: 'gridLayout',
+			type: 'string',
+			options: {
+				list: [
+					{ title: '2x2', value: '2x2' },
+					{ title: '3x3', value: '3x3' },
+					{ title: '4x4', value: '4x4' },
+				],
+				layout: 'radio', // <-- defaults to 'dropdown'
+			},
+			group: 'features',
+		},
+		{
 			name: 'features',
 			type: 'array',
 			of: [

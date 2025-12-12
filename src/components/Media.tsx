@@ -35,7 +35,6 @@ const getYoutubeId = (link?: string) => {
 export default function Media({
 	className,
 	image,
-	animatedComponent,
 }: {
 	className?: string
 	image: {
@@ -53,7 +52,6 @@ export default function Media({
 		loading?: 'lazy' | 'eager'
 		_type: 'image'
 	}
-	animatedComponent?: ReactElement
 }) {
 	const videoId = getYoutubeId(image.youtubeLink)
 
@@ -110,9 +108,6 @@ export default function Media({
 	}
 	if ('asset' in image) {
 		return <Img image={image} className={className} />
-	}
-	if (animatedComponent) {
-		return animatedComponent
 	}
 	return null
 }

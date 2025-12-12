@@ -609,7 +609,7 @@ export type ProductList = {
 
 export type Features02 = {
 	_type: 'features-02'
-	benefits?: Array<{
+	features?: Array<{
 		pretitle?: string
 		content?: Array<{
 			children?: Array<{
@@ -690,40 +690,6 @@ export type Features01 = {
 			_key: string
 		}>
 		_type: 'grid'
-		_key: string
-	}>
-}
-
-export type List02 = {
-	_type: 'list-02'
-	pretitle?: string
-	content?: Array<{
-		children?: Array<{
-			marks?: Array<string>
-			text?: string
-			_type: 'span'
-			_key: string
-		}>
-		style?: 'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote'
-		listItem?: 'bullet' | 'number'
-		markDefs?: Array<{
-			href?: string
-			_type: 'link'
-			_key: string
-		}>
-		level?: number
-		_type: 'block'
-		_key: string
-	}>
-	ctas?: Array<
-		{
-			_key: string
-		} & Cta
-	>
-	features?: Array<{
-		icon?: Icon
-		title?: string
-		description?: string
 		_key: string
 	}>
 }
@@ -1808,6 +1774,10 @@ export type Brief = {
 		_type: 'block'
 		_key: string
 	}>
+	layout?: {
+		direction?: 'row' | 'column'
+		reverse?: boolean
+	}
 	onRight?: boolean
 	image?: {
 		asset?: {
@@ -1857,8 +1827,68 @@ export type BlogRollup = {
 	limit?: number
 }
 
+export type List02 = {
+	_type: 'list-02'
+	pretitle?: string
+	content?: Array<{
+		children?: Array<{
+			marks?: Array<string>
+			text?: string
+			_type: 'span'
+			_key: string
+		}>
+		style?: 'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote'
+		listItem?: 'bullet' | 'number'
+		markDefs?: Array<{
+			href?: string
+			_type: 'link'
+			_key: string
+		}>
+		level?: number
+		_type: 'block'
+		_key: string
+	}>
+	ctas?: Array<
+		{
+			_key: string
+		} & Cta
+	>
+	gridLayout?: '2x2' | '3x3' | '4x4'
+	features?: Array<{
+		icon?: Icon
+		title?: string
+		description?: string
+		_key: string
+	}>
+}
+
 export type List01 = {
 	_type: 'list-01'
+	pretitle?: string
+	content?: Array<{
+		children?: Array<{
+			marks?: Array<string>
+			text?: string
+			_type: 'span'
+			_key: string
+		}>
+		style?: 'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote'
+		listItem?: 'bullet' | 'number'
+		markDefs?: Array<{
+			href?: string
+			_type: 'link'
+			_key: string
+		}>
+		level?: number
+		_type: 'block'
+		_key: string
+	}>
+	ctas?: Array<
+		{
+			_key: string
+		} & Cta
+	>
+	gridLayout?: '2x2' | '3x3' | '4x4'
 	features?: Array<{
 		icon?: Icon
 		title?: string
@@ -3063,7 +3093,6 @@ export type AllSanitySchemaTypes =
 	| ProductList
 	| Features02
 	| Features01
-	| List02
 	| HowItWorks
 	| Testimonials01
 	| Testimonials02
@@ -3092,6 +3121,7 @@ export type AllSanitySchemaTypes =
 	| BriefGroup
 	| Brief
 	| BlogRollup
+	| List02
 	| List01
 	| AppStoreRollup
 	| Applications

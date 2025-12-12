@@ -15,14 +15,14 @@ const Categories = dynamic(() => import('./blog/CategoriesList'))
 const BlogRollup = dynamic(() => import('./blog/Rollup'))
 const CreativeModule = dynamic(() => import('./CreativeModule'))
 const Partners = dynamic(() => import('./PartnersList'))
-const FeaturesGridOne = dynamic(() => import('./FeaturesGridOne'))
+const List02 = dynamic(() => import('./List02'))
 const FeaturesGridTwo = dynamic(() => import('./FeaturesGridTwo'))
 const BriefGroup = dynamic(() => import('./BriefGroup'))
 const HomeBriefGroup = dynamic(() => import('./HomeBriefGroup'))
 const Plans = dynamic(() => import('./Plans'))
 const PlansComparison = dynamic(() => import('./PlansComparison'))
 const PlansCalculator = dynamic(() => import('./PlansCalculator'))
-const BenefitsBanner = dynamic(() => import('./BenefitsBanner'))
+const List01 = dynamic(() => import('./List01'))
 const CallToActionTwo = dynamic(() => import('./CallToActionTwo'))
 const AppStoreRollup = dynamic(() => import('./app-store/Rollup'))
 const ApplicationsInfiniteScroll = dynamic(
@@ -70,8 +70,8 @@ const MODULE_MAP = {
 	'pricing-list': Plans,
 	'pricing-comparison': PlansComparison,
 	'pricing-calculator': PlansCalculator,
-	'list-01': BenefitsBanner,
-	'list-02': FeaturesGridOne,
+	'list-01': List01,
+	'list-02': List02,
 	'app-store-rollup': AppStoreRollup,
 	applications: ApplicationsInfiniteScroll,
 	'faq-list': FAQList,
