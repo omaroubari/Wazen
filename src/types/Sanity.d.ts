@@ -125,7 +125,7 @@ declare global {
 
 		type CTA = {
 			link?: Link
-			style?: string
+			style?: 'primary' | 'secondary' | 'tertiary'
 			locale?: string
 		}
 

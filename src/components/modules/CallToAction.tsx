@@ -9,22 +9,25 @@ import { Icon } from '@iconify-icon/react'
 
 import { Img } from '@/components/Img'
 import { CallToActionDoc } from '@/sanity/types'
+import Pretitle from '../Pretitle'
 
 export default function CallToAction({
+	pretitle,
 	content,
 	ctas,
 	image,
+	microcopy,
 	checkedList,
 	callToActionDoc,
 	className,
 }: Sanity.Module & { className?: string }) {
-	// Return null or placeholder if essential content is missing
-
 	if (!content && !ctas) {
 		content = callToActionDoc.content
 		ctas = callToActionDoc.ctas
 		image = callToActionDoc.image
 		checkedList = callToActionDoc.checkedList
+		pretitle = callToActionDoc.pretitle
+		microcopy = callToActionDoc.microcopy
 	}
 
 	const components: PortableTextComponents = {
@@ -101,7 +104,16 @@ export default function CallToAction({
 					</div>
 				)}
 				<div className="flex max-w-2xl flex-col items-start gap-8">
-					{content && <PortableText value={content} components={components} />}
+					{content && (
+						<div className="flex flex-col gap-6 pe-6">
+							{pretitle && (
+								<Pretitle className="text-base font-medium text-teal-500">
+									{pretitle}
+								</Pretitle>
+							)}
+							<PortableText value={content} components={components} />
+						</div>
+					)}
 
 					{ctas && (
 						<CTAList ctas={ctas as any} className="w-full *:h-12 *:text-base" />

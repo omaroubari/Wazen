@@ -1,52 +1,26 @@
+'use client'
 import {
 	PortableText,
 	PortableTextComponents,
 	PortableTextTypeComponentProps,
 } from '@portabletext/react'
-import { Icon } from '@iconify-icon/react'
-import Button from '../LinkButton'
-
-// https://magicui.design/docs/components/neon-gradient-card
+import CTAList from '../CTAList'
+import { Icon } from '@iconify-icon/react/dist/iconify.mjs'
+import { motionComponents } from '../portable-text'
+import * as m from 'motion/react-m'
+import { CONTAINER_VARIANTS, FADE_DOWN_ANIMATION_VARIANTS } from '@/lib/motion'
+import Pretitle from '../Pretitle'
 
 export default function CallToActionTwo({
+	pretitle,
 	content,
 	ctas,
 	image,
+	microcopy,
 	checkedList,
-	textAlign = 'start',
-	alignItems,
-}: Partial<{
-	content: any
-	ctas: Sanity.CTA[]
-	image: Sanity.Image & { onRight?: boolean }
-	checkedList: any
-	textAlign: React.CSSProperties['textAlign']
-	alignItems: React.CSSProperties['alignItems']
-}>) {
-	const components: PortableTextComponents = {
-		types: {
-			block: ({ value }: PortableTextTypeComponentProps<any>) => {
-				if (value.style === 'h2') {
-					return (
-						<h2 className="h2 leading-tight font-semibold text-cyan-950">
-							{value.children.map((child: any) => child.text).join('')}
-						</h2>
-					)
-				} else if (value.style === 'h3') {
-					return (
-						<p className="text-large leading-tight font-semibold text-cyan-950">
-							{value.children.map((child: any) => child.text).join('')}
-						</p>
-					)
-				}
-				return (
-					<p className="text-main mx-auto max-w-xl text-gray-600 md:max-w-3xl">
-						{value.children.map((child: any) => child.text).join('')}
-					</p>
-				)
-			},
-		},
-	}
+	callToActionDoc,
+	className,
+}: Sanity.Module & { className?: string }) {
 	const checkedListComponents: PortableTextComponents = {
 		types: {
 			block: ({ value }: PortableTextTypeComponentProps<any>) => {
@@ -54,38 +28,87 @@ export default function CallToActionTwo({
 					.map((child: any) => child.text)
 					.join('')
 				if (!textContent.trim()) return null // Do not render if text content is empty or just whitespace
-
 				return (
-					<div className="flex items-center gap-2 text-cyan-950/60">
-						<Icon icon="ph:check-circle-line" className="h-4 w-4" />
-						<p className="text-small">{textContent}</p>
-					</div>
+					<m.p
+						variants={FADE_DOWN_ANIMATION_VARIANTS}
+						className="flex flex-row items-start gap-3 text-sm leading-relaxed text-cyan-950/80 sm:text-base md:text-lg dark:text-white/80"
+					>
+						<Icon
+							icon="ph:check-circle-duotone"
+							height="none"
+							className="size-[1lh] text-cyan-950/80 dark:text-white"
+						/>
+						<span>{textContent}</span>
+					</m.p>
 				)
 			},
 		},
 	}
-
+	if (!content && !ctas) {
+		content = callToActionDoc.content
+		ctas = callToActionDoc.ctas
+		image = callToActionDoc.image
+		checkedList = callToActionDoc.checkedList
+		pretitle = callToActionDoc.pretitle
+		microcopy = callToActionDoc.microcopy
+	}
 	return (
-		<section className="fluid-vertical-space fluid-gap flex flex-col items-center justify-center bg-teal-100">
-			<div className="section flex flex-col items-center gap-6 text-center">
-				<PortableText value={content} components={components} />
-			</div>
+		<m.section
+			className="section dark fluid-padding relative isolate"
+			initial="hidden"
+			whileInView="visible"
+			viewport={{ once: true, amount: 0.3 }}
+			variants={CONTAINER_VARIANTS}
+		>
+			<div className="fluid-padding relative z-1 overflow-hidden rounded-3xl bg-gradient-to-br from-teal-700 via-cyan-800 to-teal-900 shadow-2xl">
+				<div
+					className="absolute inset-0"
+					style={{
+						background:
+							'linear-gradient(to bottom right, #152840, transparent, #152840)',
+						mixBlendMode: 'hard-light',
+					}}
+				/>
 
-			{ctas && (
-				<Button
-					link={ctas[0].link}
-					className="h2 mx-4 flex h-(--size--8rem) items-center justify-center gap-(--size--2rem) rounded-3xl bg-cyan-950 px-(--size--4rem) leading-tight font-semibold text-white hover:bg-cyan-950/90 max-md:gap-2 max-md:rounded-2xl max-md:px-4"
-				>
-					{ctas[0].link?.label}
-					<Icon
-						icon="ph:caret-right-bold"
-						className="h2 text-white rtl:rotate-180"
-					/>
-				</Button>
-			)}
-			<div className="section flex flex-row items-center justify-center gap-2">
-				<PortableText value={checkedList} components={checkedListComponents} />
+				<div className="relative z-10 grid gap-6 sm:gap-8 lg:grid-cols-2 lg:gap-12">
+					<div
+						className="flex flex-col justify-center space-y-4 sm:space-y-5 md:space-y-6"
+						// style={{ textAlign, alignItems }}
+					>
+						{content && (
+							<div className="flex flex-col gap-6 pe-6">
+								{pretitle && (
+									<Pretitle className="text-base font-medium text-teal-500">
+										{pretitle}
+									</Pretitle>
+								)}
+								<PortableText value={content} components={motionComponents} />
+							</div>
+						)}
+
+						{ctas && (
+							<CTAList
+								ctas={ctas as any}
+								className="w-full *:h-12 *:text-base"
+							/>
+						)}
+						{microcopy && (
+							<p className="text-sm text-cyan-950/60 dark:text-white/60">
+								{microcopy}
+							</p>
+						)}
+					</div>
+
+					{checkedList && (
+						<div className="mt-6 flex flex-col justify-center space-y-3 sm:space-y-4 lg:mt-0">
+							<PortableText
+								value={checkedList}
+								components={checkedListComponents}
+							/>
+						</div>
+					)}
+				</div>
 			</div>
-		</section>
+		</m.section>
 	)
 }

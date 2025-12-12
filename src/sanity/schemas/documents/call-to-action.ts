@@ -16,6 +16,10 @@ export default {
 			hidden: true,
 		},
 		{
+			name: 'pretitle',
+			type: 'string',
+		},
+		{
 			name: 'content',
 			type: 'array',
 			of: [{ type: 'block' }],
@@ -49,6 +53,10 @@ export default {
 			title: 'Buttons',
 			type: 'array',
 			of: [{ type: 'cta' }],
+		},
+		{
+			name: 'microcopy',
+			type: 'text',
 		},
 		{
 			name: 'checkedList',
