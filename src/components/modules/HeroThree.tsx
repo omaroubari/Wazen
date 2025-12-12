@@ -26,7 +26,7 @@ export default function HeroThree({
 }>) {
 	const FADE_DOWN_ANIMATION_VARIANTS: Variants = {
 		hidden: { opacity: 0, y: -10 },
-		show: { opacity: 1, y: 0, transition: { type: 'spring' } },
+		visible: { opacity: 1, y: 0, transition: { type: 'spring' } },
 	}
 
 	const components: PortableTextComponents = {
@@ -73,11 +73,11 @@ export default function HeroThree({
 					'md:fluid-gap flex w-full flex-col items-center justify-evenly gap-8 lg:min-h-screen lg:flex-row'
 				}
 				initial="hidden"
-				animate="show"
+				animate="visible"
 				viewport={{ once: true }}
 				variants={{
 					hidden: {},
-					show: {
+					visible: {
 						transition: {
 							staggerChildren: 0.15,
 						},

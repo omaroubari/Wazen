@@ -31,7 +31,7 @@ export default function HeroTwo({
 	const hasImage = !!bgImage?.asset
 	const FADE_DOWN_ANIMATION_VARIANTS = {
 		hidden: { opacity: 0, y: -10 },
-		show: { opacity: 1, y: 0, transition: { type: 'spring' } },
+		visible: { opacity: 1, y: 0, transition: { type: 'spring' } },
 	}
 
 	return (
@@ -39,11 +39,11 @@ export default function HeroTwo({
 			<m.div
 				className="cyan-gradient-background-1 flex w-full flex-col items-center justify-center gap-y-6 rounded-2xl p-12"
 				initial="hidden"
-				animate="show"
+				animate="visible"
 				viewport={{ once: true }}
 				variants={{
 					hidden: {},
-					show: {
+					visible: {
 						transition: {
 							staggerChildren: 0.15,
 						},

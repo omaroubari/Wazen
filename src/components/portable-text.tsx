@@ -6,7 +6,7 @@ import { Variants } from 'motion/react'
 import * as m from 'motion/react-m'
 const FADE_DOWN_ANIMATION_VARIANTS: Variants = {
 	hidden: { opacity: 0, y: -10 },
-	show: { opacity: 1, y: 0, transition: { type: 'spring' } },
+	visible: { opacity: 1, y: 0, transition: { type: 'spring' } },
 }
 
 // https://github.com/portabletext/react-portabletext?tab=readme-ov-file#customizing-components

@@ -14,7 +14,7 @@ type Feature = {
 
 const FADE_UP_ANIMATION_VARIANTS: Variants = {
 	hidden: { opacity: 0, y: 10 },
-	show: { opacity: 1, y: 0, transition: { type: 'spring' } },
+	visible: { opacity: 1, y: 0, transition: { type: 'spring' } },
 }
 
 const FeatureItem = ({ feature }: { feature: Feature }) => (
@@ -57,11 +57,11 @@ export default function FeatureBlock({ features }: { features: Feature[] }) {
 			<m.ul
 				className="grid w-full grid-flow-row gap-6 *:bg-cyan-950/10 md:grid-flow-col"
 				initial="hidden"
-				animate={isInView ? 'show' : 'hidden'}
+				animate={isInView ? 'visible' : 'hidden'}
 				viewport={{ once: true }}
 				variants={{
 					hidden: {},
-					show: {
+					visible: {
 						transition: {
 							staggerChildren: 0.15,
 						},

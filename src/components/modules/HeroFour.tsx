@@ -23,17 +23,17 @@ export default function HeroPostcard({
 }>) {
 	const FADE_DOWN_ANIMATION_VARIANTS: Variants = {
 		hidden: { opacity: 0, y: -10 },
-		show: { opacity: 1, y: 0, transition: { type: 'spring' } },
+		visible: { opacity: 1, y: 0, transition: { type: 'spring' } },
 	}
 	return (
 		<m.section
 			className="cyan-gradient-background-2 relative flex min-h-screen flex-col gap-6 py-[20vh] lg:gap-12"
 			initial="hidden"
-			animate="show"
+			animate="visible"
 			viewport={{ once: true }}
 			variants={{
 				hidden: {},
-				show: {
+				visible: {
 					transition: {
 						staggerChildren: 0.15,
 					},
