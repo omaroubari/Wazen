@@ -11,6 +11,7 @@ import {
 } from '@/components/ui/accordion'
 import Button from '../LinkButton'
 import { Icon } from '@iconify-icon/react'
+import { defaultComponents } from '../portable-text'
 
 export default function FAQList({
 	locale = 'ar',
@@ -26,33 +27,9 @@ export default function FAQList({
 	}[]
 	sideNote: any
 }>) {
-	const components: PortableTextComponents = {
-		types: {
-			block: ({ value }: PortableTextTypeComponentProps<any>) => {
-				if (value.style === 'h2') {
-					return (
-						<h2 className="h2 leading-tight font-semibold text-cyan-950">
-							{value.children.map((child: any) => child.text).join('')}
-						</h2>
-					)
-				} else if (value.style === 'h3') {
-					return (
-						<h3 className="text-large leading-tight font-semibold text-cyan-950">
-							{value.children.map((child: any) => child.text).join('')}
-						</h3>
-					)
-				}
-				return (
-					<p className="text-main mx-auto max-w-xl text-gray-600 md:max-w-3xl">
-						{value.children.map((child: any) => child.text).join('')}
-					</p>
-				)
-			},
-		},
-	}
 	return (
 		<section id="FAQ" className="section space-y-4 py-12">
-			<PortableText value={content} components={components} />
+			<PortableText value={content} components={defaultComponents} />
 
 			<div className="fluid-gap flex flex-col items-start justify-between lg:flex-row">
 				<div className="w-full lg:w-[70%]">
@@ -63,7 +40,7 @@ export default function FAQList({
 									{question}
 								</AccordionTrigger>
 								<AccordionContent>
-									<PortableText value={answer} components={components} />
+									<PortableText value={answer} components={defaultComponents} />
 								</AccordionContent>
 							</AccordionItem>
 						))}
@@ -79,13 +56,15 @@ export default function FAQList({
 						<Button
 							locale={locale}
 							link={sideNote.link}
-							className="no-underline"
+							className="text-main no-underline"
+							variant="link"
 						>
 							{sideNote.link.label}
 						</Button>
 						<Icon
 							icon="ph:caret-left-bold"
-							className="ms-1 size-3 translate-x-0 text-teal-500/50 transition-transform duration-300 group-hover:-translate-x-1 group-hover:text-teal-600 ltr:rotate-180 ltr:group-hover:translate-x-1"
+							height="none"
+							className="ms-1 size-[1lh] translate-x-0 text-teal-500/50 transition-transform duration-300 group-hover:-translate-x-1 group-hover:text-teal-600 ltr:rotate-180 ltr:group-hover:translate-x-1"
 						/>
 					</span>
 				</div>

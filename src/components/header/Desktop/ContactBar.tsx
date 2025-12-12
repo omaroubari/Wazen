@@ -34,10 +34,14 @@ export default function ContactBar({
 							return (
 								<div
 									key={index}
-									className="flex shrink-0 flex-row items-center gap-1 px-2 py-1 text-sm text-cyan-950/60 *:hover:text-teal-600"
+									className="flex shrink-0 flex-row items-center gap-1 px-2 py-1"
 								>
 									{icons[index]}
-									<Button link={item.link} />
+									<Button
+										link={item.link}
+										variant="link"
+										className="h-fit p-0 text-sm font-normal text-cyan-950/60 hover:text-teal-600"
+									/>
 								</div>
 							)
 					},

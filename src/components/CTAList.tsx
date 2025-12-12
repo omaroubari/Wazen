@@ -1,5 +1,6 @@
 import { cn } from '@/lib/utils'
 import CTA from './CTA'
+import LinkButton from './LinkButton'
 
 export default function CTAList({
 	ctas,

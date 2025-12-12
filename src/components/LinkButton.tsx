@@ -3,6 +3,8 @@ import { Link } from '@/i18n/routing'
 import processUrl from '@/lib/processUrl'
 import { cn } from '@/lib/utils'
 import { stegaClean } from 'next-sanity'
+import { buttonVariants } from './ui/button'
+import { VariantProps } from 'class-variance-authority'
 
 export default function LinkButton({
 	link,
@@ -10,10 +12,14 @@ export default function LinkButton({
 	style,
 	className,
 	children,
+	variant = stegaClean(style),
+	size,
 	...rest
-}: Sanity.CTA & React.HTMLAttributes<HTMLAnchorElement>) {
+}: Sanity.CTA &
+	React.HTMLAttributes<HTMLAnchorElement> &
+	VariantProps<typeof buttonVariants>) {
 	const props = {
-		className: cn(stegaClean(style), className) || undefined,
+		className: cn(buttonVariants({ variant, size }), className) || undefined,
 		children:
 			children || link?.label || link?.internal?.title || link?.external,
 		...rest,

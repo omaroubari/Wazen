@@ -75,7 +75,8 @@ export default async function Menu({ footerMenu, locale, contactInfo }: any) {
 									<Button
 										locale={locale}
 										link={link}
-										className="grid h-10 items-center text-sm text-white/60 no-underline transition-colors group-hover:text-white"
+										variant="link"
+										className="h-10 justify-start px-0 text-start text-sm text-white/60 no-underline transition-colors group-hover:text-white"
 									>
 										{link.label}
 									</Button>

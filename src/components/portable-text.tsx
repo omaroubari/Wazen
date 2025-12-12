@@ -72,7 +72,7 @@ export const defaultComponents: PortableTextComponents = {
 				)
 			}
 			return (
-				<p className="text-main mx-auto max-w-xl text-cyan-950/80 md:max-w-3xl dark:text-white/80">
+				<p className="text-main text-cyan-950/80 rtl:leading-snug dark:text-white/80">
 					{value.children.map((child: any) => child.text).join('')}
 				</p>
 			)

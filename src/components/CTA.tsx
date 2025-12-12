@@ -39,9 +39,6 @@ export default function CTA({
 					params: link.params,
 				})}
 				{...(props as any)}
-
-				// legacyBehavior
-				// passHref
 			>
 				<m.span variants={FADE_DOWN_ANIMATION_VARIANTS}>
 					{props.children}

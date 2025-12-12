@@ -10,7 +10,7 @@ const buttonVariants = cva(
 		variants: {
 			variant: {
 				primary:
-					'bg-cyan-950 text-white hover:bg-cyan-900 focus-visible:ring-cyan-950 max-md:w-full',
+					'bg-cyan-950 dark:bg-teal-600 text-white hover:bg-cyan-800 dark:hover:bg-teal-400 focus-visible:ring-cyan-950 max-md:w-full',
 				secondary:
 					'bg-teal-600 text-white hover:bg-teal-500 focus-visible:ring-teal-600 max-md:w-full',
 				tertiary:
@@ -19,9 +19,7 @@ const buttonVariants = cva(
 					'bg-red-500 text-white hover:bg-red-500/90 focus-visible:ring-red-500',
 				outline:
 					'border border-gray-200 bg-white hover:bg-gray-100 hover:text-gray-900 focus-visible:ring-gray-950',
-				ghost:
-					'hover:bg-gray-100 hover:text-gray-900 focus-visible:ring-gray-950',
-				link: 'text-cyan-950 underline-offset-4 hover:underline focus-visible:ring-cyan-950',
+				link: 'text-teal-600 focus-visible:ring-cyan-950',
 			},
 			size: {
 				sm: 'h-8 rounded-md px-3',
@@ -30,6 +28,13 @@ const buttonVariants = cva(
 				icon: 'size-10',
 			},
 		},
+		compoundVariants: [
+			{
+				variant: 'link',
+				size: 'md',
+				className: 'p-0 h-fit rounded-none',
+			},
+		],
 		defaultVariants: {
 			variant: 'primary',
 			size: 'md',
