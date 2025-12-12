@@ -13,9 +13,9 @@ export default async function List02({
 	pretitle,
 	content,
 	ctas,
-	gridLayout,
+	gridLayout = '3x3',
 	features,
-	textAlign = 'center',
+	layout,
 }: Partial<{
 	pretitle: string
 	content: any
@@ -23,13 +23,14 @@ export default async function List02({
 	ctas: any
 	gridLayout: '2x2' | '3x3' | '4x4'
 	features: { title: string; description: string; icon: { name: string } }[]
-	textAlign: React.CSSProperties['textAlign']
+	layout: { textAlign: React.CSSProperties['textAlign'] }
 }>) {
+	const textAlign = layout?.textAlign ?? 'center'
 	return (
-		<section className="bg-cyan-950">
+		<section data-theme="dark" className="bg-cyan-950">
 			<div
 				className="fluid-gap section fluid-padding flex w-full flex-col items-center py-(--size--6rem)"
-				style={{ textAlign: textAlign } as React.CSSProperties}
+				style={{ textAlign } as React.CSSProperties}
 			>
 				<div className="flex flex-col items-center gap-6">
 					<Pretitle className="text-large font-semibold text-teal-100">

@@ -1,5 +1,5 @@
 'use client'
-import React, { useRef, useState, useEffect, useMemo } from 'react'
+import React, { useRef, useState, useMemo } from 'react'
 import { useMotionValueEvent, useScroll, AnimatePresence } from 'motion/react'
 import * as m from 'motion/react-m'
 
@@ -12,27 +12,26 @@ import {
 import { cn } from '@/lib/utils'
 import { useMediaQuery } from '@/hooks/use-media-query'
 
-export default function Benefits({
-	benefits,
+export default function Features02({
+	features,
 }: Partial<{
-	benefits: any
+	features: any
 }>) {
 	const [activeCard, setActiveCard] = useState(0)
 
 	const ref = useRef<any>(null)
 	const { scrollYProgress } = useScroll({
-		// uncomment line 22 and comment line 23 if you DONT want the overflow container and want to have it change on the entire page scroll
 		target: ref,
 		// container: ref,
 		offset: ['start start', 'end start'],
 	})
-	const benefitsCount = benefits.length
+	const featuresCount = features.length
 
-	if (!benefits || benefitsCount === 0) return null
+	if (!features || featuresCount === 0) return null
 
 	const cardsBreakpoints = useMemo(
-		() => benefits.map((_: any, index: any) => index / benefitsCount),
-		[benefits, benefitsCount],
+		() => features.map((_: any, index: any) => index / featuresCount),
+		[features, featuresCount],
 	)
 
 	useMotionValueEvent(scrollYProgress, 'change', (latest) => {
@@ -74,16 +73,16 @@ export default function Benefits({
 			className={'section fluid-vertical-space px-(--padding-horizontal--main)'}
 		>
 			{isDesktop ? (
-				<m.div className="fluid-gap relative flex flex-row pb-12" ref={ref}>
+				<m.div className="fluid-gap relative grid grid-cols-2 pb-12" ref={ref}>
 					<div
 						className="flex h-[calc(var(--item-count)*100vh)] w-full flex-col items-start"
 						style={
 							{
-								'--item-count': benefitsCount,
+								'--item-count': featuresCount,
 							} as React.CSSProperties
 						}
 					>
-						{benefits.map((item: any, index: any) => {
+						{features.map((item: any, index: any) => {
 							return (
 								<m.div
 									initial={{
@@ -113,7 +112,7 @@ export default function Benefits({
 							transition={{ ease: 'easeOut' }}
 						>
 							<Img
-								image={benefits[activeCard].image}
+								image={features[activeCard].image}
 								className="relative aspect-4/3 h-auto w-full overflow-hidden rounded-2xl border-8 border-white object-cover shadow-md"
 							/>
 						</m.div>
@@ -124,7 +123,7 @@ export default function Benefits({
 					className="flex flex-col gap-6 px-(--padding-horizontal--main) xl:hidden"
 					ref={ref}
 				>
-					{benefits.map((item: any, index: any) => {
+					{features.map((item: any, index: any) => {
 						return (
 							<m.div
 								initial={{
@@ -139,7 +138,7 @@ export default function Benefits({
 								<PortableText value={item.content} components={components} />
 								{/* <div className="relative flex items-center justify-center overflow-hidden rounded-lg border-8 border-white shadow-md"></div> */}
 								<Img
-									image={benefits[index].image}
+									image={features[index].image}
 									className="relative aspect-4/3 h-auto w-full overflow-hidden rounded-2xl border-8 border-white object-cover shadow-md lg:max-w-[450px]"
 								/>
 							</m.div>

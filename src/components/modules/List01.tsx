@@ -9,8 +9,9 @@ export default function List01({
 	pretitle,
 	content,
 	ctas,
-	gridLayout,
+	gridLayout = '2x2',
 	features,
+	layout,
 }: Partial<{
 	pretitle: string
 	content: any
@@ -18,11 +19,16 @@ export default function List01({
 	ctas: any
 	gridLayout: '2x2' | '3x3' | '4x4'
 	features: { title: string; description: string; icon: { name: string } }[]
-	textAlign: React.CSSProperties['textAlign']
+	layout: { textAlign: React.CSSProperties['textAlign'] }
 }>) {
+	const textAlign = layout?.textAlign ?? 'center'
+
 	return (
 		<section className="section flex bg-white py-(--size--4rem)">
-			<div className="flex flex-col items-center gap-6">
+			<div
+				className="flex flex-col items-center gap-6"
+				style={{ textAlign } as React.CSSProperties}
+			>
 				<Pretitle className="text-large font-semibold text-teal-100">
 					{pretitle}
 				</Pretitle>

@@ -1,7 +1,7 @@
 @import 'tailwindcss';
 @import 'tw-animate-css';
 
-/*@custom-variant dark (&:is(.dark *));*/
+@custom-variant dark (&:where(.dark, .dark *, [data-theme="dark"], [data-theme="dark"] *));
 
 @layer base {
 	/* https://fluidbuilder.webflow.io/?design=80&max=80&min=20&g=--padding-horizontal--main,3,1_--size--2rem,2,1.75_--size--2-5rem,2.5,2_--size--3rem,3,2.2,t_--size--3-5rem,3.5,2.375_--size--4rem,4,2.5_--size--4-5rem,4.5,2.75_--size--5rem,5,3_--size--5-5rem,5.5,3.25_--size--6rem,6,3.5_--size--6-5rem,6.5,3.75_--size--7rem,7,4_--size--7-5rem,7.5,4.25_--size--8rem,8,4.5_--size--8-5rem,8.5,4.75_--size--9rem,9,5_--size--9-5rem,9.5,5.25_--size--10rem,10,5.5_--size--11rem,11,5.75_--size--12rem,12,6_--size--13rem,13,6.5_--size--14rem,14,7_--size--15rem,15,7.5_--size--16rem,16,8&g=:1.125,1.125:--display--font-size,5,2.02,t_--h1--font-size,4.44,1.8_--h2--font-size,3.95,1.6_--h3--font-size,3.51,1.42_--h4--font-size,3.12,1.26_--h5--font-size,2.77,1.12_--h6--font-size,2.47,1&g=:1.2,1.14:,1.8,1.3_--text-large--font-size,1.5,1.14_--text-main--font-size,1.25,1,t_--text-small--font-size,1.04,0.88 */

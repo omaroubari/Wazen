@@ -82,16 +82,29 @@ export const defaultComponents: PortableTextComponents = {
 		block: ({ value }: PortableTextTypeComponentProps<any>) => {
 			if (value.style === 'h2') {
 				return (
-					<h2 className="h2 leading-tight font-semibold text-white">
+					<h2 className="h2 leading-tight font-semibold text-cyan-950 dark:text-white">
 						{value.children.map((child: any) => child.text).join('')}
 					</h2>
 				)
 			}
 			return (
-				<p className="text-main mx-auto max-w-xl text-gray-200 md:max-w-3xl">
+				<p className="text-main mx-auto max-w-xl text-cyan-950/80 md:max-w-3xl dark:text-gray-200">
 					{value.children.map((child: any) => child.text).join('')}
 				</p>
 			)
 		},
+	},
+	list: {
+		// Ex. 1: customizing common list types
+		bullet: ({ children }) => (
+			<ul className="mt-xl text-main list-inside list-disc text-cyan-950/80">
+				{children}
+			</ul>
+		),
+		number: ({ children }) => (
+			<ol className="mt-lg text-main list-inside list-decimal text-cyan-950/80">
+				{children}
+			</ol>
+		),
 	},
 }

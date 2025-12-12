@@ -7,10 +7,35 @@ export default {
 	title: 'List 02',
 	icon: GoNumber,
 	type: 'object',
-	groups: [{ name: 'content', title: 'Content' }, { name: 'features' }],
+	groups: [
+		{ name: 'content', title: 'Content' },
+		{ name: 'features', title: 'Features' },
+		{ name: 'options', title: 'Options' },
+	],
 
 	fields: [
 		...getBaseBlockFields(),
+		{
+			name: 'layout',
+			title: 'Layout Options',
+			type: 'object',
+			fields: [
+				{
+					name: 'textAlign',
+					type: 'string',
+					options: {
+						list: ['start', 'center', 'end'],
+						layout: 'radio',
+						direction: 'horizontal',
+					},
+					initialValue: 'center',
+				},
+			],
+			initialValue: {
+				textAlign: 'centers',
+			},
+			group: 'options',
+		},
 		{
 			name: 'gridLayout',
 			type: 'string',
@@ -23,6 +48,7 @@ export default {
 				layout: 'radio', // <-- defaults to 'dropdown'
 				direction: 'horizontal',
 			},
+			initialValue: '3x3',
 			group: 'features',
 		},
 		{

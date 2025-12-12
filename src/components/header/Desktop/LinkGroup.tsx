@@ -32,8 +32,12 @@ export default function LinkGroup({
 				>
 					{links?.[0].links?.map((item: any) => (
 						<NavigationMenuItem key={item.label}>
+							{/*<NavigationMenuLink asChild>*/}
 							<Link
-								locale={locale as 'en' | 'ar'}
+								className={cn(
+									navigationMenuTriggerStyle(),
+									item.iconify?.name && 'h-12 gap-2 px-2',
+								)}
 								href={
 									item.type === 'internal'
 										? processUrl(item.internal, {
@@ -42,26 +46,18 @@ export default function LinkGroup({
 											})
 										: item.external
 								}
-								legacyBehavior
-								passHref
 							>
-								<NavigationMenuLink
-									className={cn(
-										navigationMenuTriggerStyle(),
-										item.iconify?.name && 'h-12 gap-2 px-2',
-									)}
-								>
-									{item.iconify?.name && (
-										<div className="size-8 flex-none rounded-md bg-teal-50 p-1 transition-colors duration-200 group-hover:bg-cyan-800">
-											<Icon
-												icon={item.iconify.name}
-												className="h-6 text-2xl text-teal-600 group-hover:text-teal-50"
-											/>
-										</div>
-									)}
-									{item.label || item.internal.title}
-								</NavigationMenuLink>
+								{item.iconify?.name && (
+									<div className="size-8 flex-none rounded-md bg-teal-50 p-1 transition-colors duration-200 group-hover:bg-cyan-800">
+										<Icon
+											icon={item.iconify.name}
+											className="h-6 text-2xl text-teal-600 group-hover:text-teal-50"
+										/>
+									</div>
+								)}
+								{item.label || item.internal.title}
 							</Link>
+							{/*</NavigationMenuLink>*/}
 						</NavigationMenuItem>
 					))}
 				</ul>
@@ -80,12 +76,12 @@ const ListItem = React.forwardRef<
 				<a
 					ref={ref}
 					className={cn(
-						'hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors',
+						'hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground block space-y-1 rounded-md p-3 leading-none no-underline transition-colors outline-none select-none',
 						className,
 					)}
 					{...props}
 				>
-					<div className="text-sm font-medium leading-none">{title}</div>
+					<div className="text-sm leading-none font-medium">{title}</div>
 					<p className="text-muted-foreground line-clamp-2 text-sm leading-snug">
 						{children}
 					</p>

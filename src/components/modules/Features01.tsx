@@ -1,5 +1,5 @@
 import { PortableText, PortableTextComponents } from '@portabletext/react'
-import FeatureBlock from './FeaturesGridTwoClient'
+import FeatureBlock from './Features01Client'
 
 import Pretitle from '@/components/Pretitle'
 

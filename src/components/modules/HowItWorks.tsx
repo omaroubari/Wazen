@@ -49,8 +49,8 @@ export default function HowItWorks({
 	const images = [user, sidebar, chart]
 
 	return (
-		<section className="section rounded-2xl bg-teal-100 from-teal-100 to-cyan-50 p-(--size--6rem)">
-			<div className="fluid-gap flex w-full flex-col items-center justify-center rounded-xl">
+		<section className="section fluid-padding">
+			<div className="fluid-gap fluid-padding flex w-full flex-col items-center justify-center rounded-2xl bg-teal-100 from-teal-100 to-cyan-50">
 				<PortableText value={content} components={components} />
 				<ul
 					// initial="hidden"

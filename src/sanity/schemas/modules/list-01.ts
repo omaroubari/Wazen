@@ -7,9 +7,35 @@ export default {
 	title: 'List 01',
 	icon: GoNumber,
 	type: 'object',
-	groups: [{ name: 'content', title: 'Content' }, { name: 'features' }],
+	groups: [
+		{ name: 'content', title: 'Content' },
+		{ name: 'features', title: 'Features' },
+		{ name: 'options', title: 'Options' },
+	],
+
 	fields: [
 		...getBaseBlockFields(),
+		{
+			name: 'layout',
+			title: 'Layout Options',
+			type: 'object',
+			fields: [
+				{
+					name: 'textAlign',
+					type: 'string',
+					options: {
+						list: ['start', 'center', 'end'],
+						layout: 'radio',
+						direction: 'horizontal',
+					},
+					initialValue: 'center',
+				},
+			],
+			initialValue: {
+				textAlign: 'center',
+			},
+			group: 'options',
+		},
 		{
 			name: 'gridLayout',
 			type: 'string',
@@ -20,7 +46,9 @@ export default {
 					{ title: '4x4', value: '4x4' },
 				],
 				layout: 'radio', // <-- defaults to 'dropdown'
+				direction: 'horizontal',
 			},
+			initialValue: '3x3',
 			group: 'features',
 		},
 		{
@@ -68,7 +96,7 @@ export default {
 			features: 'features',
 		},
 		prepare: ({ content, features }: any) => ({
-			title: getBlockText(content) || count(features, 'benefit'),
+			title: getBlockText(content) || count(features, 'feature'),
 			subtitle: 'List 01',
 		}),
 	},
