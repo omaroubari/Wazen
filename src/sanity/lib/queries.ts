@@ -17,6 +17,21 @@ const navigationProjection = /* groq */ `
 	}
 `
 
+export const callToActionDocProjection = groq`
+	...,
+	ctas[]{
+		...,
+		link{
+			...,
+			internal->{ title, metadata }
+		}
+	},
+	image{
+		...,
+		asset->
+	}
+`
+
 export const creativeModuleQuery = groq`
 	modules[]{
 		...,

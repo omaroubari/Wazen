@@ -1,6 +1,9 @@
 import { fetchSanity, fetchSanityLive } from '@/sanity/lib/fetch'
 import { groq } from 'next-sanity'
-import { creativeModuleQuery } from '@/sanity/lib/queries'
+import {
+	callToActionDocProjection,
+	creativeModuleQuery,
+} from '@/sanity/lib/queries'
 import { notFound } from 'next/navigation'
 import Modules from '@/components/modules'
 import { PageCallToActionOverride } from '@/components/SiteCallToActionModal'
@@ -59,6 +62,15 @@ async function getPage(params: { slug: string[]; locale: 'en' | 'ar' }) {
 			!(metadata.slug.current in ['index', '404'])
 		][0]{
 			...,
+			// resolve page level call to action doc
+			"callToActionDoc": coalesce(
+				callToActionDoc[0]->{
+					${callToActionDocProjection}
+				},
+				*[_type == "call.to.action.doc" && language == $locale][0]{
+					${callToActionDocProjection}
+				}
+			),
 			modules[]{
 				...,
 				ctas[]{
@@ -83,14 +95,22 @@ async function getPage(params: { slug: string[]; locale: 'en' | 'ar' }) {
               internal->{ title, metadata }
             }
           }
-        },
+				},
 				categories[]->{title, _id, slug},
 				items[]->,
 				logos[]->,
 				partnerslogos[]->,
 				plans[]->,
 				testimonials[]->,
-				callToActionDoc[0]->,
+				// resolve module level call to action doc
+				"callToActionDoc": coalesce(
+					callToActionDoc[0]->{
+						${callToActionDocProjection}
+					},
+					*[_type == "call.to.action.doc" && language == $locale][0]{
+						${callToActionDocProjection}
+					}
+				),
 				'headings': select(
 					tableOfContents => content[style in ['h2', 'h3']]{
 						style,
@@ -99,7 +119,6 @@ async function getPage(params: { slug: string[]; locale: 'en' | 'ar' }) {
 				),
 				${creativeModuleQuery}
 			},
-			callToActionDoc[]->,
 			metadata {
 				...,
 				'ogimage': image.asset->url + '?w=1200'

@@ -10,8 +10,9 @@ import { motionComponents } from '@/components/portable-text'
 import * as m from 'motion/react-m'
 import { Variants } from 'motion/react'
 import { FADE_DOWN_ANIMATION_VARIANTS } from '@/lib/motion'
+import Media from '../Media'
 
-export default function HeroPostcard({
+export default function Hero04({
 	pretitle,
 	content,
 	ctas,
@@ -47,20 +48,26 @@ export default function HeroPostcard({
 					className="mt-2 *:h-12 *:px-6 *:text-lg max-md:w-full"
 				/>
 			</div>
-			<m.div
-				variants={FADE_DOWN_ANIMATION_VARIANTS}
-				className="section relative mx-auto h-auto w-full"
-			>
-				<Img
-					image={image}
-					alt={image?.alt}
-					className="h-auto w-full object-cover object-top-left"
-					draggable={false}
-					fetchPriority="high"
-					loading="eager"
-					priority
-				/>
-			</m.div>
+			{image && (
+				<m.div
+					variants={FADE_DOWN_ANIMATION_VARIANTS}
+					className="section relative mx-auto h-auto w-full"
+				>
+					<Media
+						image={image}
+						className="h-auto w-full object-cover object-top-left"
+					/>
+					{/*<Img
+						image={image}
+						alt={image?.alt}
+						className="h-auto w-full object-cover object-top-left"
+						draggable={false}
+						fetchPriority="high"
+						loading="eager"
+						priority
+					/>*/}
+				</m.div>
+			)}
 		</m.section>
 	)
 }

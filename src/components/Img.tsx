@@ -63,13 +63,15 @@ export const Img = ({
 					}
 					className={className}
 					loading={loading}
-					priority={priority}
+					priority={(priority ?? loading === 'eager') ? true : false}
 					quality={quality}
 					style={style}
 					onLoad={onLoad}
 					onError={onError}
 					draggable={draggable}
-					fetchPriority={fetchPriority}
+					fetchPriority={
+						(fetchPriority ?? loading === 'eager') ? 'high' : 'auto'
+					}
 				/>
 			)}
 		</>

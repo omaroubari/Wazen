@@ -13,10 +13,12 @@ import NextImage from 'next/image'
 import { Img } from './Img'
 import {
 	internalGroqTypeReferenceTo,
+	SanityAssetSourceData,
 	SanityImageCrop,
 	SanityImageHotspot,
+	SanityImageMetadata,
 } from '@/sanity/types'
-import { ReactElement } from 'react'
+
 import { Button } from './ui/button'
 import { Icon } from '@iconify-icon/react/dist/iconify.mjs'
 
@@ -38,11 +40,24 @@ export default function Media({
 }: {
 	className?: string
 	image: {
-		asset?: {
-			_ref: string
-			_type: 'reference'
+		asset: {
+			_ref?: string
 			_weak?: boolean
-			[internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+			originalFilename?: string
+			label?: string
+			title?: string
+			description?: string
+			altText?: string
+			sha1hash?: string
+			extension?: string
+			mimeType?: string
+			size?: number
+			assetId?: string
+			uploadId?: string
+			path?: string
+			url?: string
+			metadata?: SanityImageMetadata
+			source?: SanityAssetSourceData
 		}
 		media?: unknown
 		hotspot?: SanityImageHotspot
@@ -50,7 +65,6 @@ export default function Media({
 		alt?: string
 		youtubeLink?: string
 		loading?: 'lazy' | 'eager'
-		_type: 'image'
 	}
 }) {
 	const videoId = getYoutubeId(image.youtubeLink)
@@ -59,7 +73,7 @@ export default function Media({
 		return (
 			<div className="relative">
 				{'asset' in image ? (
-					<Img image={image} className={className} />
+					<Img className={className} image={image} {...image} />
 				) : (
 					<NextImage
 						className={className}

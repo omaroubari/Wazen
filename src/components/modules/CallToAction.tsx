@@ -8,7 +8,7 @@ import { cn } from '@/lib/utils'
 import { Icon } from '@iconify-icon/react'
 
 import { Img } from '@/components/Img'
-import { CallToActionDoc } from '@/sanity/types'
+
 import Pretitle from '../Pretitle'
 
 export default function CallToAction({

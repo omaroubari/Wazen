@@ -27,8 +27,6 @@ export default function Features02({
 	})
 	const featuresCount = features.length
 
-	if (!features || featuresCount === 0) return null
-
 	const cardsBreakpoints = useMemo(
 		() => features.map((_: any, index: any) => index / featuresCount),
 		[features, featuresCount],
@@ -68,6 +66,8 @@ export default function Features02({
 			},
 		},
 	}
+
+	if (!features || featuresCount === 0) return null
 	return (
 		<section
 			className={'section fluid-vertical-space px-(--padding-horizontal--main)'}
