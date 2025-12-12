@@ -1,13 +1,10 @@
+import { FADE_DOWN_ANIMATION_VARIANTS } from '@/lib/motion'
 import {
 	PortableTextComponents,
 	PortableTextTypeComponentProps,
 } from '@portabletext/react'
 import { Variants } from 'motion/react'
 import * as m from 'motion/react-m'
-const FADE_DOWN_ANIMATION_VARIANTS: Variants = {
-	hidden: { opacity: 0, y: -10 },
-	visible: { opacity: 1, y: 0, transition: { type: 'spring' } },
-}
 
 // https://github.com/portabletext/react-portabletext?tab=readme-ov-file#customizing-components
 export const hero: PortableTextComponents = {
@@ -36,7 +33,7 @@ export const motionComponents: PortableTextComponents = {
 				return (
 					<m.h1
 						variants={FADE_DOWN_ANIMATION_VARIANTS}
-						className="h1 mx-auto max-w-3xl text-center text-balance text-cyan-950 ltr:leading-tight rtl:leading-snug"
+						className="h1 mx-auto max-w-3xl text-center text-balance text-cyan-950 ltr:leading-tight rtl:leading-snug dark:text-white"
 					>
 						{value.children.map((child: any) => child.text).join('')}
 					</m.h1>
@@ -46,7 +43,7 @@ export const motionComponents: PortableTextComponents = {
 				return (
 					<m.h2
 						variants={FADE_DOWN_ANIMATION_VARIANTS}
-						className="h2 leading-tight font-semibold text-cyan-950"
+						className="h2 leading-tight font-semibold text-cyan-950 dark:text-white"
 					>
 						{value.children.map((child: any) => child.text).join('')}
 					</m.h2>
@@ -55,7 +52,7 @@ export const motionComponents: PortableTextComponents = {
 			return (
 				<m.p
 					variants={FADE_DOWN_ANIMATION_VARIANTS}
-					className="text-main text-cyan-950/80 rtl:leading-snug"
+					className="text-main text-cyan-950/80 rtl:leading-snug dark:text-white/80"
 				>
 					{value.children.map((child: any) => child.text).join('')}
 				</m.p>

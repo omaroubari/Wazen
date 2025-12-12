@@ -29,10 +29,6 @@ export default function HeroTwo({
 	alignItems: React.CSSProperties['alignItems']
 }>) {
 	const hasImage = !!bgImage?.asset
-	const FADE_DOWN_ANIMATION_VARIANTS = {
-		hidden: { opacity: 0, y: -10 },
-		visible: { opacity: 1, y: 0, transition: { type: 'spring' } },
-	}
 
 	return (
 		<section className="section pt-16 pb-12 lg:pt-28">

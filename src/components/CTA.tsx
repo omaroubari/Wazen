@@ -1,4 +1,5 @@
 import { Link } from '@/i18n/routing'
+import { FADE_DOWN_ANIMATION_VARIANTS } from '@/lib/motion'
 import processUrl from '@/lib/processUrl'
 import { cn } from '@/lib/utils'
 import * as m from 'motion/react-m'
@@ -28,10 +29,6 @@ export default function CTA({
 			children || link?.label || link?.internal?.title || link?.external,
 		...domSafeRest,
 	}
-	const FADE_DOWN_ANIMATION_VARIANTS = {
-		hidden: { opacity: 0, y: -10 },
-		visible: { opacity: 1, y: 0, transition: { type: 'spring' } },
-	}
 
 	if (link?.type === 'internal' && link.internal)
 		return (
@@ -46,7 +43,7 @@ export default function CTA({
 				// legacyBehavior
 				// passHref
 			>
-				<m.span layout variants={FADE_DOWN_ANIMATION_VARIANTS as any}>
+				<m.span variants={FADE_DOWN_ANIMATION_VARIANTS}>
 					{props.children}
 				</m.span>
 			</Link>

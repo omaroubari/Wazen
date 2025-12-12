@@ -10,6 +10,7 @@ import Image from 'next/image'
 import blob from '/public/gradient-blob2.svg'
 import * as m from 'motion/react-m'
 import { Variants } from 'motion/react'
+import { FADE_DOWN_ANIMATION_VARIANTS } from '@/lib/motion'
 
 export default function HeroThree({
 	pretitle,
@@ -24,11 +25,6 @@ export default function HeroThree({
 	textAlign: React.CSSProperties['textAlign']
 	alignItems: React.CSSProperties['alignItems']
 }>) {
-	const FADE_DOWN_ANIMATION_VARIANTS: Variants = {
-		hidden: { opacity: 0, y: -10 },
-		visible: { opacity: 1, y: 0, transition: { type: 'spring' } },
-	}
-
 	const components: PortableTextComponents = {
 		types: {
 			block: ({ value }: PortableTextTypeComponentProps<any>) => {

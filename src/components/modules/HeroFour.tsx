@@ -9,6 +9,7 @@ import { Img } from '@/components/Img'
 import { motionComponents } from '@/components/portable-text'
 import * as m from 'motion/react-m'
 import { Variants } from 'motion/react'
+import { FADE_DOWN_ANIMATION_VARIANTS } from '@/lib/motion'
 
 export default function HeroPostcard({
 	pretitle,
@@ -21,10 +22,6 @@ export default function HeroPostcard({
 	ctas: Sanity.CTA[]
 	image: Sanity.Image
 }>) {
-	const FADE_DOWN_ANIMATION_VARIANTS: Variants = {
-		hidden: { opacity: 0, y: -10 },
-		visible: { opacity: 1, y: 0, transition: { type: 'spring' } },
-	}
 	return (
 		<m.section
 			className="cyan-gradient-background-2 relative flex min-h-screen flex-col gap-6 py-[20vh] lg:gap-12"
