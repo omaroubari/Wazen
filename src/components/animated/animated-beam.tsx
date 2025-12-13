@@ -129,7 +129,7 @@ export const AnimatedBeam: React.FC<AnimatedBeamProps> = ({
 			height={svgDimensions.height}
 			xmlns="http://www.w3.org/2000/svg"
 			className={cn(
-				'pointer-events-none absolute left-0 top-0 h-full w-full transform-gpu stroke-2 drop-shadow-lg',
+				'pointer-events-none absolute top-0 left-0 h-full w-full transform-gpu stroke-2 drop-shadow-lg',
 				className,
 			)}
 			viewBox={`0 0 ${svgDimensions.width} ${svgDimensions.height}`}
@@ -159,7 +159,7 @@ export const AnimatedBeam: React.FC<AnimatedBeamProps> = ({
 						y1: '0%',
 						y2: '0%',
 					}}
-					animate={{
+					whileInView={{
 						x1: gradientCoordinates.x1,
 						x2: gradientCoordinates.x2,
 						y1: gradientCoordinates.y1,

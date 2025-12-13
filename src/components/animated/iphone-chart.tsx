@@ -261,7 +261,7 @@ export default function MobileApp() {
 						ease: 'linear',
 					}}
 					initial={{ pathLength: 0 }}
-					animate={{ pathLength: 1 }}
+					whileInView={{ pathLength: 1 }}
 					repeatCount="Infinity"
 					d="M16.729 219.59C28.1315 208.637 65.3258 186.43 84.0656 185.221C107.49 183.71 131.696 161.805 151.402 160.295C171.109 158.784 194.013 185.221 218.739 185.221C243.465 185.221 261.163 145.566 286.075 139.523C310.987 133.48 333.632 131.969 353.412 131.969"
 					stroke="#14b8a6"

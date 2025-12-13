@@ -4,7 +4,7 @@ const reports = () => {
 	return (
 		<m.div
 			initial="hidden"
-			animate="visible"
+			whileInView="visible"
 			variants={{
 				visible: {
 					transition: {
