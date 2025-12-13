@@ -21,7 +21,6 @@ export default function CallToActionTwo({
 	callToActionDoc,
 	className,
 }: Sanity.Module & { className?: string }) {
-	console.log(callToActionDoc)
 	const checkedListComponents: PortableTextComponents = {
 		types: {
 			block: ({ value }: PortableTextTypeComponentProps<any>) => {

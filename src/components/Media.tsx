@@ -40,7 +40,7 @@ export default function Media({
 }: {
 	className?: string
 	image: {
-		asset: {
+		asset?: {
 			_ref?: string
 			_weak?: boolean
 			originalFilename?: string

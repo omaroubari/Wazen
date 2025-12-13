@@ -1,4 +1,4 @@
-import type { SanityImageObject } from '@sanity/image-url/lib/types/types'
+import { SanityImageAsset } from '@/sanity/types'
 import type { SanityDocument } from 'next-sanity'
 import { CallToActionDoc } from 'sanity'
 
@@ -129,11 +129,11 @@ declare global {
 			locale?: string
 		}
 
-		type Image = SanityImageObject &
-			Partial<{
-				alt: string
-				loading: 'lazy' | 'eager'
-			}>
+		type Image = Partial<{
+			asset: SanityImageAsset
+			alt: string
+			loading: 'lazy' | 'eager'
+		}>
 
 		type Link = {
 			readonly _type: 'link'
