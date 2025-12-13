@@ -10,6 +10,8 @@ import { Icon } from '@iconify-icon/react'
 import { Img } from '@/components/Img'
 
 import { AnimatedBackground } from '@/components/animated/animated-background'
+import { defaultComponents } from '../portable-text'
+import { cn } from '@/lib/utils'
 
 export default function ProductList({
 	pretitle,
@@ -20,36 +22,15 @@ export default function ProductList({
 }: Partial<{
 	pretitle: string
 	content: any
-	products: [
-		{
-			productImage: any
-			productTitle: string
-			productDescription: string
-			link: Sanity.Link
-		},
-	]
+	products: {
+		productImage: any
+		productTitle: string
+		productDescription: string
+		link: Sanity.Link
+	}[]
 	textAlign: React.CSSProperties['textAlign']
 	alignItems: React.CSSProperties['alignItems']
 }>) {
-	const components: PortableTextComponents = {
-		types: {
-			block: ({ value }: PortableTextTypeComponentProps<any>) => {
-				if (value.style === 'h2') {
-					return (
-						<h2 className="h2 leading-tight font-semibold text-cyan-950">
-							{value.children.map((child: any) => child.text).join('')}
-						</h2>
-					)
-				}
-				return (
-					<p className="text-main mx-auto max-w-xl text-gray-600 md:max-w-3xl">
-						{value.children.map((child: any) => child.text).join('')}
-					</p>
-				)
-			},
-		},
-	}
-
 	return (
 		<section className="fluid-vertical-space bg-white">
 			<div className="section fluid-gap flex w-full flex-col items-center py-12">
@@ -57,15 +38,20 @@ export default function ProductList({
 					<Pretitle className="text-large font-semibold text-gray-400">
 						{pretitle}
 					</Pretitle>
-					<PortableText value={content} components={components} />
+					<PortableText value={content} components={defaultComponents} />
 				</div>
 				{products && (
-					<ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
+					<ul
+						className={cn(
+							'grid grid-cols-1 md:grid-cols-2',
+							products.length === 2 && '',
+							products.length === 3 && 'lg:grid-cols-3',
+							products.length >= 4 && 'lg:grid-cols-4',
+						)}
+					>
 						<AnimatedBackground
 							className="rounded-3xl bg-cyan-950"
 							transition={{
-								type: 'spring',
-								bounce: 0.2,
 								duration: 0.6,
 							}}
 							enableHover
