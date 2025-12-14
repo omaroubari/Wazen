@@ -139,20 +139,20 @@ export default function PartnersProgram({
 			block: ({ value }: PortableTextTypeComponentProps<any>) => {
 				if (value.style === 'h1') {
 					return (
-						<h1 className="text-large leading-tight font-semibold text-cyan-950">
+						<h1 className="lg:text-large text-lg leading-tight font-semibold text-cyan-950 sm:text-xl md:text-2xl">
 							{value.children.map((child: any) => child.text).join('')}
 						</h1>
 					)
 				}
 				if (value.style === 'h2') {
 					return (
-						<h2 className="text-large leading-tight font-semibold text-cyan-950">
+						<h2 className="lg:text-large text-lg leading-tight font-semibold text-cyan-950 sm:text-xl md:text-2xl">
 							{value.children.map((child: any) => child.text).join('')}
 						</h2>
 					)
 				}
 				return (
-					<p className="text-main text-gray-600">
+					<p className="md:text-main text-sm leading-relaxed text-gray-600 sm:text-base">
 						{value.children.map((child: any) => child.text).join('')}
 					</p>
 				)
@@ -185,10 +185,10 @@ export default function PartnersProgram({
 	}
 
 	return (
-		<section className="section bg-cyan-50/30 px-6 pt-16 pb-12 sm:px-8 sm:pt-24 sm:pb-16 md:px-10 md:pt-32 md:pb-24 lg:px-16 lg:pt-40 lg:pb-32">
-			<div className="mx-auto flex w-full max-w-7xl flex-col items-center justify-center gap-6 sm:gap-8 lg:flex-row lg:items-start lg:gap-12">
+		<section className="section bg-cyan-50/30 px-4 pt-16 pb-8 sm:px-6 sm:pt-24 sm:pb-12 md:px-8 md:pt-32 md:pb-20 lg:px-12 lg:pt-40 lg:pb-28 xl:px-16 xl:pt-44 xl:pb-32">
+			<div className="mx-auto flex w-full max-w-7xl flex-col items-center justify-center gap-5 sm:gap-6 md:gap-8 lg:flex-row lg:items-start lg:gap-10 xl:gap-12">
 				{/* Right Section - Main Content */}
-				<div className="flex w-full max-w-2xl flex-1 flex-col items-start gap-4 sm:gap-6">
+				<div className="flex w-full max-w-2xl flex-1 flex-col items-start gap-3 sm:gap-4 md:gap-5 lg:gap-6">
 					{/* Tagline Badge - Enhanced Design */}
 					{pretitle && (
 						<m.div
@@ -251,7 +251,7 @@ export default function PartnersProgram({
 
 					{/* Benefits List */}
 					{benefits && benefits.length > 0 && (
-						<ul className="flex flex-col gap-4">
+						<ul className="flex flex-col gap-3 sm:gap-4">
 							{benefits.map((benefit, index) => (
 								<m.li
 									key={index}
@@ -285,7 +285,7 @@ export default function PartnersProgram({
 
 					{/* CTA Buttons */}
 					{ctas && (
-						<div className="flex w-full flex-col gap-4 md:flex-row">
+						<div className="flex w-full flex-col gap-3 sm:gap-4 md:flex-row">
 							{ctas.map((cta, index) => (
 								<LinkButton
 									key={index}
@@ -316,7 +316,7 @@ export default function PartnersProgram({
 
 				{/* Left Section - Card */}
 				<m.div
-					className="relative w-full max-w-md flex-shrink-0 rounded-xl bg-white p-4 shadow-sm sm:rounded-2xl sm:p-6 lg:p-8"
+					className="relative w-full max-w-md flex-shrink-0 rounded-xl bg-white p-4 shadow-sm sm:rounded-2xl sm:p-5 md:p-6 lg:p-8"
 					initial="hidden"
 					whileInView="visible"
 					viewport={{ once: false, amount: 0.3 }}
@@ -331,7 +331,7 @@ export default function PartnersProgram({
 				>
 					{/* Card Title */}
 					{cardTitle && (
-						<h3 className="text-large mb-4 font-semibold text-cyan-950">
+						<h3 className="md:text-large mb-3 text-base font-semibold text-cyan-950 sm:mb-4 sm:text-lg">
 							{cardTitle}
 						</h3>
 					)}
@@ -387,14 +387,14 @@ export default function PartnersProgram({
 				aboutTitle ||
 				aboutDescription1 ||
 				aboutDescription2) && (
-				<div className="mx-auto mt-12 flex w-full max-w-7xl flex-col items-center gap-8 px-4 sm:mt-16 sm:gap-10 sm:px-6 md:mt-20 md:gap-12 md:px-8 lg:mt-24">
+				<div className="mx-auto mt-8 flex w-full max-w-7xl flex-col items-center gap-5 px-3 sm:mt-12 sm:gap-6 sm:px-4 md:mt-16 md:gap-8 md:px-6 lg:mt-20 lg:gap-10 lg:px-8 xl:mt-24 xl:gap-12">
 					{/* Header */}
-					<div className="flex w-full max-w-4xl flex-col items-center gap-4 text-center sm:gap-6">
+					<div className="flex w-full max-w-4xl flex-col items-center gap-3 text-center sm:gap-4 md:gap-6">
 						{/* Pretitle Badge - Enhanced Design */}
 						{aboutPretitle && (
 							<m.div
 								id="about"
-								className="group relative inline-flex items-center gap-3 rounded-full bg-gradient-to-r from-teal-50 to-cyan-50 px-6 py-3 shadow-sm transition-all duration-300 hover:shadow-md"
+								className="group relative inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-teal-50 to-cyan-50 px-4 py-2 text-xs shadow-sm transition-all duration-300 hover:shadow-md sm:gap-3 sm:px-6 sm:py-3 sm:text-sm"
 								initial="hidden"
 								whileInView="visible"
 								viewport={{ once: false, amount: 0.3 }}
@@ -445,7 +445,7 @@ export default function PartnersProgram({
 						)}
 
 						{/* Description Paragraphs */}
-						<div className="flex w-full max-w-3xl flex-col gap-6 text-center">
+						<div className="flex w-full max-w-3xl flex-col gap-4 text-center sm:gap-5 md:gap-6">
 							{aboutDescription1 && (
 								<div className="space-y-4">
 									<PortableText
@@ -467,7 +467,7 @@ export default function PartnersProgram({
 
 					{/* Feature Cards */}
 					{featureCards && featureCards.length > 0 && (
-						<div className="grid w-full max-w-6xl grid-cols-1 gap-6 sm:gap-8 md:grid-cols-2 lg:grid-cols-3">
+						<div className="grid w-full max-w-6xl grid-cols-1 gap-4 sm:gap-5 md:grid-cols-2 md:gap-6 lg:grid-cols-3 lg:gap-7 xl:gap-8">
 							{featureCards.map((card, index) => {
 								// Array of gradient colors for variety
 								const gradients = [
@@ -581,7 +581,7 @@ export default function PartnersProgram({
 				whoCanJoinDescription1 ||
 				whoCanJoinDescription2) && (
 				<m.div
-					className="mx-auto mt-12 flex w-full max-w-7xl flex-col items-center gap-6 px-4 sm:mt-16 sm:gap-8 sm:px-6 md:mt-20 md:px-8 lg:mt-24"
+					className="mx-auto mt-8 flex w-full max-w-7xl flex-col items-center gap-4 px-3 sm:mt-12 sm:gap-5 sm:px-4 md:mt-16 md:gap-6 md:px-6 lg:mt-20 lg:gap-8 lg:px-8 xl:mt-24"
 					initial="hidden"
 					whileInView="visible"
 					viewport={{ once: false, amount: 0.3 }}
@@ -594,11 +594,11 @@ export default function PartnersProgram({
 						},
 					}}
 				>
-					<div className="flex w-full max-w-4xl flex-col items-center gap-8 rounded-2xl bg-white p-8 shadow-sm lg:p-10">
+					<div className="flex w-full max-w-4xl flex-col items-center gap-5 rounded-xl bg-white p-5 shadow-sm sm:gap-6 sm:rounded-2xl sm:p-6 md:gap-7 md:p-7 lg:gap-8 lg:p-8 xl:p-10">
 						{/* Pretitle Badge - Enhanced Design */}
 						{whoCanJoinPretitle && (
 							<m.div
-								className="group relative inline-flex items-center gap-3 rounded-full bg-gradient-to-r from-teal-50 to-cyan-50 px-6 py-3 shadow-sm transition-all duration-300 hover:shadow-md"
+								className="group relative inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-teal-50 to-cyan-50 px-4 py-2 text-xs shadow-sm transition-all duration-300 hover:shadow-md sm:gap-3 sm:px-6 sm:py-3 sm:text-sm"
 								initial="hidden"
 								whileInView="visible"
 								viewport={{ once: false, amount: 0.3 }}
@@ -649,7 +649,7 @@ export default function PartnersProgram({
 						)}
 
 						{/* Description Paragraphs */}
-						<div className="flex w-full flex-col gap-6">
+						<div className="flex w-full flex-col gap-4 sm:gap-5 md:gap-6">
 							{whoCanJoinDescription1 && (
 								<m.div
 									className="space-y-4"
@@ -702,13 +702,13 @@ export default function PartnersProgram({
 				benefitsTitle ||
 				benefitsDescription ||
 				benefitCards) && (
-				<div className="mx-auto mt-12 flex w-full max-w-7xl flex-col items-center gap-8 px-4 sm:mt-16 sm:gap-10 sm:px-6 md:mt-20 md:gap-12 md:px-8 lg:mt-24">
+				<div className="mx-auto mt-8 flex w-full max-w-7xl flex-col items-center gap-5 px-3 sm:mt-12 sm:gap-6 sm:px-4 md:mt-16 md:gap-8 md:px-6 lg:mt-20 lg:gap-10 lg:px-8 xl:mt-24 xl:gap-12">
 					{/* Header */}
-					<div className="flex w-full max-w-4xl flex-col items-center gap-4 text-center sm:gap-6">
+					<div className="flex w-full max-w-4xl flex-col items-center gap-3 text-center sm:gap-4 md:gap-6">
 						{/* Pretitle Badge - Enhanced Design */}
 						{benefitsPretitle && (
 							<m.div
-								className="group relative inline-flex items-center gap-3 rounded-full bg-gradient-to-r from-teal-50 to-cyan-50 px-6 py-3 shadow-sm transition-all duration-300 hover:shadow-md"
+								className="group relative inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-teal-50 to-cyan-50 px-4 py-2 text-xs shadow-sm transition-all duration-300 hover:shadow-md sm:gap-3 sm:px-6 sm:py-3 sm:text-sm"
 								initial="hidden"
 								whileInView="visible"
 								viewport={{ once: false, amount: 0.3 }}
@@ -773,7 +773,7 @@ export default function PartnersProgram({
 
 					{/* Benefit Cards Grid */}
 					{benefitCards && benefitCards.length > 0 && (
-						<div className="grid w-full max-w-6xl grid-cols-1 gap-6 sm:gap-8 md:grid-cols-2 lg:grid-cols-3">
+						<div className="grid w-full max-w-6xl grid-cols-1 gap-4 sm:gap-5 md:grid-cols-2 md:gap-6 lg:grid-cols-3 lg:gap-7 xl:gap-8">
 							{benefitCards.map((card, index) => {
 								// Array of gradient colors for variety
 								const gradients = [
@@ -911,7 +911,7 @@ export default function PartnersProgram({
 						{/* Pretitle Badge - Enhanced Design */}
 						{howToStartPretitle && (
 							<m.div
-								className="group relative inline-flex items-center gap-3 rounded-full bg-gradient-to-r from-teal-50 to-cyan-50 px-6 py-3 shadow-sm transition-all duration-300 hover:shadow-md"
+								className="group relative inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-teal-50 to-cyan-50 px-4 py-2 text-xs shadow-sm transition-all duration-300 hover:shadow-md sm:gap-3 sm:px-6 sm:py-3 sm:text-sm"
 								initial="hidden"
 								whileInView="visible"
 								viewport={{ once: false, amount: 0.3 }}
@@ -976,11 +976,11 @@ export default function PartnersProgram({
 
 					{/* Steps */}
 					{steps && steps.length > 0 && (
-						<div className="grid w-full max-w-5xl grid-cols-1 gap-4 sm:gap-6 md:grid-cols-3 md:gap-8">
+						<div className="grid w-full max-w-5xl grid-cols-1 gap-4 sm:gap-5 md:grid-cols-3 md:gap-6 lg:gap-8">
 							{steps.map((step, index) => (
 								<m.div
 									key={index}
-									className="group relative flex flex-col gap-3 rounded-xl bg-white p-4 shadow-sm transition-all duration-300 hover:shadow-lg sm:gap-4 sm:rounded-2xl sm:p-5 lg:p-6"
+									className="group relative flex flex-col gap-3 rounded-xl bg-white p-4 shadow-sm transition-all duration-300 hover:shadow-lg sm:gap-4 sm:rounded-2xl sm:p-5 md:p-6 lg:p-7"
 									initial="hidden"
 									whileInView="visible"
 									viewport={{ once: false, amount: 0.3 }}
@@ -1054,7 +1054,7 @@ export default function PartnersProgram({
 			{/* Application Form Section */}
 			{(formPretitle || formTitle || formDescription) && (
 				<m.div
-					className="mx-auto mt-12 flex w-full max-w-7xl flex-col items-center gap-6 px-4 sm:mt-16 sm:gap-8 sm:px-6 md:mt-20 md:px-8 lg:mt-24"
+					className="mx-auto mt-8 flex w-full max-w-7xl flex-col items-center gap-5 px-3 sm:mt-12 sm:gap-6 sm:px-4 md:mt-16 md:gap-7 md:px-6 lg:mt-20 lg:gap-8 lg:px-8 xl:mt-24"
 					initial="hidden"
 					whileInView="visible"
 					viewport={{ once: false, amount: 0.3 }}
@@ -1067,13 +1067,13 @@ export default function PartnersProgram({
 						},
 					}}
 				>
-					<div className="flex w-full max-w-4xl flex-col items-center gap-6 rounded-xl bg-white p-6 shadow-sm sm:gap-8 sm:rounded-2xl sm:p-8 lg:p-10">
+					<div className="flex w-full max-w-4xl flex-col items-center gap-5 rounded-xl bg-white p-5 shadow-sm sm:gap-6 sm:rounded-2xl sm:p-6 md:gap-7 md:p-7 lg:gap-8 lg:p-8 xl:p-10">
 						{/* Header */}
-						<div className="flex w-full flex-col items-center gap-4 text-center sm:gap-6">
+						<div className="flex w-full flex-col items-center gap-3 text-center sm:gap-4 md:gap-5 lg:gap-6">
 							{/* Pretitle Badge - Enhanced Design */}
 							{formPretitle && (
 								<m.div
-									className="group relative inline-flex items-center gap-3 rounded-full bg-gradient-to-r from-teal-50 to-cyan-50 px-6 py-3 shadow-sm transition-all duration-300 hover:shadow-md"
+									className="group relative inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-teal-50 to-cyan-50 px-4 py-2 text-xs shadow-sm transition-all duration-300 hover:shadow-md sm:gap-3 sm:px-6 sm:py-3 sm:text-sm"
 									initial="hidden"
 									whileInView="visible"
 									viewport={{ once: false, amount: 0.3 }}
@@ -1145,7 +1145,7 @@ export default function PartnersProgram({
 			{/* FAQ Section */}
 			{(faqPretitle || faqTitle || faqItems) && (
 				<m.div
-					className="mx-auto mt-12 flex w-full max-w-7xl flex-col items-center gap-8 px-4 sm:mt-16 sm:gap-10 sm:px-6 md:mt-20 md:gap-12 md:px-8 lg:mt-24"
+					className="mx-auto mt-8 flex w-full max-w-7xl flex-col items-center gap-5 px-3 sm:mt-12 sm:gap-6 sm:px-4 md:mt-16 md:gap-8 md:px-6 lg:mt-20 lg:gap-10 lg:px-8 xl:mt-24"
 					initial="hidden"
 					whileInView="visible"
 					viewport={{ once: false, amount: 0.3 }}
@@ -1159,11 +1159,11 @@ export default function PartnersProgram({
 					}}
 				>
 					{/* Header */}
-					<div className="flex w-full max-w-4xl flex-col items-center gap-6 text-center">
+					<div className="flex w-full max-w-4xl flex-col items-center gap-4 text-center sm:gap-5 md:gap-6">
 						{/* Pretitle Badge - Enhanced Design */}
 						{faqPretitle && (
 							<m.div
-								className="group relative inline-flex items-center gap-3 rounded-full bg-gradient-to-r from-teal-50 to-cyan-50 px-6 py-3 shadow-sm transition-all duration-300 hover:shadow-md"
+								className="group relative inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-teal-50 to-cyan-50 px-4 py-2 text-xs shadow-sm transition-all duration-300 hover:shadow-md sm:gap-3 sm:px-6 sm:py-3 sm:text-sm"
 								initial="hidden"
 								whileInView="visible"
 								viewport={{ once: false, amount: 0.3 }}
@@ -1269,13 +1269,13 @@ function FAQItem({
 			<button
 				type="button"
 				onClick={() => setIsOpen(!isOpen)}
-				className="flex w-full items-center justify-between gap-3 p-4 text-left transition-colors duration-200 hover:bg-gray-50/50 sm:gap-4 sm:p-6 lg:p-8"
+				className="flex w-full items-center justify-between gap-2.5 p-3.5 text-left transition-colors duration-200 hover:bg-gray-50/50 sm:gap-3 sm:p-4 md:gap-4 md:p-5 lg:p-6 xl:p-8"
 			>
-				<div className="flex flex-1 items-start gap-3 sm:gap-4">
+				<div className="flex flex-1 items-start gap-2.5 sm:gap-3 md:gap-4">
 					{/* Question Icon */}
-					<div className="mt-1 flex size-7 shrink-0 items-center justify-center rounded-lg bg-teal-100 text-teal-600 transition-colors duration-300 group-hover:bg-teal-200 sm:size-8">
+					<div className="mt-0.5 flex size-6 shrink-0 items-center justify-center rounded-lg bg-teal-100 text-teal-600 transition-colors duration-300 group-hover:bg-teal-200 sm:mt-1 sm:size-7 md:size-8">
 						<svg
-							className="size-4"
+							className="size-3.5 sm:size-4 md:size-4.5"
 							fill="none"
 							stroke="currentColor"
 							viewBox="0 0 24 24"
@@ -1304,10 +1304,10 @@ function FAQItem({
 				<m.div
 					animate={{ rotate: isOpen ? 180 : 0 }}
 					transition={{ duration: 0.3, ease: 'easeInOut' }}
-					className="flex size-7 shrink-0 items-center justify-center rounded-lg bg-gray-100 text-gray-600 transition-colors duration-300 group-hover:bg-teal-100 group-hover:text-teal-600 sm:size-8"
+					className="flex size-6 shrink-0 items-center justify-center rounded-lg bg-gray-100 text-gray-600 transition-colors duration-300 group-hover:bg-teal-100 group-hover:text-teal-600 sm:size-7 md:size-8"
 				>
 					<svg
-						className="size-5"
+						className="size-4 sm:size-4.5 md:size-5"
 						fill="none"
 						stroke="currentColor"
 						viewBox="0 0 24 24"
@@ -1335,9 +1335,9 @@ function FAQItem({
 				}}
 				className="overflow-hidden"
 			>
-				<div className="border-t border-gray-100 px-4 pt-3 pb-4 sm:px-6 sm:pt-4 sm:pb-6 lg:px-8 lg:pb-8">
+				<div className="border-t border-gray-100 px-3.5 pt-2.5 pb-3.5 sm:px-4 sm:pt-3 sm:pb-4 md:px-5 md:pt-3.5 md:pb-5 lg:px-6 lg:pt-4 lg:pb-6 xl:px-8 xl:pb-8">
 					{answer && (
-						<p className="text-sm leading-relaxed text-gray-600 sm:text-base">
+						<p className="text-xs leading-relaxed text-gray-600 sm:text-sm md:text-base">
 							{answer}
 						</p>
 					)}
