@@ -185,14 +185,14 @@ export default function PartnersProgram({
 	}
 
 	return (
-		<section className="section bg-cyan-50/30 pt-16 pb-12 sm:pt-24 sm:pb-16 md:pt-32 md:pb-24">
-			<div className="flex w-full flex-col items-center justify-center gap-8 lg:flex-row lg:items-start lg:gap-12">
+		<section className="section bg-cyan-50/30 px-6 pt-16 pb-12 sm:px-8 sm:pt-24 sm:pb-16 md:px-10 md:pt-32 md:pb-24 lg:px-16 lg:pt-40 lg:pb-32">
+			<div className="mx-auto flex w-full max-w-7xl flex-col items-center justify-center gap-6 sm:gap-8 lg:flex-row lg:items-start lg:gap-12">
 				{/* Right Section - Main Content */}
-				<div className="flex w-full max-w-2xl flex-1 flex-col items-start gap-6">
+				<div className="flex w-full max-w-2xl flex-1 flex-col items-start gap-4 sm:gap-6">
 					{/* Tagline Badge - Enhanced Design */}
 					{pretitle && (
 						<m.div
-							className="group relative inline-flex items-center gap-3 rounded-full bg-gradient-to-r from-teal-50 to-cyan-50 px-6 py-3 shadow-sm transition-all duration-300 hover:shadow-md"
+							className="group relative inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-teal-50 to-cyan-50 px-4 py-2 text-xs shadow-sm transition-all duration-300 hover:shadow-md sm:gap-3 sm:px-6 sm:py-3 sm:text-sm"
 							initial="hidden"
 							whileInView="visible"
 							viewport={{ once: false, amount: 0.3 }}
@@ -223,14 +223,13 @@ export default function PartnersProgram({
 							>
 								<span className="absolute size-3 rounded-full bg-teal-500" />
 								<span className="absolute size-3 animate-ping rounded-full bg-teal-400 opacity-75" />
-						
 							</m.span>
-							
+
 							{/* Text */}
 							<span className="text-small font-semibold text-teal-700 transition-colors duration-300 group-hover:text-teal-800">
 								{pretitle}
 							</span>
-							
+
 							{/* Decorative gradient */}
 							<div className="absolute inset-0 rounded-full bg-gradient-to-r from-teal-100/50 via-transparent to-cyan-100/50 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 						</m.div>
@@ -292,7 +291,11 @@ export default function PartnersProgram({
 									key={index}
 									{...cta}
 									locale={locale}
-									variant={(cta.style as any) === 'outline' ? 'outline' : (cta.style as any) || 'secondary'}
+									variant={
+										(cta.style as any) === 'outline'
+											? 'outline'
+											: (cta.style as any) || 'secondary'
+									}
 									size="lg"
 									className="w-full md:w-auto"
 								/>
@@ -313,7 +316,7 @@ export default function PartnersProgram({
 
 				{/* Left Section - Card */}
 				<m.div
-					className="relative w-full max-w-md flex-shrink-0 rounded-2xl bg-white p-6 shadow-sm lg:p-8"
+					className="relative w-full max-w-md flex-shrink-0 rounded-xl bg-white p-4 shadow-sm sm:rounded-2xl sm:p-6 lg:p-8"
 					initial="hidden"
 					whileInView="visible"
 					viewport={{ once: false, amount: 0.3 }}
@@ -328,7 +331,7 @@ export default function PartnersProgram({
 				>
 					{/* Card Title */}
 					{cardTitle && (
-						<h3 className="mb-4 text-large font-semibold text-cyan-950">
+						<h3 className="text-large mb-4 font-semibold text-cyan-950">
 							{cardTitle}
 						</h3>
 					)}
@@ -369,7 +372,7 @@ export default function PartnersProgram({
 										aria-hidden="true"
 										className="mt-2 h-2 w-2 flex-shrink-0 rounded-full bg-teal-500"
 									/>
-									<span className="text-main text-gray-600 text-center">
+									<span className="text-main text-center text-gray-600">
 										{benefit.text}
 									</span>
 								</m.li>
@@ -380,10 +383,13 @@ export default function PartnersProgram({
 			</div>
 
 			{/* About Program Section */}
-			{(aboutPretitle || aboutTitle || aboutDescription1 || aboutDescription2) && (
-				<div className="mt-24 flex w-full flex-col items-center gap-12">
+			{(aboutPretitle ||
+				aboutTitle ||
+				aboutDescription1 ||
+				aboutDescription2) && (
+				<div className="mx-auto mt-12 flex w-full max-w-7xl flex-col items-center gap-8 px-4 sm:mt-16 sm:gap-10 sm:px-6 md:mt-20 md:gap-12 md:px-8 lg:mt-24">
 					{/* Header */}
-					<div className="flex w-full max-w-4xl flex-col items-center gap-6 text-center">
+					<div className="flex w-full max-w-4xl flex-col items-center gap-4 text-center sm:gap-6">
 						{/* Pretitle Badge - Enhanced Design */}
 						{aboutPretitle && (
 							<m.div
@@ -420,12 +426,12 @@ export default function PartnersProgram({
 									<span className="absolute size-3 rounded-full bg-teal-500" />
 									<span className="absolute size-3 animate-ping rounded-full bg-teal-400 opacity-75" />
 								</m.span>
-								
+
 								{/* Text */}
 								<span className="text-small font-semibold text-teal-700 transition-colors duration-300 group-hover:text-teal-800">
 									{aboutPretitle}
 								</span>
-								
+
 								{/* Decorative gradient */}
 								<div className="absolute inset-0 rounded-full bg-gradient-to-r from-teal-100/50 via-transparent to-cyan-100/50 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 							</m.div>
@@ -461,11 +467,11 @@ export default function PartnersProgram({
 
 					{/* Feature Cards */}
 					{featureCards && featureCards.length > 0 && (
-						<div className="grid w-full max-w-6xl grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+						<div className="grid w-full max-w-6xl grid-cols-1 gap-4 sm:gap-6 md:grid-cols-2 lg:grid-cols-3">
 							{featureCards.map((card, index) => (
 								<m.div
 									key={index}
-									className="group relative flex flex-col gap-5 overflow-hidden rounded-2xl border border-gray-100 bg-white p-6 shadow-sm transition-all duration-300 hover:border-teal-200 hover:shadow-xl hover:shadow-teal-50/50 lg:p-8"
+									className="group relative flex flex-col gap-4 overflow-hidden rounded-xl border border-gray-100 bg-white p-4 shadow-sm transition-all duration-300 hover:border-teal-200 hover:shadow-xl hover:shadow-teal-50/50 sm:gap-5 sm:rounded-2xl sm:p-6 lg:p-8"
 									initial="hidden"
 									whileInView="visible"
 									viewport={{ once: false, amount: 0.3 }}
@@ -490,21 +496,21 @@ export default function PartnersProgram({
 								>
 									{/* Decorative gradient overlay on hover */}
 									<div className="absolute inset-0 bg-gradient-to-br from-teal-50/0 via-transparent to-cyan-50/0 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-									
+
 									{/* Card Title */}
 									{card.title && (
-										<h3 className="relative z-10 text-base font-semibold leading-tight text-cyan-950 transition-colors duration-300 group-hover:text-teal-700 lg:text-lg">
+										<h3 className="relative z-10 text-base leading-tight font-semibold text-cyan-950 transition-colors duration-300 group-hover:text-teal-700 lg:text-lg">
 											{card.title}
 										</h3>
 									)}
 
 									{/* Card Description */}
 									{card.description && (
-										<p className="relative z-10 text-main leading-relaxed text-gray-600">
+										<p className="text-main relative z-10 leading-relaxed text-gray-600">
 											{card.description}
 										</p>
 									)}
-									
+
 									{/* Subtle shine effect */}
 									<div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/30 to-transparent opacity-0 transition-all duration-700 group-hover:translate-x-full group-hover:opacity-100" />
 								</m.div>
@@ -520,7 +526,7 @@ export default function PartnersProgram({
 				whoCanJoinDescription1 ||
 				whoCanJoinDescription2) && (
 				<m.div
-					className="mt-24 flex w-full flex-col items-center gap-8"
+					className="mx-auto mt-12 flex w-full max-w-7xl flex-col items-center gap-6 px-4 sm:mt-16 sm:gap-8 sm:px-6 md:mt-20 md:px-8 lg:mt-24"
 					initial="hidden"
 					whileInView="visible"
 					viewport={{ once: false, amount: 0.3 }}
@@ -568,14 +574,13 @@ export default function PartnersProgram({
 								>
 									<span className="absolute size-3 rounded-full bg-teal-500" />
 									<span className="absolute size-3 animate-ping rounded-full bg-teal-400 opacity-75" />
-							
 								</m.span>
-								
+
 								{/* Text */}
 								<span className="text-small font-semibold text-teal-700 transition-colors duration-300 group-hover:text-teal-800">
 									{whoCanJoinPretitle}
 								</span>
-								
+
 								{/* Decorative gradient */}
 								<div className="absolute inset-0 rounded-full bg-gradient-to-r from-teal-100/50 via-transparent to-cyan-100/50 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 							</m.div>
@@ -638,10 +643,13 @@ export default function PartnersProgram({
 			)}
 
 			{/* Benefits Section */}
-			{(benefitsPretitle || benefitsTitle || benefitsDescription || benefitCards) && (
-				<div className="mt-24 flex w-full flex-col items-center gap-12">
+			{(benefitsPretitle ||
+				benefitsTitle ||
+				benefitsDescription ||
+				benefitCards) && (
+				<div className="mx-auto mt-12 flex w-full max-w-7xl flex-col items-center gap-8 px-4 sm:mt-16 sm:gap-10 sm:px-6 md:mt-20 md:gap-12 md:px-8 lg:mt-24">
 					{/* Header */}
-					<div className="flex w-full max-w-4xl flex-col items-center gap-6 text-center">
+					<div className="flex w-full max-w-4xl flex-col items-center gap-4 text-center sm:gap-6">
 						{/* Pretitle Badge - Enhanced Design */}
 						{benefitsPretitle && (
 							<m.div
@@ -677,12 +685,12 @@ export default function PartnersProgram({
 									<span className="absolute size-3 rounded-full bg-teal-500" />
 									<span className="absolute size-3 animate-ping rounded-full bg-teal-400 opacity-75" />
 								</m.span>
-								
+
 								{/* Text */}
 								<span className="text-small font-semibold text-teal-700 transition-colors duration-300 group-hover:text-teal-800">
 									{benefitsPretitle}
 								</span>
-								
+
 								{/* Decorative gradient */}
 								<div className="absolute inset-0 rounded-full bg-gradient-to-r from-teal-100/50 via-transparent to-cyan-100/50 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 							</m.div>
@@ -710,11 +718,11 @@ export default function PartnersProgram({
 
 					{/* Benefit Cards Grid */}
 					{benefitCards && benefitCards.length > 0 && (
-						<div className="grid w-full max-w-6xl grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+						<div className="grid w-full max-w-6xl grid-cols-1 gap-4 sm:gap-6 md:grid-cols-2 lg:grid-cols-3">
 							{benefitCards.map((card, index) => (
 								<m.div
 									key={index}
-									className="group relative flex flex-col gap-5 overflow-hidden rounded-2xl border border-gray-100 bg-white p-6 shadow-sm transition-all duration-300 hover:border-teal-200 hover:shadow-xl hover:shadow-teal-50/50 lg:p-8"
+									className="group relative flex flex-col gap-4 overflow-hidden rounded-xl border border-gray-100 bg-white p-4 shadow-sm transition-all duration-300 hover:border-teal-200 hover:shadow-xl hover:shadow-teal-50/50 sm:gap-5 sm:rounded-2xl sm:p-6 lg:p-8"
 									initial="hidden"
 									whileInView="visible"
 									viewport={{ once: false, amount: 0.3 }}
@@ -739,21 +747,21 @@ export default function PartnersProgram({
 								>
 									{/* Decorative gradient overlay on hover */}
 									<div className="absolute inset-0 bg-gradient-to-br from-teal-50/0 via-transparent to-cyan-50/0 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-									
+
 									{/* Card Title */}
 									{card.title && (
-										<h3 className="relative z-10 text-base font-semibold leading-tight text-cyan-950 transition-colors duration-300 group-hover:text-teal-700 lg:text-lg">
+										<h3 className="relative z-10 text-base leading-tight font-semibold text-cyan-950 transition-colors duration-300 group-hover:text-teal-700 lg:text-lg">
 											{card.title}
 										</h3>
 									)}
 
 									{/* Card Description */}
 									{card.description && (
-										<p className="relative z-10 text-main leading-relaxed text-gray-600">
+										<p className="text-main relative z-10 leading-relaxed text-gray-600">
 											{card.description}
 										</p>
 									)}
-									
+
 									{/* Subtle shine effect */}
 									<div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/30 to-transparent opacity-0 transition-all duration-700 group-hover:translate-x-full group-hover:opacity-100" />
 								</m.div>
@@ -769,7 +777,7 @@ export default function PartnersProgram({
 				howToStartDescription ||
 				steps) && (
 				<m.div
-					className="mt-24 flex w-full flex-col items-center gap-12"
+					className="mx-auto mt-12 flex w-full max-w-7xl flex-col items-center gap-8 px-4 sm:mt-16 sm:gap-10 sm:px-6 md:mt-20 md:gap-12 md:px-8 lg:mt-24"
 					initial="hidden"
 					whileInView="visible"
 					viewport={{ once: false, amount: 0.3 }}
@@ -819,12 +827,12 @@ export default function PartnersProgram({
 									<span className="absolute size-3 rounded-full bg-teal-500" />
 									<span className="absolute size-3 animate-ping rounded-full bg-teal-400 opacity-75" />
 								</m.span>
-								
+
 								{/* Text */}
 								<span className="text-small font-semibold text-teal-700 transition-colors duration-300 group-hover:text-teal-800">
 									{howToStartPretitle}
 								</span>
-								
+
 								{/* Decorative gradient */}
 								<div className="absolute inset-0 rounded-full bg-gradient-to-r from-teal-100/50 via-transparent to-cyan-100/50 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 							</m.div>
@@ -852,11 +860,11 @@ export default function PartnersProgram({
 
 					{/* Steps */}
 					{steps && steps.length > 0 && (
-						<div className="grid w-full max-w-5xl grid-cols-1 gap-8 md:grid-cols-3">
+						<div className="grid w-full max-w-5xl grid-cols-1 gap-4 sm:gap-6 md:grid-cols-3 md:gap-8">
 							{steps.map((step, index) => (
 								<m.div
 									key={index}
-									className="group relative flex flex-col gap-4 rounded-2xl bg-white p-5 shadow-sm transition-all duration-300 hover:shadow-lg lg:p-6"
+									className="group relative flex flex-col gap-3 rounded-xl bg-white p-4 shadow-sm transition-all duration-300 hover:shadow-lg sm:gap-4 sm:rounded-2xl sm:p-5 lg:p-6"
 									initial="hidden"
 									whileInView="visible"
 									viewport={{ once: false, amount: 0.3 }}
@@ -879,9 +887,9 @@ export default function PartnersProgram({
 									}}
 								>
 									{/* Step Number Circle */}
-									<div className="flex items-start gap-4">
+									<div className="flex items-start gap-3 sm:gap-4">
 										<m.div
-											className="relative flex size-12 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-teal-100 to-teal-50 shadow-sm transition-all duration-300 group-hover:scale-110 group-hover:shadow-md"
+											className="relative flex size-10 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-teal-100 to-teal-50 shadow-sm transition-all duration-300 group-hover:scale-110 group-hover:shadow-md sm:size-12"
 											animate={{
 												scale: [1, 1.2, 1],
 											}}
@@ -891,7 +899,7 @@ export default function PartnersProgram({
 												ease: 'easeInOut',
 											}}
 										>
-											<span className="relative z-10 text-lg font-bold text-teal-700">
+											<span className="relative z-10 text-base font-bold text-teal-700 sm:text-lg">
 												{step.number || index + 1}
 											</span>
 											<span className="absolute inset-0 rounded-full bg-teal-200/30 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
@@ -902,7 +910,7 @@ export default function PartnersProgram({
 										<div className="flex flex-1 flex-col gap-3">
 											{/* Step Title */}
 											{step.title && (
-												<h3 className="text-xs font-semibold leading-tight text-cyan-950 transition-colors duration-300 group-hover:text-teal-700 lg:text-sm">
+												<h3 className="text-xs leading-tight font-semibold text-cyan-950 transition-colors duration-300 group-hover:text-teal-700 lg:text-sm">
 													{step.title}
 												</h3>
 											)}
@@ -918,7 +926,7 @@ export default function PartnersProgram({
 
 									{/* Decorative line connecting steps (only on desktop) */}
 									{index < steps.length - 1 && (
-										<div className="absolute -right-4 top-12 hidden h-0.5 w-8 bg-gradient-to-r from-teal-200 to-transparent md:block" />
+										<div className="absolute top-12 -right-4 hidden h-0.5 w-8 bg-gradient-to-r from-teal-200 to-transparent md:block" />
 									)}
 								</m.div>
 							))}
@@ -930,7 +938,7 @@ export default function PartnersProgram({
 			{/* Application Form Section */}
 			{(formPretitle || formTitle || formDescription) && (
 				<m.div
-					className="mt-24 flex w-full flex-col items-center gap-8"
+					className="mx-auto mt-12 flex w-full max-w-7xl flex-col items-center gap-6 px-4 sm:mt-16 sm:gap-8 sm:px-6 md:mt-20 md:px-8 lg:mt-24"
 					initial="hidden"
 					whileInView="visible"
 					viewport={{ once: false, amount: 0.3 }}
@@ -943,9 +951,9 @@ export default function PartnersProgram({
 						},
 					}}
 				>
-					<div className="flex w-full max-w-4xl flex-col items-center gap-8 rounded-2xl bg-white p-8 shadow-sm lg:p-10">
+					<div className="flex w-full max-w-4xl flex-col items-center gap-6 rounded-xl bg-white p-6 shadow-sm sm:gap-8 sm:rounded-2xl sm:p-8 lg:p-10">
 						{/* Header */}
-						<div className="flex w-full flex-col items-center gap-6 text-center">
+						<div className="flex w-full flex-col items-center gap-4 text-center sm:gap-6">
 							{/* Pretitle Badge - Enhanced Design */}
 							{formPretitle && (
 								<m.div
@@ -981,12 +989,12 @@ export default function PartnersProgram({
 										<span className="absolute size-3 rounded-full bg-teal-500" />
 										<span className="absolute size-3 animate-ping rounded-full bg-teal-400 opacity-75" />
 									</m.span>
-									
+
 									{/* Text */}
 									<span className="text-small font-semibold text-teal-700 transition-colors duration-300 group-hover:text-teal-800">
 										{formPretitle}
 									</span>
-									
+
 									{/* Decorative gradient */}
 									<div className="absolute inset-0 rounded-full bg-gradient-to-r from-teal-100/50 via-transparent to-cyan-100/50 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 								</m.div>
@@ -1021,7 +1029,7 @@ export default function PartnersProgram({
 			{/* FAQ Section */}
 			{(faqPretitle || faqTitle || faqItems) && (
 				<m.div
-					className="mt-24 flex w-full flex-col items-center gap-12"
+					className="mx-auto mt-12 flex w-full max-w-7xl flex-col items-center gap-8 px-4 sm:mt-16 sm:gap-10 sm:px-6 md:mt-20 md:gap-12 md:px-8 lg:mt-24"
 					initial="hidden"
 					whileInView="visible"
 					viewport={{ once: false, amount: 0.3 }}
@@ -1071,12 +1079,12 @@ export default function PartnersProgram({
 									<span className="absolute size-3 rounded-full bg-teal-500" />
 									<span className="absolute size-3 animate-ping rounded-full bg-teal-400 opacity-75" />
 								</m.span>
-								
+
 								{/* Text */}
 								<span className="text-small font-semibold text-teal-700 transition-colors duration-300 group-hover:text-teal-800">
 									{faqPretitle}
 								</span>
-								
+
 								{/* Decorative gradient */}
 								<div className="absolute inset-0 rounded-full bg-gradient-to-r from-teal-100/50 via-transparent to-cyan-100/50 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 							</m.div>
@@ -1092,25 +1100,39 @@ export default function PartnersProgram({
 
 					{/* FAQ Accordion */}
 					{faqItems && faqItems.length > 0 && (
-						<div className="w-full max-w-4xl space-y-4">
-							{faqItems.map((item: { question: string; answer: string }, index: number) => (
-								<FAQItem key={index} question={item.question} answer={item.answer} index={index} />
-							))}
+						<div className="w-full max-w-4xl space-y-3 sm:space-y-4">
+							{faqItems.map(
+								(item: { question: string; answer: string }, index: number) => (
+									<FAQItem
+										key={index}
+										question={item.question}
+										answer={item.answer}
+										index={index}
+									/>
+								),
+							)}
 						</div>
 					)}
 				</m.div>
 			)}
-
 		</section>
 	)
 }
 
-function FAQItem({ question, answer, index }: { question: string; answer: string; index: number }) {
+function FAQItem({
+	question,
+	answer,
+	index,
+}: {
+	question: string
+	answer: string
+	index: number
+}) {
 	const [isOpen, setIsOpen] = useState(false)
 
 	return (
 		<m.div
-			className="group relative overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm transition-all duration-300 hover:border-teal-300 hover:shadow-md"
+			className="group relative overflow-hidden rounded-lg border border-gray-200 bg-white shadow-sm transition-all duration-300 hover:border-teal-300 hover:shadow-md sm:rounded-xl"
 			initial="hidden"
 			whileInView="visible"
 			viewport={{ once: false, amount: 0.3 }}
@@ -1131,11 +1153,11 @@ function FAQItem({ question, answer, index }: { question: string; answer: string
 			<button
 				type="button"
 				onClick={() => setIsOpen(!isOpen)}
-				className="flex w-full items-center justify-between gap-4 p-6 text-left transition-colors duration-200 hover:bg-gray-50/50 lg:p-8"
+				className="flex w-full items-center justify-between gap-3 p-4 text-left transition-colors duration-200 hover:bg-gray-50/50 sm:gap-4 sm:p-6 lg:p-8"
 			>
-				<div className="flex flex-1 items-start gap-4">
+				<div className="flex flex-1 items-start gap-3 sm:gap-4">
 					{/* Question Icon */}
-					<div className="mt-1 flex size-8 shrink-0 items-center justify-center rounded-lg bg-teal-100 text-teal-600 transition-colors duration-300 group-hover:bg-teal-200">
+					<div className="mt-1 flex size-7 shrink-0 items-center justify-center rounded-lg bg-teal-100 text-teal-600 transition-colors duration-300 group-hover:bg-teal-200 sm:size-8">
 						<svg
 							className="size-4"
 							fill="none"
@@ -1153,7 +1175,10 @@ function FAQItem({ question, answer, index }: { question: string; answer: string
 
 					{/* Question Text */}
 					{question && (
-						<h3 dir="rtl" className="flex-1 text-start text-base font-semibold leading-tight text-cyan-950 transition-colors duration-300 group-hover:text-teal-700 lg:text-lg">
+						<h3
+							dir="rtl"
+							className="flex-1 text-start text-sm leading-tight font-semibold text-cyan-950 transition-colors duration-300 group-hover:text-teal-700 sm:text-base lg:text-lg"
+						>
 							{question}
 						</h3>
 					)}
@@ -1163,7 +1188,7 @@ function FAQItem({ question, answer, index }: { question: string; answer: string
 				<m.div
 					animate={{ rotate: isOpen ? 180 : 0 }}
 					transition={{ duration: 0.3, ease: 'easeInOut' }}
-					className="flex size-8 shrink-0 items-center justify-center rounded-lg bg-gray-100 text-gray-600 transition-colors duration-300 group-hover:bg-teal-100 group-hover:text-teal-600"
+					className="flex size-7 shrink-0 items-center justify-center rounded-lg bg-gray-100 text-gray-600 transition-colors duration-300 group-hover:bg-teal-100 group-hover:text-teal-600 sm:size-8"
 				>
 					<svg
 						className="size-5"
@@ -1194,9 +1219,9 @@ function FAQItem({ question, answer, index }: { question: string; answer: string
 				}}
 				className="overflow-hidden"
 			>
-				<div className="border-t border-gray-100 px-6 pb-6 pt-4 lg:px-8 lg:pb-8">
+				<div className="border-t border-gray-100 px-4 pt-3 pb-4 sm:px-6 sm:pt-4 sm:pb-6 lg:px-8 lg:pb-8">
 					{answer && (
-						<p className="text-main leading-relaxed text-gray-600">
+						<p className="text-sm leading-relaxed text-gray-600 sm:text-base">
 							{answer}
 						</p>
 					)}
@@ -1204,7 +1229,7 @@ function FAQItem({ question, answer, index }: { question: string; answer: string
 			</m.div>
 
 			{/* Decorative gradient overlay */}
-			<div className="absolute inset-0 bg-gradient-to-br from-teal-50/0 via-transparent to-cyan-50/0 opacity-0 transition-opacity duration-300 group-hover:opacity-100 pointer-events-none" />
+			<div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-teal-50/0 via-transparent to-cyan-50/0 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 		</m.div>
 	)
 }
@@ -1280,14 +1305,11 @@ function ApplicationForm() {
 		<form
 			id="form-partner-program"
 			onSubmit={form.handleSubmit(onSubmit)}
-			className="flex w-full flex-col gap-6"
+			className="flex w-full flex-col gap-4 sm:gap-6"
 		>
 			{/* Full Name */}
 			<div className="flex flex-col gap-2">
-				<label
-					htmlFor="fullName"
-					className="text-sm font-medium text-cyan-950"
-				>
+				<label htmlFor="fullName" className="text-sm font-medium text-cyan-950">
 					الاسم الكامل *
 				</label>
 				<Input
@@ -1296,7 +1318,8 @@ function ApplicationForm() {
 					placeholder="مثال: أحمد محمد"
 					{...form.register('fullName')}
 					className={cn(
-						form.formState.errors.fullName && 'border-red-500 focus-visible:ring-red-500',
+						form.formState.errors.fullName &&
+							'border-red-500 focus-visible:ring-red-500',
 					)}
 				/>
 				{form.formState.errors.fullName && (
@@ -1307,10 +1330,10 @@ function ApplicationForm() {
 			</div>
 
 			{/* Company Name */}
-			<div className="flex flex-col gap-2">
+			<div className="flex flex-col gap-1.5 sm:gap-2">
 				<label
 					htmlFor="companyName"
-					className="text-sm font-medium text-cyan-950"
+					className="text-xs font-medium text-cyan-950 sm:text-sm"
 				>
 					اسم الشركة *
 				</label>
@@ -1320,7 +1343,8 @@ function ApplicationForm() {
 					placeholder="اسم الشركة كما في السجل التجاري"
 					{...form.register('companyName')}
 					className={cn(
-						form.formState.errors.companyName && 'border-red-500 focus-visible:ring-red-500',
+						form.formState.errors.companyName &&
+							'border-red-500 focus-visible:ring-red-500',
 					)}
 				/>
 				{form.formState.errors.companyName && (
@@ -1332,10 +1356,7 @@ function ApplicationForm() {
 
 			{/* Position */}
 			<div className="flex flex-col gap-2">
-				<label
-					htmlFor="position"
-					className="text-sm font-medium text-cyan-950"
-				>
+				<label htmlFor="position" className="text-sm font-medium text-cyan-950">
 					المنصب *
 				</label>
 				<Input
@@ -1344,7 +1365,8 @@ function ApplicationForm() {
 					placeholder="المدير العام، شريك مؤسس، مدير المبيعات..."
 					{...form.register('position')}
 					className={cn(
-						form.formState.errors.position && 'border-red-500 focus-visible:ring-red-500',
+						form.formState.errors.position &&
+							'border-red-500 focus-visible:ring-red-500',
 					)}
 				/>
 				{form.formState.errors.position && (
@@ -1355,10 +1377,10 @@ function ApplicationForm() {
 			</div>
 
 			{/* Mobile Number */}
-			<div className="flex flex-col gap-2">
+			<div className="flex flex-col gap-1.5 sm:gap-2">
 				<label
 					htmlFor="mobileNumber"
-					className="text-sm font-medium text-cyan-950"
+					className="text-xs font-medium text-cyan-950 sm:text-sm"
 				>
 					رقم الجوال *
 				</label>
@@ -1370,7 +1392,8 @@ function ApplicationForm() {
 					{...form.register('mobileNumber')}
 					className={cn(
 						'text-right',
-						form.formState.errors.mobileNumber && 'border-red-500 focus-visible:ring-red-500',
+						form.formState.errors.mobileNumber &&
+							'border-red-500 focus-visible:ring-red-500',
 					)}
 				/>
 				{form.formState.errors.mobileNumber && (
@@ -1382,10 +1405,7 @@ function ApplicationForm() {
 
 			{/* Email */}
 			<div className="flex flex-col gap-2">
-				<label
-					htmlFor="email"
-					className="text-sm font-medium text-cyan-950"
-				>
+				<label htmlFor="email" className="text-sm font-medium text-cyan-950">
 					البريد الإلكتروني *
 				</label>
 				<Input
@@ -1394,7 +1414,8 @@ function ApplicationForm() {
 					placeholder="name@company.com"
 					{...form.register('email')}
 					className={cn(
-						form.formState.errors.email && 'border-red-500 focus-visible:ring-red-500',
+						form.formState.errors.email &&
+							'border-red-500 focus-visible:ring-red-500',
 					)}
 				/>
 				{form.formState.errors.email && (
@@ -1406,10 +1427,7 @@ function ApplicationForm() {
 
 			{/* Services */}
 			<div className="flex flex-col gap-2">
-				<label
-					htmlFor="services"
-					className="text-sm font-medium text-cyan-950"
-				>
+				<label htmlFor="services" className="text-sm font-medium text-cyan-950">
 					طبيعة الخدمات التي تقدمها الشركة *
 				</label>
 				<Textarea
@@ -1418,7 +1436,8 @@ function ApplicationForm() {
 					rows={4}
 					{...form.register('services')}
 					className={cn(
-						form.formState.errors.services && 'border-red-500 focus-visible:ring-red-500',
+						form.formState.errors.services &&
+							'border-red-500 focus-visible:ring-red-500',
 					)}
 				/>
 				{form.formState.errors.services && (
@@ -1429,10 +1448,10 @@ function ApplicationForm() {
 			</div>
 
 			{/* Target Sectors */}
-			<div className="flex flex-col gap-2">
+			<div className="flex flex-col gap-1.5 sm:gap-2">
 				<label
 					htmlFor="targetSectors"
-					className="text-sm font-medium text-cyan-950"
+					className="text-xs font-medium text-cyan-950 sm:text-sm"
 				>
 					القطاعات المستهدفة الرئيسية *
 				</label>
@@ -1442,7 +1461,8 @@ function ApplicationForm() {
 					rows={4}
 					{...form.register('targetSectors')}
 					className={cn(
-						form.formState.errors.targetSectors && 'border-red-500 focus-visible:ring-red-500',
+						form.formState.errors.targetSectors &&
+							'border-red-500 focus-visible:ring-red-500',
 					)}
 				/>
 				{form.formState.errors.targetSectors && (
@@ -1453,10 +1473,10 @@ function ApplicationForm() {
 			</div>
 
 			{/* ERP Experience */}
-			<div className="flex flex-col gap-2">
+			<div className="flex flex-col gap-1.5 sm:gap-2">
 				<label
 					htmlFor="erpExperience"
-					className="text-sm font-medium text-cyan-950"
+					className="text-xs font-medium text-cyan-950 sm:text-sm"
 				>
 					هل لديكم خبرة سابقة مع أنظمة ERP؟ *
 				</label>
@@ -1469,17 +1489,30 @@ function ApplicationForm() {
 						id="erpExperience"
 						className={cn(
 							'w-full text-right',
-							form.formState.errors.erpExperience && 'border-red-500 focus-visible:ring-red-500',
+							form.formState.errors.erpExperience &&
+								'border-red-500 focus-visible:ring-red-500',
 						)}
 					>
 						<SelectValue placeholder="اختر من القائمة" />
 					</SelectTrigger>
 					<SelectContent className="text-right" dir="rtl">
-						<SelectItem value="odoo" className="text-right">نعم، مع Odoo</SelectItem>
-						<SelectItem value="dynamics" className="text-right">نعم، مع Microsoft Dynamics</SelectItem>
-						<SelectItem value="sap" className="text-right"> نعم، مع SAP</SelectItem>
-						<SelectItem value="other" className="text-right"> نعم، أنظمة أخرى</SelectItem>
-						<SelectItem value="none" className="text-right">لا توجد خبرة سابقة مع أنظمة ERP</SelectItem>
+						<SelectItem value="odoo" className="text-right">
+							نعم، مع Odoo
+						</SelectItem>
+						<SelectItem value="dynamics" className="text-right">
+							نعم، مع Microsoft Dynamics
+						</SelectItem>
+						<SelectItem value="sap" className="text-right">
+							{' '}
+							نعم، مع SAP
+						</SelectItem>
+						<SelectItem value="other" className="text-right">
+							{' '}
+							نعم، أنظمة أخرى
+						</SelectItem>
+						<SelectItem value="none" className="text-right">
+							لا توجد خبرة سابقة مع أنظمة ERP
+						</SelectItem>
 					</SelectContent>
 				</Select>
 				{form.formState.errors.erpExperience && (
@@ -1488,15 +1521,16 @@ function ApplicationForm() {
 					</p>
 				)}
 				<p className="text-xs text-gray-500">
-					يساعد هذا السؤال في تحديد مستوى التدريب والدعم الأنسب لكم في المراحل الأولى من الشراكة.
+					يساعد هذا السؤال في تحديد مستوى التدريب والدعم الأنسب لكم في المراحل
+					الأولى من الشراكة.
 				</p>
 			</div>
 
 			{/* Partnership Vision */}
-			<div className="flex flex-col gap-2">
+			<div className="flex flex-col gap-1.5 sm:gap-2">
 				<label
 					htmlFor="partnershipVision"
-					className="text-sm font-medium text-cyan-950"
+					className="text-xs font-medium text-cyan-950 sm:text-sm"
 				>
 					كيف تتصورون الشراكة المثالية مع وازن؟ *
 				</label>
@@ -1506,7 +1540,8 @@ function ApplicationForm() {
 					rows={5}
 					{...form.register('partnershipVision')}
 					className={cn(
-						form.formState.errors.partnershipVision && 'border-red-500 focus-visible:ring-red-500',
+						form.formState.errors.partnershipVision &&
+							'border-red-500 focus-visible:ring-red-500',
 					)}
 				/>
 				{form.formState.errors.partnershipVision && (
@@ -1522,13 +1557,10 @@ function ApplicationForm() {
 				variant="primary"
 				size="lg"
 				disabled={isSubmitting}
-				className="mt-4 w-full bg-teal-600 hover:bg-teal-700"
+				className="mt-2 w-full bg-teal-600 text-sm hover:bg-teal-700 sm:mt-4 sm:text-base"
 			>
 				{isSubmitting ? 'جاري الإرسال...' : 'إرسال الطلب'}
 			</Button>
 		</form>
 	)
 }
-
-
-
