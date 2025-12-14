@@ -61,6 +61,7 @@ export default {
 				{ type: 'testimonials-02' },
 				{ type: 'jobApplicationTabs' },
 				{ type: 'crm2' },
+				{ type: 'partners-program' },
 				{ type: 'promo-banner' },
 			],
 			options: {
