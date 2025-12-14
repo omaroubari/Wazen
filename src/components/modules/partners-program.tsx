@@ -467,54 +467,109 @@ export default function PartnersProgram({
 
 					{/* Feature Cards */}
 					{featureCards && featureCards.length > 0 && (
-						<div className="grid w-full max-w-6xl grid-cols-1 gap-4 sm:gap-6 md:grid-cols-2 lg:grid-cols-3">
-							{featureCards.map((card, index) => (
-								<m.div
-									key={index}
-									className="group relative flex flex-col gap-4 overflow-hidden rounded-xl border border-gray-100 bg-white p-4 shadow-sm transition-all duration-300 hover:border-teal-200 hover:shadow-xl hover:shadow-teal-50/50 sm:gap-5 sm:rounded-2xl sm:p-6 lg:p-8"
-									initial="hidden"
-									whileInView="visible"
-									viewport={{ once: false, amount: 0.3 }}
-									variants={{
-										hidden: { opacity: 0, y: 30, scale: 0.95 },
-										visible: {
-											opacity: 1,
-											y: 0,
-											scale: 1,
-											transition: {
-												duration: 0.6,
-												ease: [0.16, 1, 0.3, 1],
-												delay: index * 0.1,
+						<div className="grid w-full max-w-6xl grid-cols-1 gap-6 sm:gap-8 md:grid-cols-2 lg:grid-cols-3">
+							{featureCards.map((card, index) => {
+								// Array of gradient colors for variety
+								const gradients = [
+									'from-teal-500/10 via-cyan-500/5 to-transparent',
+									'from-cyan-500/10 via-teal-500/5 to-transparent',
+									'from-teal-400/10 via-emerald-500/5 to-transparent',
+								]
+								const iconColors = [
+									'bg-teal-100 text-teal-600',
+									'bg-cyan-100 text-cyan-600',
+									'bg-emerald-100 text-emerald-600',
+								]
+								const gradient = gradients[index % gradients.length]
+								const iconColor = iconColors[index % iconColors.length]
+
+								return (
+									<m.div
+										key={index}
+										className="group relative flex flex-col gap-5 overflow-hidden rounded-2xl border border-gray-100/50 bg-gradient-to-br from-white to-gray-50/50 p-6 shadow-sm backdrop-blur-sm transition-all duration-500 hover:border-teal-300/50 hover:shadow-2xl hover:shadow-teal-100/30 sm:p-8"
+										initial="hidden"
+										whileInView="visible"
+										viewport={{ once: false, amount: 0.3 }}
+										variants={{
+											hidden: { opacity: 0, y: 40, scale: 0.9 },
+											visible: {
+												opacity: 1,
+												y: 0,
+												scale: 1,
+												transition: {
+													duration: 0.7,
+													ease: [0.16, 1, 0.3, 1],
+													delay: index * 0.15,
+												},
 											},
-										},
-									}}
-									whileHover={{
-										y: -6,
-										scale: 1.02,
-										transition: { duration: 0.3, ease: 'easeOut' },
-									}}
-								>
-									{/* Decorative gradient overlay on hover */}
-									<div className="absolute inset-0 bg-gradient-to-br from-teal-50/0 via-transparent to-cyan-50/0 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+										}}
+										whileHover={{
+											y: -8,
+											scale: 1.03,
+											transition: { duration: 0.4, ease: 'easeOut' },
+										}}
+									>
+										{/* Animated background gradient */}
+										<div
+											className={`absolute inset-0 bg-gradient-to-br ${gradient} opacity-0 transition-opacity duration-500 group-hover:opacity-100`}
+										/>
 
-									{/* Card Title */}
-									{card.title && (
-										<h3 className="relative z-10 text-base leading-tight font-semibold text-cyan-950 transition-colors duration-300 group-hover:text-teal-700 lg:text-lg">
-											{card.title}
-										</h3>
-									)}
+										{/* Decorative corner accent */}
+										<div className="absolute -top-12 -right-12 h-32 w-32 rounded-full bg-gradient-to-br from-teal-200/20 to-cyan-200/20 blur-2xl transition-all duration-500 group-hover:scale-150 group-hover:opacity-50" />
 
-									{/* Card Description */}
-									{card.description && (
-										<p className="text-main relative z-10 leading-relaxed text-gray-600">
-											{card.description}
-										</p>
-									)}
+										{/* Icon Circle */}
+										<m.div
+											className={`relative z-10 mb-2 flex size-14 items-center justify-center rounded-2xl ${iconColor} shadow-lg transition-all duration-500 group-hover:scale-110 group-hover:shadow-xl sm:size-16`}
+											animate={{
+												rotate: [0, 5, -5, 0],
+											}}
+											transition={{
+												duration: 4,
+												repeat: Infinity,
+												repeatDelay: 2,
+												ease: 'easeInOut',
+											}}
+										>
+											<svg
+												className="size-7 sm:size-8"
+												fill="none"
+												stroke="currentColor"
+												viewBox="0 0 24 24"
+											>
+												<path
+													strokeLinecap="round"
+													strokeLinejoin="round"
+													strokeWidth={2}
+													d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+												/>
+											</svg>
+										</m.div>
 
-									{/* Subtle shine effect */}
-									<div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/30 to-transparent opacity-0 transition-all duration-700 group-hover:translate-x-full group-hover:opacity-100" />
-								</m.div>
-							))}
+										{/* Card Content */}
+										<div className="relative z-10 flex flex-1 flex-col gap-3">
+											{/* Card Title */}
+											{card.title && (
+												<h3 className="text-base leading-tight font-bold text-cyan-950 transition-colors duration-300 group-hover:text-teal-700 sm:text-lg">
+													{card.title}
+												</h3>
+											)}
+
+											{/* Card Description */}
+											{card.description && (
+												<p className="flex-1 text-sm leading-relaxed text-gray-600 sm:text-base">
+													{card.description}
+												</p>
+											)}
+										</div>
+
+										{/* Animated bottom border */}
+										<div className="relative z-10 mt-4 h-1 w-0 overflow-hidden rounded-full bg-gradient-to-r from-teal-500 to-cyan-500 transition-all duration-500 group-hover:w-full" />
+
+										{/* Shine effect on hover */}
+										<div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/40 to-transparent opacity-0 transition-all duration-1000 group-hover:translate-x-full group-hover:opacity-100" />
+									</m.div>
+								)
+							})}
 						</div>
 					)}
 				</div>
@@ -718,54 +773,115 @@ export default function PartnersProgram({
 
 					{/* Benefit Cards Grid */}
 					{benefitCards && benefitCards.length > 0 && (
-						<div className="grid w-full max-w-6xl grid-cols-1 gap-4 sm:gap-6 md:grid-cols-2 lg:grid-cols-3">
-							{benefitCards.map((card, index) => (
-								<m.div
-									key={index}
-									className="group relative flex flex-col gap-4 overflow-hidden rounded-xl border border-gray-100 bg-white p-4 shadow-sm transition-all duration-300 hover:border-teal-200 hover:shadow-xl hover:shadow-teal-50/50 sm:gap-5 sm:rounded-2xl sm:p-6 lg:p-8"
-									initial="hidden"
-									whileInView="visible"
-									viewport={{ once: false, amount: 0.3 }}
-									variants={{
-										hidden: { opacity: 0, y: 30, scale: 0.95 },
-										visible: {
-											opacity: 1,
-											y: 0,
-											scale: 1,
-											transition: {
-												duration: 0.6,
-												ease: [0.16, 1, 0.3, 1],
-												delay: index * 0.08,
+						<div className="grid w-full max-w-6xl grid-cols-1 gap-6 sm:gap-8 md:grid-cols-2 lg:grid-cols-3">
+							{benefitCards.map((card, index) => {
+								// Array of gradient colors for variety
+								const gradients = [
+									'from-teal-500/10 via-cyan-500/5 to-transparent',
+									'from-cyan-500/10 via-teal-500/5 to-transparent',
+									'from-teal-400/10 via-emerald-500/5 to-transparent',
+									'from-emerald-500/10 via-teal-500/5 to-transparent',
+									'from-cyan-400/10 via-teal-500/5 to-transparent',
+									'from-teal-500/10 via-emerald-500/5 to-transparent',
+								]
+								const iconColors = [
+									'bg-teal-100 text-teal-600',
+									'bg-cyan-100 text-cyan-600',
+									'bg-emerald-100 text-emerald-600',
+									'bg-teal-100 text-teal-600',
+									'bg-cyan-100 text-cyan-600',
+									'bg-emerald-100 text-emerald-600',
+								]
+								const gradient = gradients[index % gradients.length]
+								const iconColor = iconColors[index % iconColors.length]
+
+								return (
+									<m.div
+										key={index}
+										className="group relative flex flex-col gap-5 overflow-hidden rounded-2xl border border-gray-100/50 bg-gradient-to-br from-white to-gray-50/50 p-6 shadow-sm backdrop-blur-sm transition-all duration-500 hover:border-teal-300/50 hover:shadow-2xl hover:shadow-teal-100/30 sm:p-8"
+										initial="hidden"
+										whileInView="visible"
+										viewport={{ once: false, amount: 0.3 }}
+										variants={{
+											hidden: { opacity: 0, y: 40, scale: 0.9 },
+											visible: {
+												opacity: 1,
+												y: 0,
+												scale: 1,
+												transition: {
+													duration: 0.7,
+													ease: [0.16, 1, 0.3, 1],
+													delay: index * 0.08,
+												},
 											},
-										},
-									}}
-									whileHover={{
-										y: -6,
-										scale: 1.02,
-										transition: { duration: 0.3, ease: 'easeOut' },
-									}}
-								>
-									{/* Decorative gradient overlay on hover */}
-									<div className="absolute inset-0 bg-gradient-to-br from-teal-50/0 via-transparent to-cyan-50/0 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+										}}
+										whileHover={{
+											y: -8,
+											scale: 1.03,
+											transition: { duration: 0.4, ease: 'easeOut' },
+										}}
+									>
+										{/* Animated background gradient */}
+										<div
+											className={`absolute inset-0 bg-gradient-to-br ${gradient} opacity-0 transition-opacity duration-500 group-hover:opacity-100`}
+										/>
 
-									{/* Card Title */}
-									{card.title && (
-										<h3 className="relative z-10 text-base leading-tight font-semibold text-cyan-950 transition-colors duration-300 group-hover:text-teal-700 lg:text-lg">
-											{card.title}
-										</h3>
-									)}
+										{/* Decorative corner accent */}
+										<div className="absolute -top-12 -right-12 h-32 w-32 rounded-full bg-gradient-to-br from-teal-200/20 to-cyan-200/20 blur-2xl transition-all duration-500 group-hover:scale-150 group-hover:opacity-50" />
 
-									{/* Card Description */}
-									{card.description && (
-										<p className="text-main relative z-10 leading-relaxed text-gray-600">
-											{card.description}
-										</p>
-									)}
+										{/* Icon Circle */}
+										<m.div
+											className={`relative z-10 mb-2 flex size-14 items-center justify-center rounded-2xl ${iconColor} shadow-lg transition-all duration-500 group-hover:scale-110 group-hover:shadow-xl sm:size-16`}
+											animate={{
+												rotate: [0, 5, -5, 0],
+											}}
+											transition={{
+												duration: 4,
+												repeat: Infinity,
+												repeatDelay: 2,
+												ease: 'easeInOut',
+											}}
+										>
+											<svg
+												className="size-7 sm:size-8"
+												fill="none"
+												stroke="currentColor"
+												viewBox="0 0 24 24"
+											>
+												<path
+													strokeLinecap="round"
+													strokeLinejoin="round"
+													strokeWidth={2}
+													d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+												/>
+											</svg>
+										</m.div>
 
-									{/* Subtle shine effect */}
-									<div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/30 to-transparent opacity-0 transition-all duration-700 group-hover:translate-x-full group-hover:opacity-100" />
-								</m.div>
-							))}
+										{/* Card Content */}
+										<div className="relative z-10 flex flex-1 flex-col gap-3">
+											{/* Card Title */}
+											{card.title && (
+												<h3 className="text-lg leading-tight font-bold text-cyan-950 transition-colors duration-300 group-hover:text-teal-700 sm:text-xl">
+													{card.title}
+												</h3>
+											)}
+
+											{/* Card Description */}
+											{card.description && (
+												<p className="flex-1 text-sm leading-relaxed text-gray-600 sm:text-base">
+													{card.description}
+												</p>
+											)}
+										</div>
+
+										{/* Animated bottom border */}
+										<div className="relative z-10 mt-4 h-1 w-0 overflow-hidden rounded-full bg-gradient-to-r from-teal-500 to-cyan-500 transition-all duration-500 group-hover:w-full" />
+
+										{/* Shine effect on hover */}
+										<div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/40 to-transparent opacity-0 transition-all duration-1000 group-hover:translate-x-full group-hover:opacity-100" />
+									</m.div>
+								)
+							})}
 						</div>
 					)}
 				</div>
