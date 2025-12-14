@@ -1278,6 +1278,7 @@ function ApplicationForm() {
 
 	return (
 		<form
+			id="form-partner-program"
 			onSubmit={form.handleSubmit(onSubmit)}
 			className="flex w-full flex-col gap-6"
 		>
