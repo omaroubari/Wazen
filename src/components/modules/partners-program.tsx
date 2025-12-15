@@ -94,7 +94,6 @@ const applicationFormSchema = z.object({
 	services: z.string().min(10, 'يرجى وصف الخدمات'),
 	targetSectors: z.string().min(10, 'يرجى تحديد القطاعات المستهدفة'),
 	erpExperience: z.string().min(1, 'يرجى اختيار الخبرة مع ERP'),
-	partnershipVision: z.string().min(20, 'يرجى وصف رؤية الشراكة'),
 })
 
 type ApplicationFormData = z.infer<typeof applicationFormSchema>
@@ -1365,7 +1364,7 @@ function ApplicationForm() {
 			services: '',
 			targetSectors: '',
 			erpExperience: '',
-			partnershipVision: '',
+		
 		},
 	})
 
@@ -1544,7 +1543,7 @@ function ApplicationForm() {
 			{/* Services */}
 			<div className="flex flex-col gap-2">
 				<label htmlFor="services" className="text-sm font-medium text-cyan-950">
-					طبيعة الخدمات التي تقدمها الشركة *
+					الخدمات التي تقدمها الشركة 
 				</label>
 				<Textarea
 					id="services"
@@ -1569,7 +1568,8 @@ function ApplicationForm() {
 					htmlFor="targetSectors"
 					className="text-xs font-medium text-cyan-950 sm:text-sm"
 				>
-					القطاعات المستهدفة الرئيسية *
+					القطاعات المستهدفه
+
 				</label>
 				<Textarea
 					id="targetSectors"
@@ -1622,6 +1622,10 @@ function ApplicationForm() {
 							{' '}
 							نعم، مع SAP
 						</SelectItem>
+						<SelectItem value="oracle" className="text-right">
+							{' '}
+							نعم، مع Oracle
+						</SelectItem>
 						<SelectItem value="other" className="text-right">
 							{' '}
 							نعم، أنظمة أخرى
@@ -1636,36 +1640,9 @@ function ApplicationForm() {
 						{form.formState.errors.erpExperience.message}
 					</p>
 				)}
-				<p className="text-xs text-gray-500">
-					يساعد هذا السؤال في تحديد مستوى التدريب والدعم الأنسب لكم في المراحل
-					الأولى من الشراكة.
-				</p>
+
 			</div>
 
-			{/* Partnership Vision */}
-			<div className="flex flex-col gap-1.5 sm:gap-2">
-				<label
-					htmlFor="partnershipVision"
-					className="text-xs font-medium text-cyan-950 sm:text-sm"
-				>
-					كيف تتصورون الشراكة المثالية مع وازن؟ *
-				</label>
-				<Textarea
-					id="partnershipVision"
-					placeholder="برجاء توضيح نوع التعاون الذي ترونه مناسباً، ونوعية العملاء أو المشاريع التي تستهدفونها."
-					rows={5}
-					{...form.register('partnershipVision')}
-					className={cn(
-						form.formState.errors.partnershipVision &&
-							'border-red-500 focus-visible:ring-red-500',
-					)}
-				/>
-				{form.formState.errors.partnershipVision && (
-					<p className="text-xs text-red-500">
-						{form.formState.errors.partnershipVision.message}
-					</p>
-				)}
-			</div>
 
 			{/* Submit Button */}
 			<Button
