@@ -85,18 +85,45 @@ type PartnersProgramProps = {
 	locale?: 'en' | 'ar'
 }
 
-const applicationFormSchema = z.object({
-	fullName: z.string().min(2, 'الاسم الكامل مطلوب'),
-	companyName: z.string().min(2, 'اسم الشركة مطلوب'),
-	position: z.string().min(2, 'المنصب مطلوب'),
-	mobileNumber: z.string().min(10, 'رقم الجوال مطلوب'),
-	email: z.string().email('البريد الإلكتروني غير صحيح'),
-	services: z.string().min(10, 'يرجى وصف الخدمات'),
-	targetSectors: z.string().min(10, 'يرجى تحديد القطاعات المستهدفة'),
-	erpExperience: z.string().min(1, 'يرجى اختيار الخبرة مع ERP'),
-})
+const getApplicationFormSchema = (locale: 'en' | 'ar' = 'ar') => {
+	const messages = {
+		ar: {
+			fullName: 'الاسم الكامل مطلوب',
+			companyName: 'اسم الشركة مطلوب',
+			position: 'المنصب مطلوب',
+			mobileNumber: 'رقم الجوال مطلوب',
+			email: 'البريد الإلكتروني غير صحيح',
+			services: 'يرجى وصف الخدمات',
+			targetSectors: 'يرجى تحديد القطاعات المستهدفة',
+			erpExperience: 'يرجى اختيار الخبرة مع ERP',
+		},
+		en: {
+			fullName: 'Full name is required',
+			companyName: 'Company name is required',
+			position: 'Position is required',
+			mobileNumber: 'Mobile number is required',
+			email: 'Invalid email address',
+			services: 'Please describe the services',
+			targetSectors: 'Please specify target sectors',
+			erpExperience: 'Please select ERP experience',
+		},
+	}
 
-type ApplicationFormData = z.infer<typeof applicationFormSchema>
+	const msg = messages[locale]
+
+	return z.object({
+		fullName: z.string().min(2, msg.fullName),
+		companyName: z.string().min(2, msg.companyName),
+		position: z.string().min(2, msg.position),
+		mobileNumber: z.string().min(10, msg.mobileNumber),
+		email: z.string().email(msg.email),
+		services: z.string().min(10, msg.services),
+		targetSectors: z.string().min(10, msg.targetSectors),
+		erpExperience: z.string().min(1, msg.erpExperience),
+	})
+}
+
+type ApplicationFormData = z.infer<ReturnType<typeof getApplicationFormSchema>>
 
 export default function PartnersProgram({
 	pretitle,
@@ -1136,7 +1163,7 @@ export default function PartnersProgram({
 						</div>
 
 						{/* Form */}
-						<ApplicationForm />
+						<ApplicationForm locale={locale} />
 					</div>
 				</m.div>
 			)}
@@ -1349,12 +1376,80 @@ function FAQItem({
 	)
 }
 
-function ApplicationForm() {
+function ApplicationForm({ locale = 'ar' }: { locale?: 'en' | 'ar' }) {
 	const [isSubmitting, setIsSubmitting] = useState(false)
 	const [isSubmitted, setIsSubmitted] = useState(false)
 
+	const isRTL = locale === 'ar'
+	const formSchema = getApplicationFormSchema(locale)
+
+	const translations = {
+		ar: {
+			successTitle: 'تم إرسال طلبك بنجاح',
+			successMessage: 'سيقوم فريق الشركاء في وازن بالتواصل معكم قريباً',
+			fullName: 'الاسم الكامل *',
+			fullNamePlaceholder: 'مثال: أحمد محمد',
+			companyName: 'اسم الشركة *',
+			companyNamePlaceholder: 'اسم الشركة كما في السجل التجاري',
+			position: 'المنصب *',
+			positionPlaceholder: 'المدير العام، شريك مؤسس، مدير المبيعات...',
+			mobileNumber: 'رقم الجوال *',
+			mobileNumberPlaceholder: '+9665XXXXXXXX',
+			email: 'البريد الإلكتروني *',
+			emailPlaceholder: 'name@company.com',
+			services: 'الخدمات التي تقدمها الشركة',
+			servicesPlaceholder:
+				'استشارات أعمال، تطوير أنظمة، تكامل حلول، خدمات محاسبية...',
+			targetSectors: 'القطاعات المستهدفه',
+			targetSectorsPlaceholder:
+				'مثل: اللوجستيات، التوزيع، التجزئة، الحج والعمرة...',
+			erpExperience: 'هل لديكم خبرة سابقة مع أنظمة ERP؟ *',
+			erpExperiencePlaceholder: 'اختر من القائمة',
+			erpOdoo: 'نعم، مع Odoo',
+			erpDynamics: 'نعم، مع Microsoft Dynamics',
+			erpSap: 'نعم، مع SAP',
+			erpOracle: 'نعم، مع Oracle',
+			erpOther: 'نعم، أنظمة أخرى',
+			erpNone: 'لا توجد خبرة سابقة مع أنظمة ERP',
+			submit: 'إرسال الطلب',
+			submitting: 'جاري الإرسال...',
+		},
+		en: {
+			successTitle: 'Your application has been submitted successfully',
+			successMessage: 'The Wazen partners team will contact you soon',
+			fullName: 'Full Name *',
+			fullNamePlaceholder: 'Example: John Smith',
+			companyName: 'Company Name *',
+			companyNamePlaceholder: 'Company name as in commercial register',
+			position: 'Position *',
+			positionPlaceholder: 'CEO, Co-founder, Sales Manager...',
+			mobileNumber: 'Mobile Number *',
+			mobileNumberPlaceholder: '+9665XXXXXXXX',
+			email: 'Email *',
+			emailPlaceholder: 'name@company.com',
+			services: 'Services provided by your company',
+			servicesPlaceholder:
+				'Business consulting, system development, solution integration, accounting services...',
+			targetSectors: 'Target Sectors',
+			targetSectorsPlaceholder:
+				'e.g., Logistics, Distribution, Retail, Hajj & Umrah...',
+			erpExperience: 'Do you have previous experience with ERP systems? *',
+			erpExperiencePlaceholder: 'Select from list',
+			erpOdoo: 'Yes, with Odoo',
+			erpDynamics: 'Yes, with Microsoft Dynamics',
+			erpSap: 'Yes, with SAP',
+			erpOracle: 'Yes, with Oracle',
+			erpOther: 'Yes, other systems',
+			erpNone: 'No previous experience with ERP systems',
+			submit: 'Submit Application',
+			submitting: 'Submitting...',
+		},
+	}
+
+	const t = translations[locale]
+
 	const form = useForm<ApplicationFormData>({
-		resolver: zodResolver(applicationFormSchema),
+		resolver: zodResolver(formSchema),
 		defaultValues: {
 			fullName: '',
 			companyName: '',
@@ -1364,7 +1459,6 @@ function ApplicationForm() {
 			services: '',
 			targetSectors: '',
 			erpExperience: '',
-		
 		},
 	})
 
@@ -1407,11 +1501,9 @@ function ApplicationForm() {
 					</svg>
 				</div>
 				<h3 className="text-lg font-semibold text-cyan-950">
-					تم إرسال طلبك بنجاح
+					{t.successTitle}
 				</h3>
-				<p className="text-center text-gray-600">
-					سيقوم فريق الشركاء في وازن بالتواصل معكم قريباً
-				</p>
+				<p className="text-center text-gray-600">{t.successMessage}</p>
 			</m.div>
 		)
 	}
@@ -1421,18 +1513,21 @@ function ApplicationForm() {
 			id="form-partner-program"
 			onSubmit={form.handleSubmit(onSubmit)}
 			className="flex w-full flex-col gap-4 sm:gap-6"
+			dir={isRTL ? 'rtl' : 'ltr'}
 		>
 			{/* Full Name */}
 			<div className="flex flex-col gap-2">
 				<label htmlFor="fullName" className="text-sm font-medium text-cyan-950">
-					الاسم الكامل *
+					{t.fullName}
 				</label>
 				<Input
 					id="fullName"
 					type="text"
-					placeholder="مثال: أحمد محمد"
+					placeholder={t.fullNamePlaceholder}
+					dir={isRTL ? 'rtl' : 'ltr'}
 					{...form.register('fullName')}
 					className={cn(
+						isRTL && 'text-right',
 						form.formState.errors.fullName &&
 							'border-red-500 focus-visible:ring-red-500',
 					)}
@@ -1450,14 +1545,16 @@ function ApplicationForm() {
 					htmlFor="companyName"
 					className="text-xs font-medium text-cyan-950 sm:text-sm"
 				>
-					اسم الشركة *
+					{t.companyName}
 				</label>
 				<Input
 					id="companyName"
 					type="text"
-					placeholder="اسم الشركة كما في السجل التجاري"
+					placeholder={t.companyNamePlaceholder}
+					dir={isRTL ? 'rtl' : 'ltr'}
 					{...form.register('companyName')}
 					className={cn(
+						isRTL && 'text-right',
 						form.formState.errors.companyName &&
 							'border-red-500 focus-visible:ring-red-500',
 					)}
@@ -1472,14 +1569,16 @@ function ApplicationForm() {
 			{/* Position */}
 			<div className="flex flex-col gap-2">
 				<label htmlFor="position" className="text-sm font-medium text-cyan-950">
-					المنصب *
+					{t.position}
 				</label>
 				<Input
 					id="position"
 					type="text"
-					placeholder="المدير العام، شريك مؤسس، مدير المبيعات..."
+					placeholder={t.positionPlaceholder}
+					dir={isRTL ? 'rtl' : 'ltr'}
 					{...form.register('position')}
 					className={cn(
+						isRTL && 'text-right',
 						form.formState.errors.position &&
 							'border-red-500 focus-visible:ring-red-500',
 					)}
@@ -1497,16 +1596,16 @@ function ApplicationForm() {
 					htmlFor="mobileNumber"
 					className="text-xs font-medium text-cyan-950 sm:text-sm"
 				>
-					رقم الجوال *
+					{t.mobileNumber}
 				</label>
 				<Input
 					id="mobileNumber"
 					type="tel"
-					placeholder="+9665XXXXXXXX"
-					dir="rtl"
+					placeholder={t.mobileNumberPlaceholder}
+					dir={isRTL ? 'rtl' : 'ltr'}
 					{...form.register('mobileNumber')}
 					className={cn(
-						'text-right',
+						isRTL && 'text-right',
 						form.formState.errors.mobileNumber &&
 							'border-red-500 focus-visible:ring-red-500',
 					)}
@@ -1521,12 +1620,13 @@ function ApplicationForm() {
 			{/* Email */}
 			<div className="flex flex-col gap-2">
 				<label htmlFor="email" className="text-sm font-medium text-cyan-950">
-					البريد الإلكتروني *
+					{t.email}
 				</label>
 				<Input
 					id="email"
 					type="email"
-					placeholder="name@company.com"
+					placeholder={t.emailPlaceholder}
+					dir="ltr"
 					{...form.register('email')}
 					className={cn(
 						form.formState.errors.email &&
@@ -1543,14 +1643,16 @@ function ApplicationForm() {
 			{/* Services */}
 			<div className="flex flex-col gap-2">
 				<label htmlFor="services" className="text-sm font-medium text-cyan-950">
-					الخدمات التي تقدمها الشركة 
+					{t.services}
 				</label>
 				<Textarea
 					id="services"
-					placeholder="استشارات أعمال، تطوير أنظمة، تكامل حلول، خدمات محاسبية..."
+					placeholder={t.servicesPlaceholder}
 					rows={4}
+					dir={isRTL ? 'rtl' : 'ltr'}
 					{...form.register('services')}
 					className={cn(
+						isRTL && 'text-right',
 						form.formState.errors.services &&
 							'border-red-500 focus-visible:ring-red-500',
 					)}
@@ -1568,15 +1670,16 @@ function ApplicationForm() {
 					htmlFor="targetSectors"
 					className="text-xs font-medium text-cyan-950 sm:text-sm"
 				>
-					القطاعات المستهدفه
-
+					{t.targetSectors}
 				</label>
 				<Textarea
 					id="targetSectors"
-					placeholder="مثل: اللوجستيات، التوزيع، التجزئة، الحج والعمرة..."
+					placeholder={t.targetSectorsPlaceholder}
 					rows={4}
+					dir={isRTL ? 'rtl' : 'ltr'}
 					{...form.register('targetSectors')}
 					className={cn(
+						isRTL && 'text-right',
 						form.formState.errors.targetSectors &&
 							'border-red-500 focus-visible:ring-red-500',
 					)}
@@ -1594,44 +1697,62 @@ function ApplicationForm() {
 					htmlFor="erpExperience"
 					className="text-xs font-medium text-cyan-950 sm:text-sm"
 				>
-					هل لديكم خبرة سابقة مع أنظمة ERP؟ *
+					{t.erpExperience}
 				</label>
 				<Select
 					value={form.watch('erpExperience')}
 					onValueChange={(value) => form.setValue('erpExperience', value)}
-					dir="rtl"
+					dir={isRTL ? 'rtl' : 'ltr'}
 				>
 					<SelectTrigger
 						id="erpExperience"
 						className={cn(
-							'w-full text-right',
+							isRTL ? 'w-full text-right' : 'w-full text-left',
 							form.formState.errors.erpExperience &&
 								'border-red-500 focus-visible:ring-red-500',
 						)}
 					>
-						<SelectValue placeholder="اختر من القائمة" />
+						<SelectValue placeholder={t.erpExperiencePlaceholder} />
 					</SelectTrigger>
-					<SelectContent className="text-right" dir="rtl">
-						<SelectItem value="odoo" className="text-right">
-							نعم، مع Odoo
+					<SelectContent
+						className={isRTL ? 'text-right' : 'text-left'}
+						dir={isRTL ? 'rtl' : 'ltr'}
+					>
+						<SelectItem
+							value="odoo"
+							className={isRTL ? 'text-right' : 'text-left'}
+						>
+							{t.erpOdoo}
 						</SelectItem>
-						<SelectItem value="dynamics" className="text-right">
-							نعم، مع Microsoft Dynamics
+						<SelectItem
+							value="dynamics"
+							className={isRTL ? 'text-right' : 'text-left'}
+						>
+							{t.erpDynamics}
 						</SelectItem>
-						<SelectItem value="sap" className="text-right">
-							{' '}
-							نعم، مع SAP
+						<SelectItem
+							value="sap"
+							className={isRTL ? 'text-right' : 'text-left'}
+						>
+							{t.erpSap}
 						</SelectItem>
-						<SelectItem value="oracle" className="text-right">
-							{' '}
-							نعم، مع Oracle
+						<SelectItem
+							value="oracle"
+							className={isRTL ? 'text-right' : 'text-left'}
+						>
+							{t.erpOracle}
 						</SelectItem>
-						<SelectItem value="other" className="text-right">
-							{' '}
-							نعم، أنظمة أخرى
+						<SelectItem
+							value="other"
+							className={isRTL ? 'text-right' : 'text-left'}
+						>
+							{t.erpOther}
 						</SelectItem>
-						<SelectItem value="none" className="text-right">
-							لا توجد خبرة سابقة مع أنظمة ERP
+						<SelectItem
+							value="none"
+							className={isRTL ? 'text-right' : 'text-left'}
+						>
+							{t.erpNone}
 						</SelectItem>
 					</SelectContent>
 				</Select>
@@ -1640,9 +1761,7 @@ function ApplicationForm() {
 						{form.formState.errors.erpExperience.message}
 					</p>
 				)}
-
 			</div>
-
 
 			{/* Submit Button */}
 			<Button
@@ -1652,7 +1771,7 @@ function ApplicationForm() {
 				disabled={isSubmitting}
 				className="mt-2 w-full bg-teal-600 text-sm hover:bg-teal-700 sm:mt-4 sm:text-base"
 			>
-				{isSubmitting ? 'جاري الإرسال...' : 'إرسال الطلب'}
+				{isSubmitting ? t.submitting : t.submit}
 			</Button>
 		</form>
 	)
