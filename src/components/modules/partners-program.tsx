@@ -1515,7 +1515,7 @@ function ApplicationForm({ locale = 'ar' }: { locale?: 'en' | 'ar' }) {
 				Lead_NmAr: locale === 'ar' || locale === 'en' ? data.fullName : '',
 				Lead_Cmp: data.companyName,
 				Cmp_No: 801,
-				Brn_No: 80101,
+				Brn_No: 8101,
 				Lead_desc: description,
 				dialing_code: '+966',
 				Lead_Tel: phoneNumber,
