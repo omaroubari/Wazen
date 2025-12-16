@@ -38,7 +38,7 @@ export default function Hero04({
 				},
 			}}
 		>
-			<div className="relative mx-auto flex w-full max-w-(--breakpoint-md) flex-col items-center justify-center gap-6 px-(--padding-horizontal--main) text-center">
+			<div className="relative mx-auto flex w-full max-w-(--breakpoint-xl) flex-col items-center justify-center gap-6 px-(--padding-horizontal--main) text-center">
 				<Pretitle className="mb-2 text-base font-medium text-teal-500">
 					{pretitle}
 				</Pretitle>
