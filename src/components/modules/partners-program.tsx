@@ -117,8 +117,8 @@ const getApplicationFormSchema = (locale: 'en' | 'ar' = 'ar') => {
 		position: z.string().min(2, msg.position),
 		mobileNumber: z.string().min(10, msg.mobileNumber),
 		email: z.string().email(msg.email),
-		services: z.string().min(10, msg.services),
-		targetSectors: z.string().min(10, msg.targetSectors),
+		services: z.string().min(1, msg.services),
+		targetSectors: z.string().min(1, msg.targetSectors),
 		erpExperience: z.string().min(1, msg.erpExperience),
 	})
 }
@@ -1465,13 +1465,106 @@ function ApplicationForm({ locale = 'ar' }: { locale?: 'en' | 'ar' }) {
 	const onSubmit = async (data: ApplicationFormData) => {
 		setIsSubmitting(true)
 		try {
-			// TODO: Send form data to server
-			console.log('Form data:', data)
-			await new Promise((resolve) => setTimeout(resolve, 1000))
-			setIsSubmitted(true)
-			form.reset()
-		} catch (error) {
+			// Extract phone number without country code
+			let phoneNumber = data.mobileNumber.replace(/\D+/g, '')
+			// Remove country code if present
+			if (phoneNumber.startsWith('966')) {
+				phoneNumber = phoneNumber.substring(3)
+			}
+
+			// Build description from services, target sectors, and ERP experience
+			const descriptionParts = []
+
+			// Add services
+			descriptionParts.push(
+				locale === 'ar'
+					? `الخدمات: ${data.services || 'غير محدد'}`
+					: `Services: ${data.services || 'Not specified'}`,
+			)
+
+			// Add target sectors
+			descriptionParts.push(
+				locale === 'ar'
+					? `القطاعات المستهدفة: ${data.targetSectors || 'غير محدد'}`
+					: `Target Sectors: ${data.targetSectors || 'Not specified'}`,
+			)
+
+			// Add ERP experience
+			const erpLabels: Record<string, { ar: string; en: string }> = {
+				odoo: { ar: 'Odoo', en: 'Odoo' },
+				dynamics: { ar: 'Microsoft Dynamics', en: 'Microsoft Dynamics' },
+				sap: { ar: 'SAP', en: 'SAP' },
+				oracle: { ar: 'Oracle', en: 'Oracle' },
+				other: { ar: 'أنظمة أخرى', en: 'Other systems' },
+				none: { ar: 'لا توجد خبرة', en: 'No experience' },
+			}
+			const erpLabel =
+				erpLabels[data.erpExperience]?.[locale] ||
+				data.erpExperience ||
+				(locale === 'ar' ? 'غير محدد' : 'Not specified')
+			descriptionParts.push(
+				locale === 'ar'
+					? `خبرة نظام : ${erpLabel}`
+					: `ERP Experience: ${erpLabel}`,
+			)
+
+			const description = descriptionParts.join('\n')
+
+			// Prepare API payload
+			const payload = {
+				Lead_NmAr: locale === 'ar' || locale === 'en' ? data.fullName : '',
+				Lead_Cmp: data.companyName,
+				Cmp_No: 801,
+				Brn_No: 80101,
+				Lead_desc: description,
+				dialing_code: '+966',
+				Lead_Tel: phoneNumber,
+				Lead_Email: data.email,
+				stage_id: 1,
+				Lead_source: 28,
+				Lead_Position: data.position,
+			}
+
+			const response = await fetch(
+				'https://erp.wazen.sa/api/v1/new-crm/public-leads/store',
+				{
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json',
+						Accept: 'application/json',
+					},
+					body: JSON.stringify(payload),
+				},
+			)
+
+			const responseData = await response.json()
+
+			// Accept 200 OK, 201 Created, or any 2xx status as success
+			// response.ok is true for status codes 200-299 (includes 201)
+			// Also check responseData.status if API returns status in response body
+			if (
+				response.ok ||
+				response.status === 201 ||
+				response.status === 200 ||
+				responseData?.status === 200 ||
+				responseData?.status === 201
+			) {
+				setIsSubmitted(true)
+				form.reset()
+			} else {
+				throw new Error(
+					responseData?.message ||
+						responseData?.error ||
+						'Failed to submit application',
+				)
+			}
+		} catch (error: any) {
 			console.error('Error submitting form:', error)
+			alert(
+				locale === 'ar'
+					? `حدث خطأ أثناء إرسال الطلب: ${error.message || 'يرجى المحاولة مرة أخرى'}`
+					: `An error occurred while submitting the application: ${error.message || 'Please try again'}`,
+			)
 		} finally {
 			setIsSubmitting(false)
 		}
