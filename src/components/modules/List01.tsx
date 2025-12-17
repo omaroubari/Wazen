@@ -24,12 +24,12 @@ export default function List01({
 	const textAlign = layout?.textAlign ?? 'center'
 
 	return (
-		<section className="section flex flex-col bg-white py-(--size--4rem) lg:flex-row">
+		<section className="section bg-white py-(--size--4rem)">
 			<div
 				className="flex flex-col items-center gap-6"
 				style={{ textAlign } as React.CSSProperties}
 			>
-				<Pretitle className="text-large font-semibold text-teal-100">
+				<Pretitle className="text-large font-semibold text-teal-500">
 					{pretitle}
 				</Pretitle>
 				<PortableText value={content} components={defaultComponents} />
