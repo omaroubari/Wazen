@@ -1520,7 +1520,7 @@ function ApplicationForm({ locale = 'ar' }: { locale?: 'en' | 'ar' }) {
 				dialing_code: '+966',
 				Lead_Tel: phoneNumber,
 				Lead_Email: data.email,
-				stage_id: 1,
+				stage_id: 9,
 				Lead_source: 28,
 				Lead_Position: data.position,
 			}
