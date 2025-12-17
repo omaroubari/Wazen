@@ -24,7 +24,7 @@ export default function List01({
 	const textAlign = layout?.textAlign ?? 'center'
 
 	return (
-		<section className="section flex bg-white py-(--size--4rem)">
+		<section className="section flex flex-col bg-white py-(--size--4rem) lg:flex-row">
 			<div
 				className="flex flex-col items-center gap-6"
 				style={{ textAlign } as React.CSSProperties}
@@ -33,13 +33,8 @@ export default function List01({
 					{pretitle}
 				</Pretitle>
 				<PortableText value={content} components={defaultComponents} />
+				{ctas && <CTAList ctas={ctas} />}
 			</div>
-
-			{ctas && (
-				<div className="text-center">
-					<CTAList ctas={ctas} />
-				</div>
-			)}
 
 			<ul
 				className={cn(
