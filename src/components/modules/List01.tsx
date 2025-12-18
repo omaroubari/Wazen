@@ -29,9 +29,7 @@ export default function List01({
 				className="flex flex-col items-center gap-6"
 				style={{ textAlign } as React.CSSProperties}
 			>
-				<Pretitle className="text-large font-semibold text-teal-500">
-					{pretitle}
-				</Pretitle>
+				<Pretitle className="font-semibold text-teal-500">{pretitle}</Pretitle>
 				<PortableText value={content} components={defaultComponents} />
 				{ctas && <CTAList ctas={ctas} />}
 			</div>

@@ -33,7 +33,7 @@ export default async function List02({
 				style={{ textAlign } as React.CSSProperties}
 			>
 				<div className="flex flex-col items-center gap-6">
-					<Pretitle className="text-large font-semibold text-teal-100">
+					<Pretitle className="font-semibold text-teal-100">
 						{pretitle}
 					</Pretitle>
 					<PortableText value={content} components={defaultComponents} />
