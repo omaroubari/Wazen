@@ -372,8 +372,8 @@ export default function Subscribe({
 			console.log('phoneNumber', phoneNumber, 'locale', locale)
 			// Prepare payload with all required fields
 			const payload = {
-				Lead_NmAr: data.fullName,
-				Lead_NmEn: data.fullName, // English name (same as Arabic for now)
+				Lead_NmAr: locale === 'ar' || locale === 'en' ? data.fullName : '',
+	
 				Lead_Tel: phoneNumber,
 				Lead_Cmp: data.company,
 				Cmp_No: 801,
