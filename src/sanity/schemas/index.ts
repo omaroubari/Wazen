@@ -66,6 +66,7 @@ import jobApplicationTabs from './modules/jobApplicationTabs'
 import crm2 from './modules/crm2'
 import partnersProgram from './modules/partners-program'
 import subscribe from './modules/subscribe'
+import requestdemo from './modules/requestdemo'
 import promoBanner from './modules/promo-banner'
 
 export const schemaTypes = [
@@ -135,5 +136,6 @@ export const schemaTypes = [
 	crm2,
 	partnersProgram,
 	subscribe,
+	requestdemo,
 	promoBanner,
 ]

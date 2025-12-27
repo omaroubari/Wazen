@@ -43,6 +43,7 @@ const JobApplicationTabs = dynamic(() => import('./JobApplicationTabs'))
 const Crm2 = dynamic(() => import('./crm2'))
 const PartnersProgram = dynamic(() => import('./partners-program'))
 const Subscribe = dynamic(() => import('./subscribe'))
+const RequestDemo = dynamic(() => import('./requestdemo'))
 const PromoBanner = dynamic(() => import('./promoBanner'))
 
 const MODULE_MAP = {
@@ -83,6 +84,7 @@ const MODULE_MAP = {
 	crm2: Crm2,
 	'partners-program': PartnersProgram,
 	subscribe: Subscribe,
+	requestdemo: RequestDemo,
 	'promo-banner': PromoBanner,
 } as const
 

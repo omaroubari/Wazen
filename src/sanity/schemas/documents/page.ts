@@ -63,6 +63,7 @@ export default {
 				{ type: 'crm2' },
 				{ type: 'partners-program' },
 				{ type: 'subscribe' },
+				{ type: 'requestdemo' },
 				{ type: 'promo-banner' },
 			],
 			options: {
