@@ -192,7 +192,7 @@ export default function Subscribe({
 			}
 
 			const response = await fetch(
-				'http://erp.wazen.test/api/v1/new-crm/public-leads/send-verification-code',
+				'https://erp.wazen.sa/api/v1/new-crm/public-leads/send-verification-code',
 				{
 					method: 'POST',
 					headers: {
@@ -202,7 +202,7 @@ export default function Subscribe({
 					},
 					body: JSON.stringify({
 						phone: phoneNumber,
-						company_id: 5556,
+						company_id: 801,
 					}),
 				},
 			)
@@ -266,7 +266,7 @@ export default function Subscribe({
 
 		try {
 			const response = await fetch(
-				'http://erp.wazen.test/api/v1/new-crm/public-leads/set-approved',
+				'https://erp.wazen.sa/api/v1/new-crm/public-leads/set-approved',
 				{
 					method: 'POST',
 					headers: {
@@ -277,7 +277,7 @@ export default function Subscribe({
 					body: JSON.stringify({
 						phone: phoneForOtp,
 						code: otpCode,
-						company_id: 5556,
+						company_id: 801,
 					}),
 				},
 			)
@@ -376,15 +376,14 @@ export default function Subscribe({
 				Lead_NmEn: data.fullName, // English name (same as Arabic for now)
 				Lead_Tel: phoneNumber,
 				Lead_Cmp: data.company,
-				Cmp_No: 5556,
-				Brn_No: 555601,
-
-				stage_id: 1,
-				Lead_status: 1,
+				Cmp_No: 801,
+				Brn_No: 8101,
+				stage_id: 9,
+				Lead_status: 2,
 			}
 
 			const response = await fetch(
-				'http://erp.wazen.test/api/v1/new-crm/public-leads/start-free-trial',
+				'https://erp.wazen.sa/api/v1/new-crm/public-leads/start-free-trial',
 				{
 					method: 'POST',
 					headers: {
