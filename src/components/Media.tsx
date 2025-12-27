@@ -86,7 +86,7 @@ export default function Media({
 				<Dialog>
 					<DialogTrigger asChild>
 						<Button
-							className="absolute inset-0 m-auto w-fit"
+							className="absolute inset-0 m-auto w-fit max-md:w-fit"
 							variant="secondary"
 							size="lg"
 						>

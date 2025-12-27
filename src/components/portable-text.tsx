@@ -33,7 +33,7 @@ export const motionComponents: PortableTextComponents = {
 				return (
 					<m.h1
 						variants={FADE_DOWN_ANIMATION_VARIANTS}
-						className="h1 mx-auto max-w-3xl text-center text-balance text-cyan-950 ltr:leading-tight rtl:leading-snug dark:text-white"
+						className="h1 mx-auto text-center text-balance text-cyan-950 ltr:leading-tight rtl:leading-snug dark:text-white"
 					>
 						{value.children.map((child: any) => child.text).join('')}
 					</m.h1>

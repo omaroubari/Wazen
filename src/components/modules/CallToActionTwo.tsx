@@ -70,7 +70,7 @@ export default function CallToActionTwo({
 					}}
 				/>
 
-				<div className="relative z-10 grid gap-6 sm:gap-8 lg:grid-cols-2 lg:gap-12">
+				<div className="relative z-2 grid gap-6 p-2 sm:gap-8 lg:grid-cols-2 lg:gap-12">
 					<div
 						className="flex flex-col justify-center space-y-4 sm:space-y-5 md:space-y-6"
 						// style={{ textAlign, alignItems }}

@@ -12,7 +12,7 @@ export default function Brief({
 	image,
 	animatedComponent,
 	layout,
-	// onRight,
+	className,
 	alignItems,
 }: Partial<{
 	pretitle: string
@@ -24,14 +24,14 @@ export default function Brief({
 		reverse?: boolean
 		textAlign: React.CSSProperties['textAlign']
 	}
-	// onRight: boolean
+	className?: string
 	alignItems: React.CSSProperties['alignItems']
 }>) {
 	const direction = layout?.direction === 'column' ? 'column' : 'row'
 	const isReverse = layout?.reverse ?? false
 	const textAlign = layout?.textAlign ?? 'start'
 	return (
-		<section className={cn('section py-(--size--2rem)')}>
+		<section className={cn('section py-(--size--3rem)', className)}>
 			<div
 				className={cn(
 					'fluid-gap grid w-full grid-cols-1 items-center',
