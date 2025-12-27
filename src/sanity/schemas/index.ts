@@ -65,6 +65,7 @@ import appStoreRollup from './modules/app-store-rollup'
 import jobApplicationTabs from './modules/jobApplicationTabs'
 import crm2 from './modules/crm2'
 import partnersProgram from './modules/partners-program'
+import subscribe from './modules/subscribe'
 import promoBanner from './modules/promo-banner'
 
 export const schemaTypes = [
@@ -133,5 +134,6 @@ export const schemaTypes = [
 	jobApplicationTabs,
 	crm2,
 	partnersProgram,
+	subscribe,
 	promoBanner,
 ]

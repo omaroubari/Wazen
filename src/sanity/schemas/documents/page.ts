@@ -62,6 +62,7 @@ export default {
 				{ type: 'jobApplicationTabs' },
 				{ type: 'crm2' },
 				{ type: 'partners-program' },
+				{ type: 'subscribe' },
 				{ type: 'promo-banner' },
 			],
 			options: {
