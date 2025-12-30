@@ -84,7 +84,7 @@ export function ContactUsTemplate() {
 
 	return (
 		<div className="flex w-full flex-col gap-4">
-			{!showForm && (
+			{/* {!showForm && (
 				<div className="flex w-full flex-col py-6">
 					<DialogHeader className="mb-12">
 						<DialogTitle className="h3 mb-2 text-center text-cyan-950">
@@ -113,7 +113,7 @@ export function ContactUsTemplate() {
 						املأ النموذج
 					</Button>
 				</div>
-			)}
+			)} */}
 			{showForm && (
 				<Form {...form}>
 					<form

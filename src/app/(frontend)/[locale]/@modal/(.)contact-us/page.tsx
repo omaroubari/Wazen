@@ -1,5 +1,5 @@
 import { ContactUsTemplate } from '@/components/contact-us-template'
-import { Modal } from '@/components/Modal'
+// import { Modal } from '@/components/Modal'
 
 type Props = {
 	params: Promise<{ locale: 'en' | 'ar' }>
@@ -7,8 +7,8 @@ type Props = {
 export default async function Page({ params }: Props) {
 	const { locale } = await params
 	return (
-		<Modal>
+		// <Modal>
 			<ContactUsTemplate />
-		</Modal>
+		// </Modal>
 	)
 }
