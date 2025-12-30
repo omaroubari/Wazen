@@ -89,8 +89,24 @@ export default function RequestDemo({
 	const [isCalendarModalOpen, setIsCalendarModalOpen] = useState(false)
 	const [selectedDate, setSelectedDate] = useState<Date | null>(null)
 	const [selectedTime, setSelectedTime] = useState<string>('')
+	const [selectedDay, setSelectedDay] = useState<string>('')
+	const [selectedMonth, setSelectedMonth] = useState<string>('')
+	const [selectedYear, setSelectedYear] = useState<string>('')
 
 	const isRTL = locale === 'ar'
+
+	// Sync selectedDate with day/month/year selects
+	useEffect(() => {
+		if (selectedDate) {
+			setSelectedDay(String(selectedDate.getDate()))
+			setSelectedMonth(String(selectedDate.getMonth() + 1))
+			setSelectedYear(String(selectedDate.getFullYear()))
+		} else {
+			setSelectedDay('')
+			setSelectedMonth('')
+			setSelectedYear('')
+		}
+	}, [selectedDate])
 
 	const translations = {
 		ar: {
@@ -1238,47 +1254,205 @@ export default function RequestDemo({
 								{locale === 'ar' ? 'اختر التاريخ' : 'Select Date'}
 							</label>
 							<div className="rounded-lg border-2 border-gray-200 p-4">
-								<input
-									type="date"
-									min={new Date().toISOString().split('T')[0]}
-									value={
-										selectedDate
-											? `${selectedDate.getFullYear()}-${String(selectedDate.getMonth() + 1).padStart(2, '0')}-${String(selectedDate.getDate()).padStart(2, '0')}`
-											: ''
-									}
-									onChange={(e) => {
-										if (!e.target.value) {
+								{/* Custom Date Picker: Day, Month, Year */}
+								<div className="flex flex-row gap-2 sm:gap-3">
+									{/* Day Select */}
+									<select
+										value={selectedDay}
+										onChange={(e) => {
+											const newDay = e.target.value
+											setSelectedDay(newDay)
+
+											if (newDay && selectedMonth && selectedYear) {
+												const day = Number(newDay)
+												const month = Number(selectedMonth)
+												const year = Number(selectedYear)
+												const date = new Date(year, month - 1, day, 12, 0, 0)
+
+												// Check if date is in the past
+												const today = new Date()
+												today.setHours(0, 0, 0, 0)
+												if (date < today) {
+													alert(
+														locale === 'ar'
+															? 'لا يمكن اختيار تاريخ في الماضي'
+															: 'Cannot select a date in the past',
+													)
+													setSelectedDay('')
+													setSelectedDate(null)
+													setSelectedTime('')
+													return
+												}
+
+												const dayOfWeek = date.getDay()
+
+												if (dayOfWeek === 5 || dayOfWeek === 6) {
+													alert(
+														locale === 'ar'
+															? 'الجمعة والسبت غير متاحين. يرجى اختيار يوم آخر'
+															: 'Friday and Saturday are not available. Please select another day',
+													)
+													setSelectedDay('')
+													setSelectedDate(null)
+													setSelectedTime('')
+													return
+												}
+
+												setSelectedDate(date)
+												setSelectedTime('')
+											}
+										}}
+										className="flex-1 rounded-lg border-2 border-gray-200 p-3 text-sm transition-all duration-300 focus:border-teal-500 focus:ring-2 focus:ring-teal-200 focus:outline-none sm:text-base"
+									>
+										<option value="">
+											{locale === 'ar' ? 'اليوم' : 'Day'}
+										</option>
+										{Array.from({ length: 31 }, (_, i) => i + 1).map((day) => (
+											<option key={day} value={day}>
+												{String(day).padStart(2, '0')}
+											</option>
+										))}
+									</select>
+
+									{/* Month Select */}
+									<select
+										value={selectedMonth}
+										onChange={(e) => {
+											const newMonth = e.target.value
+											setSelectedMonth(newMonth)
+											setSelectedDay('') // Reset day when month changes
 											setSelectedDate(null)
 											setSelectedTime('')
-											return
-										}
 
-										// Create date in local timezone to avoid timezone issues
-										const [year, month, day] = e.target.value
-											.split('-')
-											.map(Number)
-										// Create date at noon local time to avoid timezone issues
-										const date = new Date(year, month - 1, day, 12, 0, 0)
-										const dayOfWeek = date.getDay() // 0 = Sunday, 5 = Friday, 6 = Saturday
+											if (newMonth && selectedDay && selectedYear) {
+												const day = Number(selectedDay)
+												const month = Number(newMonth)
+												const year = Number(selectedYear)
+												const date = new Date(year, month - 1, day, 12, 0, 0)
 
-										// Check if Friday (5) or Saturday (6) - not allowed
-										if (dayOfWeek === 5 || dayOfWeek === 6) {
-											alert(
-												locale === 'ar'
-													? 'الجمعة والسبت غير متاحين. يرجى اختيار يوم آخر'
-													: 'Friday and Saturday are not available. Please select another day',
-											)
+												// Check if date is in the past
+												const today = new Date()
+												today.setHours(0, 0, 0, 0)
+												if (date < today) {
+													alert(
+														locale === 'ar'
+															? 'لا يمكن اختيار تاريخ في الماضي'
+															: 'Cannot select a date in the past',
+													)
+													setSelectedDay('')
+													setSelectedDate(null)
+													setSelectedTime('')
+													return
+												}
+
+												const dayOfWeek = date.getDay()
+
+												if (dayOfWeek === 5 || dayOfWeek === 6) {
+													alert(
+														locale === 'ar'
+															? 'الجمعة والسبت غير متاحين. يرجى اختيار يوم آخر'
+															: 'Friday and Saturday are not available. Please select another day',
+													)
+													setSelectedDay('')
+													setSelectedDate(null)
+													setSelectedTime('')
+													return
+												}
+
+												setSelectedDate(date)
+												setSelectedTime('')
+											}
+										}}
+										className="flex-1 rounded-lg border-2 border-gray-200 p-3 text-sm transition-all duration-300 focus:border-teal-500 focus:ring-2 focus:ring-teal-200 focus:outline-none sm:text-base"
+									>
+										<option value="">
+											{locale === 'ar' ? 'الشهر' : 'Month'}
+										</option>
+										{Array.from({ length: 12 }, (_, i) => i + 1).map(
+											(month) => (
+												<option key={month} value={month}>
+													{locale === 'ar'
+														? new Date(2000, month - 1, 1).toLocaleDateString(
+																'ar-SA',
+																{
+																	month: 'long',
+																},
+															)
+														: new Date(2000, month - 1, 1).toLocaleDateString(
+																'en-US',
+																{
+																	month: 'long',
+																},
+															)}
+												</option>
+											),
+										)}
+									</select>
+
+									{/* Year Select */}
+									<select
+										value={selectedYear}
+										onChange={(e) => {
+											const newYear = e.target.value
+											setSelectedYear(newYear)
+											setSelectedDay('') // Reset day when year changes
 											setSelectedDate(null)
 											setSelectedTime('')
-											e.target.value = ''
-											return
-										}
 
-										setSelectedDate(date)
-										setSelectedTime('') // Reset time when date changes
-									}}
-									className="w-full rounded-lg border-2 border-gray-200 p-3 text-sm transition-all duration-300 focus:border-teal-500 focus:ring-2 focus:ring-teal-200 focus:outline-none sm:text-base"
-								/>
+											if (newYear && selectedDay && selectedMonth) {
+												const day = Number(selectedDay)
+												const month = Number(selectedMonth)
+												const year = Number(newYear)
+												const date = new Date(year, month - 1, day, 12, 0, 0)
+
+												// Check if date is in the past
+												const today = new Date()
+												today.setHours(0, 0, 0, 0)
+												if (date < today) {
+													alert(
+														locale === 'ar'
+															? 'لا يمكن اختيار تاريخ في الماضي'
+															: 'Cannot select a date in the past',
+													)
+													setSelectedDay('')
+													setSelectedDate(null)
+													setSelectedTime('')
+													return
+												}
+
+												const dayOfWeek = date.getDay()
+
+												if (dayOfWeek === 5 || dayOfWeek === 6) {
+													alert(
+														locale === 'ar'
+															? 'الجمعة والسبت غير متاحين. يرجى اختيار يوم آخر'
+															: 'Friday and Saturday are not available. Please select another day',
+													)
+													setSelectedDay('')
+													setSelectedDate(null)
+													setSelectedTime('')
+													return
+												}
+
+												setSelectedDate(date)
+												setSelectedTime('')
+											}
+										}}
+										className="flex-1 rounded-lg border-2 border-gray-200 p-3 text-sm transition-all duration-300 focus:border-teal-500 focus:ring-2 focus:ring-teal-200 focus:outline-none sm:text-base"
+									>
+										<option value="">
+											{locale === 'ar' ? 'السنة' : 'Year'}
+										</option>
+										{Array.from(
+											{ length: 5 },
+											(_, i) => new Date().getFullYear() + i,
+										).map((year) => (
+											<option key={year} value={year}>
+												{year}
+											</option>
+										))}
+									</select>
+								</div>
 								{/* {selectedDate && (
 									<p className="mt-2 text-xs text-gray-600 sm:text-sm">
 										{locale === 'ar'
