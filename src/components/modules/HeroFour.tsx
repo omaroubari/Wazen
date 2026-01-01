@@ -12,6 +12,7 @@ import { Variants } from 'motion/react'
 import { FADE_DOWN_ANIMATION_VARIANTS } from '@/lib/motion'
 import Media from '../Media'
 
+
 export default function Hero04({
 	pretitle,
 	content,
