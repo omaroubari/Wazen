@@ -25,7 +25,8 @@ export default function Hero04({
 }>) {
 	return (
 		<m.section
-			className="cyan-gradient-background-2 relative flex min-h-screen flex-col gap-6 py-[20vh] lg:gap-12"
+			className="cyan-gradient-background-2 relative flex  flex-col gap-6 pt-[20vh] lg:gap-12"
+			// className="cyan-gradient-background-2 relative flex min-h-screen flex-col gap-6 py-[20vh] lg:gap-12"
 			initial="hidden"
 			animate="visible"
 			viewport={{ once: true }}
