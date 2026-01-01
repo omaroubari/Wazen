@@ -37,6 +37,7 @@ export function ContactUsTemplate() {
 		onSuccess: () => {
 			// TODO: show success message
 			form.reset()
+			
 		},
 		onError: () => {
 			// TODO: show error message
