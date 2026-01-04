@@ -1,6 +1,5 @@
 import { TfiLayoutCtaCenter } from 'react-icons/tfi'
 import { getBlockText } from '../../src/utils'
-import { group } from 'console'
 
 const textGroup = [
 	{
