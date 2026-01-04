@@ -77,7 +77,7 @@ export default async function ContactUs({
 					<ContactForm />
 				</NextIntlClientProvider>
 				<div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-					{contactInfo.map(
+					{contactInfo?.map(
 						(info: { title: any; link: Sanity.Link }, index: any) => (
 							<div key={index} className={`flex w-full flex-col gap-1`}>
 								{icons[index]}

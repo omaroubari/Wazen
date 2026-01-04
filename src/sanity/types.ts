@@ -29,6 +29,450 @@ export type PromoBanner = {
 	}>
 }
 
+export type Requestdemo = {
+	_type: 'requestdemo'
+	pretitle?: string
+	title?: Array<{
+		children?: Array<{
+			marks?: Array<string>
+			text?: string
+			_type: 'span'
+			_key: string
+		}>
+		style?: 'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote'
+		listItem?: 'bullet' | 'number'
+		markDefs?: Array<{
+			href?: string
+			_type: 'link'
+			_key: string
+		}>
+		level?: number
+		_type: 'block'
+		_key: string
+	}>
+	description?: Array<{
+		children?: Array<{
+			marks?: Array<string>
+			text?: string
+			_type: 'span'
+			_key: string
+		}>
+		style?: 'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote'
+		listItem?: 'bullet' | 'number'
+		markDefs?: Array<{
+			href?: string
+			_type: 'link'
+			_key: string
+		}>
+		level?: number
+		_type: 'block'
+		_key: string
+	}>
+	fullNamePlaceholder?: string
+	phonePlaceholder?: string
+	companyPlaceholder?: string
+	buttonText?: string
+	successMessage?: string
+}
+
+export type Subscribe = {
+	_type: 'subscribe'
+	pretitle?: string
+	title?: Array<{
+		children?: Array<{
+			marks?: Array<string>
+			text?: string
+			_type: 'span'
+			_key: string
+		}>
+		style?: 'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote'
+		listItem?: 'bullet' | 'number'
+		markDefs?: Array<{
+			href?: string
+			_type: 'link'
+			_key: string
+		}>
+		level?: number
+		_type: 'block'
+		_key: string
+	}>
+	description?: Array<{
+		children?: Array<{
+			marks?: Array<string>
+			text?: string
+			_type: 'span'
+			_key: string
+		}>
+		style?: 'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote'
+		listItem?: 'bullet' | 'number'
+		markDefs?: Array<{
+			href?: string
+			_type: 'link'
+			_key: string
+		}>
+		level?: number
+		_type: 'block'
+		_key: string
+	}>
+	fullNamePlaceholder?: string
+	phonePlaceholder?: string
+	companyPlaceholder?: string
+	buttonText?: string
+	successMessage?: string
+}
+
+export type PartnersProgram = {
+	_type: 'partners-program'
+	pretitle?: string
+	content?: Array<{
+		children?: Array<{
+			marks?: Array<string>
+			text?: string
+			_type: 'span'
+			_key: string
+		}>
+		style?: 'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote'
+		listItem?: 'bullet' | 'number'
+		markDefs?: Array<{
+			href?: string
+			_type: 'link'
+			_key: string
+		}>
+		level?: number
+		_type: 'block'
+		_key: string
+	}>
+	subcontent?: Array<{
+		children?: Array<{
+			marks?: Array<string>
+			text?: string
+			_type: 'span'
+			_key: string
+		}>
+		style?: 'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote'
+		listItem?: 'bullet' | 'number'
+		markDefs?: Array<{
+			href?: string
+			_type: 'link'
+			_key: string
+		}>
+		level?: number
+		_type: 'block'
+		_key: string
+	}>
+	benefits?: Array<{
+		text?: string
+		_key: string
+	}>
+	ctas?: Array<
+		{
+			_key: string
+		} & Cta
+	>
+	additionalInfo?: Array<{
+		children?: Array<{
+			marks?: Array<string>
+			text?: string
+			_type: 'span'
+			_key: string
+		}>
+		style?: 'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote'
+		listItem?: 'bullet' | 'number'
+		markDefs?: Array<{
+			href?: string
+			_type: 'link'
+			_key: string
+		}>
+		level?: number
+		_type: 'block'
+		_key: string
+	}>
+	cardTitle?: string
+	cardDescription?: Array<{
+		children?: Array<{
+			marks?: Array<string>
+			text?: string
+			_type: 'span'
+			_key: string
+		}>
+		style?: 'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote'
+		listItem?: 'bullet' | 'number'
+		markDefs?: Array<{
+			href?: string
+			_type: 'link'
+			_key: string
+		}>
+		level?: number
+		_type: 'block'
+		_key: string
+	}>
+	cardBenefits?: Array<{
+		text?: string
+		_key: string
+	}>
+	aboutPretitle?: string
+	aboutTitle?: Array<{
+		children?: Array<{
+			marks?: Array<string>
+			text?: string
+			_type: 'span'
+			_key: string
+		}>
+		style?: 'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote'
+		listItem?: 'bullet' | 'number'
+		markDefs?: Array<{
+			href?: string
+			_type: 'link'
+			_key: string
+		}>
+		level?: number
+		_type: 'block'
+		_key: string
+	}>
+	aboutDescription1?: Array<{
+		children?: Array<{
+			marks?: Array<string>
+			text?: string
+			_type: 'span'
+			_key: string
+		}>
+		style?: 'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote'
+		listItem?: 'bullet' | 'number'
+		markDefs?: Array<{
+			href?: string
+			_type: 'link'
+			_key: string
+		}>
+		level?: number
+		_type: 'block'
+		_key: string
+	}>
+	aboutDescription2?: Array<{
+		children?: Array<{
+			marks?: Array<string>
+			text?: string
+			_type: 'span'
+			_key: string
+		}>
+		style?: 'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote'
+		listItem?: 'bullet' | 'number'
+		markDefs?: Array<{
+			href?: string
+			_type: 'link'
+			_key: string
+		}>
+		level?: number
+		_type: 'block'
+		_key: string
+	}>
+	featureCards?: Array<{
+		title?: string
+		description?: string
+		_key: string
+	}>
+	benefitsPretitle?: string
+	benefitsTitle?: Array<{
+		children?: Array<{
+			marks?: Array<string>
+			text?: string
+			_type: 'span'
+			_key: string
+		}>
+		style?: 'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote'
+		listItem?: 'bullet' | 'number'
+		markDefs?: Array<{
+			href?: string
+			_type: 'link'
+			_key: string
+		}>
+		level?: number
+		_type: 'block'
+		_key: string
+	}>
+	benefitsDescription?: Array<{
+		children?: Array<{
+			marks?: Array<string>
+			text?: string
+			_type: 'span'
+			_key: string
+		}>
+		style?: 'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote'
+		listItem?: 'bullet' | 'number'
+		markDefs?: Array<{
+			href?: string
+			_type: 'link'
+			_key: string
+		}>
+		level?: number
+		_type: 'block'
+		_key: string
+	}>
+	benefitCards?: Array<{
+		title?: string
+		description?: string
+		_key: string
+	}>
+	whoCanJoinPretitle?: string
+	whoCanJoinTitle?: Array<{
+		children?: Array<{
+			marks?: Array<string>
+			text?: string
+			_type: 'span'
+			_key: string
+		}>
+		style?: 'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote'
+		listItem?: 'bullet' | 'number'
+		markDefs?: Array<{
+			href?: string
+			_type: 'link'
+			_key: string
+		}>
+		level?: number
+		_type: 'block'
+		_key: string
+	}>
+	whoCanJoinDescription1?: Array<{
+		children?: Array<{
+			marks?: Array<string>
+			text?: string
+			_type: 'span'
+			_key: string
+		}>
+		style?: 'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote'
+		listItem?: 'bullet' | 'number'
+		markDefs?: Array<{
+			href?: string
+			_type: 'link'
+			_key: string
+		}>
+		level?: number
+		_type: 'block'
+		_key: string
+	}>
+	whoCanJoinDescription2?: Array<{
+		children?: Array<{
+			marks?: Array<string>
+			text?: string
+			_type: 'span'
+			_key: string
+		}>
+		style?: 'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote'
+		listItem?: 'bullet' | 'number'
+		markDefs?: Array<{
+			href?: string
+			_type: 'link'
+			_key: string
+		}>
+		level?: number
+		_type: 'block'
+		_key: string
+	}>
+	howToStartPretitle?: string
+	howToStartTitle?: Array<{
+		children?: Array<{
+			marks?: Array<string>
+			text?: string
+			_type: 'span'
+			_key: string
+		}>
+		style?: 'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote'
+		listItem?: 'bullet' | 'number'
+		markDefs?: Array<{
+			href?: string
+			_type: 'link'
+			_key: string
+		}>
+		level?: number
+		_type: 'block'
+		_key: string
+	}>
+	howToStartDescription?: Array<{
+		children?: Array<{
+			marks?: Array<string>
+			text?: string
+			_type: 'span'
+			_key: string
+		}>
+		style?: 'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote'
+		listItem?: 'bullet' | 'number'
+		markDefs?: Array<{
+			href?: string
+			_type: 'link'
+			_key: string
+		}>
+		level?: number
+		_type: 'block'
+		_key: string
+	}>
+	steps?: Array<{
+		number?: number
+		title?: string
+		description?: string
+		_key: string
+	}>
+	formPretitle?: string
+	formTitle?: Array<{
+		children?: Array<{
+			marks?: Array<string>
+			text?: string
+			_type: 'span'
+			_key: string
+		}>
+		style?: 'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote'
+		listItem?: 'bullet' | 'number'
+		markDefs?: Array<{
+			href?: string
+			_type: 'link'
+			_key: string
+		}>
+		level?: number
+		_type: 'block'
+		_key: string
+	}>
+	formDescription?: Array<{
+		children?: Array<{
+			marks?: Array<string>
+			text?: string
+			_type: 'span'
+			_key: string
+		}>
+		style?: 'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote'
+		listItem?: 'bullet' | 'number'
+		markDefs?: Array<{
+			href?: string
+			_type: 'link'
+			_key: string
+		}>
+		level?: number
+		_type: 'block'
+		_key: string
+	}>
+	faqPretitle?: string
+	faqTitle?: Array<{
+		children?: Array<{
+			marks?: Array<string>
+			text?: string
+			_type: 'span'
+			_key: string
+		}>
+		style?: 'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote'
+		listItem?: 'bullet' | 'number'
+		markDefs?: Array<{
+			href?: string
+			_type: 'link'
+			_key: string
+		}>
+		level?: number
+		_type: 'block'
+		_key: string
+	}>
+	faqItems?: Array<{
+		question?: string
+		answer?: string
+		_key: string
+	}>
+}
+
 export type Crm2 = {
 	_type: 'crm2'
 	pretitle?: string
@@ -907,6 +1351,14 @@ export type Steps = {
 
 export type CallToAction02 = {
 	_type: 'call-to-action-02'
+	callToActionDoc?: Array<{
+		_ref: string
+		_type: 'reference'
+		_weak?: boolean
+		_key: string
+		[internalGroqTypeReferenceTo]?: 'call.to.action.doc'
+	}>
+	pretitle?: string
 	content?: Array<{
 		children?: Array<{
 			marks?: Array<string>
@@ -925,11 +1377,27 @@ export type CallToAction02 = {
 		_type: 'block'
 		_key: string
 	}>
+	image?: {
+		asset?: {
+			_ref: string
+			_type: 'reference'
+			_weak?: boolean
+			[internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+		}
+		media?: unknown
+		hotspot?: SanityImageHotspot
+		crop?: SanityImageCrop
+		alt?: string
+		onRight?: boolean
+		loading?: 'lazy' | 'eager'
+		_type: 'image'
+	}
 	ctas?: Array<
 		{
 			_key: string
 		} & Cta
 	>
+	microcopy?: string
 	checkedList?: Array<{
 		children?: Array<{
 			marks?: Array<string>
@@ -948,49 +1416,6 @@ export type CallToAction02 = {
 		_type: 'block'
 		_key: string
 	}>
-	image?: {
-		asset?: {
-			_ref: string
-			_type: 'reference'
-			_weak?: boolean
-			[internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
-		}
-		media?: unknown
-		hotspot?: SanityImageHotspot
-		crop?: SanityImageCrop
-		alt?: string
-		onRight?: boolean
-		loading?: 'lazy' | 'eager'
-		_type: 'image'
-	}
-	textAlign?: 'left' | 'center' | 'right'
-	alignItems?: 'start' | 'center' | 'end'
-	bgImage?: {
-		asset?: {
-			_ref: string
-			_type: 'reference'
-			_weak?: boolean
-			[internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
-		}
-		media?: unknown
-		hotspot?: SanityImageHotspot
-		crop?: SanityImageCrop
-		alt?: string
-		loading?: 'lazy' | 'eager'
-		_type: 'image'
-	}
-	bgImageMobile?: {
-		asset?: {
-			_ref: string
-			_type: 'reference'
-			_weak?: boolean
-			[internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
-		}
-		media?: unknown
-		hotspot?: SanityImageHotspot
-		crop?: SanityImageCrop
-		_type: 'image'
-	}
 }
 
 export type CallToAction01 = {
@@ -1002,6 +1427,7 @@ export type CallToAction01 = {
 		_key: string
 		[internalGroqTypeReferenceTo]?: 'call.to.action.doc'
 	}>
+	pretitle?: string
 	content?: Array<{
 		children?: Array<{
 			marks?: Array<string>
@@ -1040,6 +1466,7 @@ export type CallToAction01 = {
 			_key: string
 		} & Cta
 	>
+	microcopy?: string
 	checkedList?: Array<{
 		children?: Array<{
 			marks?: Array<string>
@@ -1366,6 +1793,46 @@ export type Logos01 = {
 	}>
 }
 
+export type Hero05 = {
+	_type: 'hero-05'
+	pretitle?: string
+	content?: Array<{
+		children?: Array<{
+			marks?: Array<string>
+			text?: string
+			_type: 'span'
+			_key: string
+		}>
+		style?: 'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote'
+		listItem?: 'bullet' | 'number'
+		markDefs?: Array<{
+			href?: string
+			_type: 'link'
+			_key: string
+		}>
+		level?: number
+		_type: 'block'
+		_key: string
+	}>
+	ctas?: Array<
+		{
+			_key: string
+		} & Cta
+	>
+	properties?: Array<{
+		label?: string
+		title?: string
+		subtitle?: string
+		_key: string
+	}>
+	list?: Array<{
+		icon?: Icon
+		title?: string
+		subtitle?: string
+		_key: string
+	}>
+}
+
 export type Hero04 = {
 	_type: 'hero-04'
 	pretitle?: string
@@ -1407,6 +1874,49 @@ export type Hero04 = {
 		loading?: 'lazy' | 'eager'
 		_type: 'image'
 	}
+}
+
+export type Hero03 = {
+	_type: 'hero-03'
+	pretitle?: string
+	content?: Array<{
+		children?: Array<{
+			marks?: Array<string>
+			text?: string
+			_type: 'span'
+			_key: string
+		}>
+		style?: 'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote'
+		listItem?: 'bullet' | 'number'
+		markDefs?: Array<{
+			href?: string
+			_type: 'link'
+			_key: string
+		}>
+		level?: number
+		_type: 'block'
+		_key: string
+	}>
+	image?: {
+		asset?: {
+			_ref: string
+			_type: 'reference'
+			_weak?: boolean
+			[internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+		}
+		media?: unknown
+		hotspot?: SanityImageHotspot
+		crop?: SanityImageCrop
+		alt?: string
+		onRight?: boolean
+		loading?: 'lazy' | 'eager'
+		_type: 'image'
+	}
+	ctas?: Array<
+		{
+			_key: string
+		} & Cta
+	>
 }
 
 export type Hero02 = {
@@ -1472,49 +1982,6 @@ export type Hero01 = {
 		hotspot?: SanityImageHotspot
 		crop?: SanityImageCrop
 		alt?: string
-		_type: 'image'
-	}
-	ctas?: Array<
-		{
-			_key: string
-		} & Cta
-	>
-}
-
-export type Hero03 = {
-	_type: 'hero-03'
-	pretitle?: string
-	content?: Array<{
-		children?: Array<{
-			marks?: Array<string>
-			text?: string
-			_type: 'span'
-			_key: string
-		}>
-		style?: 'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote'
-		listItem?: 'bullet' | 'number'
-		markDefs?: Array<{
-			href?: string
-			_type: 'link'
-			_key: string
-		}>
-		level?: number
-		_type: 'block'
-		_key: string
-	}>
-	image?: {
-		asset?: {
-			_ref: string
-			_type: 'reference'
-			_weak?: boolean
-			[internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
-		}
-		media?: unknown
-		hotspot?: SanityImageHotspot
-		crop?: SanityImageCrop
-		alt?: string
-		onRight?: boolean
-		loading?: 'lazy' | 'eager'
 		_type: 'image'
 	}
 	ctas?: Array<
@@ -1777,8 +2244,8 @@ export type Brief = {
 	layout?: {
 		direction?: 'row' | 'column'
 		reverse?: boolean
+		textAlign?: 'start' | 'center' | 'end'
 	}
-	onRight?: boolean
 	image?: {
 		asset?: {
 			_ref: string
@@ -1853,6 +2320,9 @@ export type List02 = {
 			_key: string
 		} & Cta
 	>
+	layout?: {
+		textAlign?: 'start' | 'center' | 'end'
+	}
 	gridLayout?: '2x2' | '3x3' | '4x4'
 	features?: Array<{
 		icon?: Icon
@@ -1888,6 +2358,9 @@ export type List01 = {
 			_key: string
 		} & Cta
 	>
+	layout?: {
+		textAlign?: 'start' | 'center' | 'end'
+	}
 	gridLayout?: '2x2' | '3x3' | '4x4'
 	features?: Array<{
 		icon?: Icon
@@ -2011,7 +2484,7 @@ export type LinkList = {
 export type Cta = {
 	_type: 'cta'
 	link?: Link
-	style?: 'primary' | 'secondary' | 'tertiary'
+	style?: 'primary' | 'secondary' | 'tertiary' | 'outline'
 }
 
 export type Faq = {
@@ -2528,6 +3001,7 @@ export type CallToActionDoc = {
 	_updatedAt: string
 	_rev: string
 	language?: string
+	pretitle?: string
 	content?: Array<{
 		children?: Array<{
 			marks?: Array<string>
@@ -2566,6 +3040,7 @@ export type CallToActionDoc = {
 			_key: string
 		} & Cta
 	>
+	microcopy?: string
 	checkedList?: Array<{
 		children?: Array<{
 			marks?: Array<string>
@@ -2745,6 +3220,9 @@ export type Page = {
 		  } & Hero04)
 		| ({
 				_key: string
+		  } & Hero05)
+		| ({
+				_key: string
 		  } & HomeBriefGroup)
 		| ({
 				_key: string
@@ -2794,6 +3272,15 @@ export type Page = {
 		| ({
 				_key: string
 		  } & Crm2)
+		| ({
+				_key: string
+		  } & PartnersProgram)
+		| ({
+				_key: string
+		  } & Subscribe)
+		| ({
+				_key: string
+		  } & Requestdemo)
 		| ({
 				_key: string
 		  } & PromoBanner)
@@ -3088,6 +3575,9 @@ export type SanityAssetSourceData = {
 
 export type AllSanitySchemaTypes =
 	| PromoBanner
+	| Requestdemo
+	| Subscribe
+	| PartnersProgram
 	| Crm2
 	| JobApplicationTabs
 	| ProductList
@@ -3107,10 +3597,11 @@ export type AllSanitySchemaTypes =
 	| PricingList
 	| Logos02
 	| Logos01
+	| Hero05
 	| Hero04
+	| Hero03
 	| Hero02
 	| Hero01
-	| Hero03
 	| FaqList
 	| CustomHtml
 	| CreativeModule

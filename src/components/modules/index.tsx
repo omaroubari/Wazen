@@ -6,6 +6,7 @@ import Hero from './Hero'
 import HeroTwo from './HeroTwo'
 import HeroThree from './HeroThree'
 import HeroFour from './HeroFour'
+import HeroFive from './HeroFive'
 import ProductList from './ProductList'
 import HowItWorks from './HowItWorks'
 import LogoList from './LogoList'
@@ -51,6 +52,7 @@ const MODULE_MAP = {
 	'hero-02': HeroTwo,
 	'hero-03': HeroThree,
 	'hero-04': HeroFour,
+	'hero-05': HeroFive,
 	'logo-list': LogoList,
 	'how-it-works': HowItWorks,
 	'product-list': ProductList,
