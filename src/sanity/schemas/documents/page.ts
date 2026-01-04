@@ -42,6 +42,7 @@ export default {
 				{ type: 'hero-02' },
 				{ type: 'hero-03' },
 				{ type: 'hero-04' },
+				{ type: 'hero-05' },
 				{ type: 'home-brief-group' },
 				{ type: 'how-it-works' },
 				// { type: 'creative-module' },
@@ -71,7 +72,7 @@ export default {
 					groups: [
 						{
 							name: 'hero',
-							of: ['hero-01', 'hero-02', 'hero-03', 'hero-04'],
+							of: ['hero-01', 'hero-02', 'hero-03', 'hero-04', 'hero-05'],
 						},
 						{
 							name: 'Content',

@@ -35,6 +35,7 @@ import hero from './modules/hero-01'
 import heroTwo from './modules/hero-02'
 import heroThree from './modules/hero-03'
 import heroFour from './modules/hero-04'
+import heroFive from './modules/hero-05'
 import logoList from './modules/logos-01'
 import richtextModule from './modules/richtext-module'
 import statList from './modules/stat-list'
@@ -111,10 +112,11 @@ export const schemaTypes = [
 	creativeModule,
 	customHtml,
 	faqList,
-	heroThree,
 	hero,
 	heroTwo,
+	heroThree,
 	heroFour,
+	heroFive,
 	logoList,
 	partners,
 	pricingList,
